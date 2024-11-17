@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="92">
+    <author>GMNGjoy</author>
+    <version>0.9.2.0</version>
+    <title>
+        <en>Contract Boost</en>
+    </title>
+    <description>
+        <en>
+<![CDATA[Boost your contracts by making more money, and allowing collection of the spoils!
+- 50% more profit from every contract
+- 10 max contracts
+- 5 max contracts per type
+- 50 total contracts available
+- Borrowed contract equipment comes with free fieldwork items to fill your tools
+- Allow using swathing equipment on harvest missions
+- Allow collecting straw from harvest missionss
+- Allow collecting grass from mowing missions
+- Allow collecting stones from plow, cultivate, and sowing missions
+
+All of the above settings can be modified via an XML settings file at FarmingSimulator2025/modSettings/ContractBoost.xml
+
+For license & feedback, please visit: https://github.com/GMNGjoy/FS25_ContractBoost
+]]>
+        </en>
+    </description>
+    <iconFilename>icon_contractBoost.png</iconFilename>
+    <multiplayer supported="false" />
+    <extraSourceFiles>
+        <sourceFile filename="scripts/MissionBalance.lua" />
+        <sourceFile filename="scripts/MissionTools.lua" />
+        <sourceFile filename="scripts/MissionBorrow.lua" />
+        <sourceFile filename="scripts/xmlConfigLoader.lua" />
+    </extraSourceFiles>
+</modDesc>
