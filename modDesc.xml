@@ -4,6 +4,7 @@
     <version>0.9.2.0</version>
     <title>
         <en>Contract Boost</en>
+        <de>Auftragsverstärkung</de>
     </title>
     <description>
         <en>
@@ -25,6 +26,25 @@ All of the above settings can be modified via an XML settings file at FarmingSim
 GitHub link: https://github.com/GMNGjoy/FS25_ContractBoost
 ]]>
         </en>
+        <de>
+<![CDATA[Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
+
+Standardeinstellungen:
+- 50% mehr Umsatz von jedem Auftrag
+- Bis zu 10 angenommene Aufträge
+- Bis zu 5 Aufträge pro Art
+- Bis zu 50 angebotene Aufträge
+- Beim Mieten der Ausrüstung werden auch kostenlos Verbrauchsgüter zum Füllen der Geräte bereitgestellt
+- Ernteaufträgen können auch mit Schwadmähern durchgeführt werden
+- Bei Ernteaufträgen kann das Stroh geborgen werden
+- Bei Mähaufträgen kann das Gras gesammelt werden
+- Bei Pflug-, Grubber- und Saatmissionen können Steine aufgehoben werden
+
+All diese Einstellungen können über eine XML Datei unter FarmingSimulator2025/modSettings/ContractBoost.xml angepasst werden
+
+GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
+]]>
+        </de>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="false" />
