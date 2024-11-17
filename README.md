@@ -1,6 +1,8 @@
 # Contract Boost for FS25
 Farming Simulator 25 changed contracts across the board - some things are for the better, and other things are either frustrating or just don't make sense. This mod aims to allow the player to activate / alter the contract system to their needs, allowing customization of the number of contracts available, the limit on active contracts, the reward rate for each type of contract (or all at once), as well as enabling many more contract tools than are currently allowed.
 
+This mod is intended to work alongside **BetterContracts** (once it's updated for FS25), providing some much needed tweaks to the contract system, as well as providing similar functionality to **CollectStrawAtMissions**, but extending that concept to also affect fieldwork tools allowed on harvest, mowing, plow, cultivate & sowing missions. In addition, the mod also adds something completely new - adding fieldwork fill items to the "borrowed" contract items, allowing you to get started with contracts without any money in your pocket!
+
 ## Description from the ModDesc
 > Boost your contracts by making more money, and allowing collection of the spoils!
 > - 50% more profit from every contract
