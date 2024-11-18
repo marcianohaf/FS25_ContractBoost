@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<contractsBoost>
+<contractBoost>
     <!-- all settings values are in meters unless otherwise specified -->
     <settings>
         <!--
@@ -9,6 +9,53 @@
         -->
         <debugMode>false</debugMode>
         
+        <!--
+            enableContractValueOverrides: enables overriding contract system default setting values;
+               disables all of the following settings:
+               - rewardFactor
+               - maxContractsPerFarm
+               - maxContractsPerType
+               - maxContractsOverall
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableContractValueOverrides>true</enableContractValueOverrides>
+
+        <!--
+            enableStrawFromHarvestMissions: should straw be collectible from during harvest missions?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableStrawFromHarvestMissions>true</enableStrawFromHarvestMissions>
+
+        <!--
+            enableSwathingForHarvestMissions: should you be able to use a Swather for harvest missions?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableSwathingForHarvestMissions>true</enableSwathingForHarvestMissions>
+
+        <!--
+            enableGrassFromMowingMissions: should grass be collectible from during mowing missions?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableGrassFromMowingMissions>true</enableGrassFromMowingMissions>
+        
+        <!--
+            enableStonePickingFromMissions: should stones be collectible from during tilling & sowing missions?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableStonePickingFromMissions>true</enableStonePickingFromMissions>
+
+        <!--
+            enableFieldworkToolFillItems: should borrowed equipment come with free fieldwork items to fill your tools?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableFieldworkToolFillItems>true</enableFieldworkToolFillItems>
+
         <!--
             rewardFactor: applies a multiplier to the base game rewardPer value
             ~ minValue: 0.5 
@@ -45,41 +92,6 @@
         -->
         <maxContractsOverall>50</maxContractsOverall>
 
-        <!--
-            enableStrawFromHarvestMissions: should straw be collectible from during harvest missions?
-            ~ values: true/false
-            ~ default: true
-        -->
-        <enableStrawFromHarvestMissions>true</enableStrawFromHarvestMissions>
-
-        <!--
-            enableSwathingForHarvestMissions: should you be able to use a Swather for harvest missions?
-            ~ values: true/false
-            ~ default: true
-        -->
-        <enableSwathingForHarvestMissions>true</enableSwathingForHarvestMissions>
-
-        <!--
-            enableGrassFromMowingMissions: should grass be collectible from during mowing missions?
-            ~ values: true/false
-            ~ default: true
-        -->
-        <enableGrassFromMowingMissions>true</enableGrassFromMowingMissions>
-        
-        <!--
-            enableStonePickingFromMissions: should stones be collectible from during tilling & sowing missions?
-            ~ values: true/false
-            ~ default: true
-        -->
-        <enableStonePickingFromMissions>true</enableStonePickingFromMissions>
-
-        <!--
-            enableFieldworkToolFillItems: should borrowed equipment come with free fieldwork items to fill your tools?
-            ~ values: true/false
-            ~ default: true
-        -->
-        <enableFieldworkToolFillItems>true</enableFieldworkToolFillItems>
-        
     </settings>
 
     <customRewards>
@@ -100,4 +112,4 @@
         <!-- <treeTransportMission></treeTransportMission> -->
         <!-- <destructibleRockMission></destructibleRockMission> -->
     </customRewards>
-</contractsBoost>
+</contractBoost>

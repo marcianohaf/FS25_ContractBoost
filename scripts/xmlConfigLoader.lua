@@ -19,11 +19,13 @@ XmlConfigLoader.rewardFactor = 1.5
 XmlConfigLoader.maxContractsPerFarm = 10
 XmlConfigLoader.maxContractsPerType = 5
 XmlConfigLoader.maxContractsOverall = 50
+XmlConfigLoader.enableContractValueOverrides = true
 XmlConfigLoader.enableStrawFromHarvestMissions = true
 XmlConfigLoader.enableSwathingForHarvestMissions = true
 XmlConfigLoader.enableGrassFromMowingMissions = true
 XmlConfigLoader.enableStonePickingFromMissions = true
 XmlConfigLoader.enableFieldworkToolFillItems = true
+XmlConfigLoader.debugMode = false
 
 -- xmlConfigFiles
 XmlConfigLoader.defaultConfigFile = "xml/defaultConfig.xml"
@@ -34,7 +36,7 @@ XmlConfigLoader.xmlTag = "contractBoost"
 ---@return table
 function XmlConfigLoader.init()
 
-	if XmlConfigLoader.loadDebug then print("---- XmlConfigLoader: read user configurations") end
+	if XmlConfigLoader.loadDebug then print("---- ContractBoost:XmlConfigLoader: read user configurations") end
 
 	-- setup the xml schema
 	XmlConfigLoader.initXml()
@@ -51,15 +53,16 @@ function XmlConfigLoader.init()
 	local loadedConfig = {}
 	if fileExists(userSettingsFile) then
 
-		printf("---- XmlConfigLoader: IMPORT user configuration overrides from: %s", XmlConfigLoader.userConfigFile)
 		XmlConfigLoader.userConfig = XmlConfigLoader.importConfig(userSettingsFile)
 		XmlConfigLoader.userConfigLoaded = true
 
 		loadedConfig = XmlConfigLoader.userConfig
 
+		printf("---- ContractBoost:XmlConfigLoader: IMPORT user configuration from: %s | debug: %s", XmlConfigLoader.userConfigFile, loadedConfig.debugMode and "true" or "false")
+
 	else
 
-		printf("---- XmlConfigLoader: CREATING user configuration file: %s", XmlConfigLoader.userConfigFile)
+		printf("---- ContractBoost:XmlConfigLoader: CREATING user configuration file: %s", XmlConfigLoader.userConfigFile)
 		local defaultSettingsFile = Utils.getFilename(XmlConfigLoader.defaultConfigFile, XmlConfigLoader.path)
 		copyFile(defaultSettingsFile, userSettingsFile, false)
 
@@ -67,7 +70,7 @@ function XmlConfigLoader.init()
 	end
 
 	if XmlConfigLoader.loadDebug then
-        print('-- XmlConfigLoader :: returned config')
+        print('-- ContractBoost:XmlConfigLoader :: returned config')
         DebugUtil.printTableRecursively(loadedConfig)
     end
 
@@ -78,18 +81,21 @@ end
 function XmlConfigLoader.initXml()
 
 	XmlConfigLoader.xmlSchema = XMLSchema.new(XmlConfigLoader.xmlTag)
-	XmlConfigLoader.xmlSchema:register(XMLValueType.FLOAT, XmlConfigLoader.xmlTag..".settings.rewardFactor", "applies a multiplier to the base game rewardPer value", XmlConfigLoader.rewardFactor)
-	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".settings.maxContractsPerFarm", "how many contracts can be active at once", XmlConfigLoader.maxContractsPerFarm)
-	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".settings.maxContractsPerType", "how many contracts per contract type can be available", XmlConfigLoader.maxContractsPerType)
-	XmlConfigLoader.xmlSchema:register(XMLValueType.INT,  XmlConfigLoader.xmlTag..".settings.maxContractsOverall", "how many contracts overall can be available", XmlConfigLoader.maxContractsOverall)
+
+	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.debugMode", "Turn debugMode on for additional log output", XmlConfigLoader.debugMode)
+	
+	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableContractValueOverrides", "enables overriding contract system default setting values", XmlConfigLoader.enableContractValueOverrides)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableStrawFromHarvestMissions", "should straw be collectible from during harvest missions?", XmlConfigLoader.enableStrawFromHarvestMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableSwathingForHarvestMissions", "should you be able to use a Swather for harvest missions?", XmlConfigLoader.enableSwathingForHarvestMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableGrassFromMowingMissions", "should grass be collectible from during mowing missions?", XmlConfigLoader.enableGrassFromMowingMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableStonePickingFromMissions", "should stones be collectible from during tilling & sowing missions?", XmlConfigLoader.enableStonePickingFromMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableFieldworkToolFillItems", "should borrowed equipment come with free fieldwork items to fill your tools", XmlConfigLoader.enableFieldworkToolFillItems)
-	
-	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.debugMode", "Turn debugMode on for additional log output", false)
-	
+
+	XmlConfigLoader.xmlSchema:register(XMLValueType.FLOAT, XmlConfigLoader.xmlTag..".settings.rewardFactor", "applies a multiplier to the base game rewardPer value", XmlConfigLoader.rewardFactor)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".settings.maxContractsPerFarm", "how many contracts can be active at once", XmlConfigLoader.maxContractsPerFarm)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".settings.maxContractsPerType", "how many contracts per contract type can be available", XmlConfigLoader.maxContractsPerType)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".settings.maxContractsOverall", "how many contracts overall can be available", XmlConfigLoader.maxContractsOverall)
+
 	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customRewards.baleMission", "custom rewardPerHa for baleMissions", nil)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customRewards.baleWrapMission", "custom rewardPerBale for baleWrapMission", nil)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customRewards.plowMission", "custom rewardPerHa for plowMission", nil)
@@ -117,21 +123,24 @@ function XmlConfigLoader.importConfig(xmlFilename)
 	local xmlFile = XMLFile.load("xmlFile", xmlFilename, XmlConfigLoader.xmlSchema)
 
 	if XmlConfigLoader.loadDebug then
-        printf('-- XmlConfigLoader :: loaded file: %s', xmlFilename)
+        printf('-- ContractBoost:XmlConfigLoader :: loaded file: %s', xmlFilename)
 	end
 
 	if xmlFile ~= 0 then
 
-		loadedConfig.rewardFactor = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.rewardFactor", XmlConfigLoader.rewardFactor)
-		loadedConfig.maxContractsPerFarm = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.maxContractsPerFarm", XmlConfigLoader.maxContractsPerFarm)
-		loadedConfig.maxContractsPerType = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.maxContractsPerType", XmlConfigLoader.maxContractsPerType)
-		loadedConfig.maxContractsOverall = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.maxContractsOverall", XmlConfigLoader.maxContractsOverall)
+		loadedConfig.debugMode = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.debugMode", XmlConfigLoader.debugMode)
+
+		loadedConfig.enableContractValueOverrides = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableContractValueOverrides", XmlConfigLoader.enableContractValueOverrides)
 		loadedConfig.enableStrawFromHarvestMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableStrawFromHarvestMissions", XmlConfigLoader.enableStrawFromHarvestMissions)
 		loadedConfig.enableSwathingForHarvestMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableSwathingForHarvestMissions", XmlConfigLoader.enableSwathingForHarvestMissions)
 		loadedConfig.enableGrassFromMowingMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableGrassFromMowingMissions", XmlConfigLoader.enableGrassFromMowingMissions)
 		loadedConfig.enableStonePickingFromMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableStonePickingFromMissions", XmlConfigLoader.enableStonePickingFromMissions)
 		loadedConfig.enableFieldworkToolFillItems = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableFieldworkToolFillItems", XmlConfigLoader.enableFieldworkToolFillItems)
-		loadedConfig.debugMode = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.debugMode", XmlConfigLoader.debugMode)
+		
+		loadedConfig.rewardFactor = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.rewardFactor", XmlConfigLoader.rewardFactor)
+		loadedConfig.maxContractsPerFarm = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.maxContractsPerFarm", XmlConfigLoader.maxContractsPerFarm)
+		loadedConfig.maxContractsPerType = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.maxContractsPerType", XmlConfigLoader.maxContractsPerType)
+		loadedConfig.maxContractsOverall = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.maxContractsOverall", XmlConfigLoader.maxContractsOverall)
 
 		loadedConfig.customRewards = {}
 		loadedConfig.customRewards.baleMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customRewards.baleMission", nil)
@@ -150,12 +159,34 @@ function XmlConfigLoader.importConfig(xmlFilename)
 		loadedConfig.customRewards.treeTransportMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customRewards.treeTransportMission", nil)
 		loadedConfig.customRewards.destructibleRockMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customRewards.destructibleRockMission", nil)
 
+		-- ensure that values are within limits for numerical values
+		if loadedConfig.rewardFactor < 0.1 or loadedConfig.rewardFactor > 5.0 then
+			printf('-- ContractBoost:XmlConfigLoader :: user configured rewardFactor (%s) outside of limits, reset to default.', loadedConfig.rewardFactor)
+			loadedConfig.rewardFactor = XmlConfigLoader.rewardFactor
+		end
+
+		if loadedConfig.maxContractsPerFarm < 1 or loadedConfig.maxContractsPerFarm > 100 then
+			printf('-- ContractBoost:XmlConfigLoader :: user configured maxContractsPerFarm (%s) outside of limits, reset to default.', loadedConfig.maxContractsPerFarm)
+			loadedConfig.maxContractsPerFarm = XmlConfigLoader.maxContractsPerFarm
+		end
+
+		if loadedConfig.maxContractsPerType < 1 or loadedConfig.maxContractsPerType > 20 then
+			printf('-- ContractBoost:XmlConfigLoader :: user configured maxContractsPerType (%s) outside of limits, reset to default.', loadedConfig.maxContractsPerType)
+			loadedConfig.maxContractsPerType = XmlConfigLoader.maxContractsPerType
+		end
+
+		if loadedConfig.maxContractsOverall < 1 or loadedConfig.maxContractsOverall > 100 then
+			printf('-- ContractBoost:XmlConfigLoader :: user configured maxContractsOverall (%d) outside of limits, reset to default.', loadedConfig.maxContractsOverall)
+			loadedConfig.maxContractsOverall = XmlConfigLoader.maxContractsOverall
+			
+		end
+		
 	end
 
 	xmlFile:delete()
 
 	if XmlConfigLoader.loadDebug then
-        print('-- XmlConfigLoader :: loadedConfig')
+        print('-- ContractBoost:XmlConfigLoader :: loadedConfig')
         DebugUtil.printTableRecursively(loadedConfig)
     end
 

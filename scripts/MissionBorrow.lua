@@ -6,34 +6,10 @@
 -- @license CC0 1.0 Universal
 
 MissionBorrow = {}
-MissionBorrow.config = {}
-MissionBorrow.debug = false
 
-function MissionBorrow:init()
-    if MissionBorrow.debug then print('-- MissionBorrow :: init.') end
-
-    -- load the config from xml
-    source(g_currentModDirectory.."scripts/xmlConfigLoader.lua")
-    MissionBorrow.config = XmlConfigLoader.init()
-    MissionBorrow.debug = MissionBorrow.config.debugMode
-    
-    g_missionManager.loadMapData = Utils.appendedFunction(MissionManager.loadMapData, MissionBorrow.loadMapData)
-
-    print('-- ContractBoost:MissionBorrow :: loaded.')
-end
-
-function MissionBorrow:loadMapData()
-    if MissionBorrow.debug then print('-- MissionBorrow :: loadMapData') end
-
-    if MissionBorrow.config.enableFieldworkToolFillItems then 
-        MissionBorrow:fillMissionTools()
-    end
-   
-    if MissionBorrow.debug then print('-- MissionBorrow :: loadMapData complete') end
-end
-
-function MissionBorrow:fillMissionTools()
-    if MissionBorrow.debug then print('-- MissionBorrow :: fillMissionTools') end
+-- Adds fill items to the mission tools for each type of mission where needed.
+function MissionBorrow:addFillItemsToMissionTools()
+    if ContractBoost.debug then print('-- ContractBoost:MissionBorrow :: fillMissionTools') end
 
     local fillMissionTypes = {
         "fertilizeMission",
@@ -90,7 +66,5 @@ function MissionBorrow:fillMissionTools()
         end
     end
 
-    if MissionBorrow.debug then print('-- MissionBalance :: fillMissionTools complete') end
+    if ContractBoost.debug then print('-- ContractBoost:MissionBorrow :: fillMissionTools complete') end
 end
-
-MissionBorrow:init()

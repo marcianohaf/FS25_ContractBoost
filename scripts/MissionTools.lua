@@ -1,4 +1,4 @@
--- MissionTools
+-- ContractBoost:MissionTools
 -- @author GMNGjoy
 -- @copyright 11/15/2024
 -- @contact https://github.com/GMNGjoy/FS25_ContractBoost
@@ -33,29 +33,12 @@ WorkAreaTypes = {
 }
 
 MissionTools = {}
-MissionTools.config = {}
-MissionTools.debug = false
 MissionTools.additionalAllowedVehicles = {}
 
-
-function MissionTools:init()
-    if MissionTools.debug then print('-- MissionTools :: init.') end
-
-    -- load the config from xml
-    source(g_currentModDirectory.."scripts/xmlConfigLoader.lua")
-    MissionBalance.config = XmlConfigLoader.init()
-    MissionBalance.debug = true -- MissionBalance.config.debugMode
-
-    MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed, MissionTools.getIsMissionWorkAllowed)
-
-    MissionTools:setupAdditionalAllowedVehicles()
-
-    print('-- ContractBoost:MissionTools :: loaded')
-end
-
+-- Determine which additional allowed vehicles will be allowed based on user settings.
 function MissionTools:setupAdditionalAllowedVehicles()
 
-    if MissionBalance.config.enableStrawFromHarvestMissions then
+    if ContractBoost.config.enableStrawFromHarvestMissions then
         MissionTools.additionalAllowedVehicles.harvestMission = {
             [WorkAreaTypes.FORAGEWAGON] = true,
             [WorkAreaTypes.BALER] = true,
@@ -63,13 +46,14 @@ function MissionTools:setupAdditionalAllowedVehicles()
         }
     end
 
-    if MissionBalance.config.enableSwathingForHarvestMissions then
-        MissionTools.additionalAllowedVehicles.harvestMission = {
-            [WorkAreaTypes.MOWER] = true,
-        }
+    if ContractBoost.config.enableSwathingForHarvestMissions then
+        if not MissionTools.additionalAllowedVehicles.harvestMission then
+            MissionTools.additionalAllowedVehicles.harvestMission = {}
+        end
+        MissionTools.additionalAllowedVehicles.harvestMission[WorkAreaTypes.MOWER] = true
     end
 
-    if MissionBalance.config.enableGrassFromMowingMissions then
+    if ContractBoost.config.enableGrassFromMowingMissions then
         MissionTools.additionalAllowedVehicles.mowMission = {
             [WorkAreaTypes.COMBINECHOPPER] = true,
             [WorkAreaTypes.CUTTER] = true,
@@ -80,7 +64,7 @@ function MissionTools:setupAdditionalAllowedVehicles()
         }
     end
 
-    if MissionBalance.config.enableStonePickingFromMissions then
+    if ContractBoost.config.enableStonePickingFromMissions then
         MissionTools.additionalAllowedVehicles.plowMission = {
             [WorkAreaTypes.STONEPICKER] = true,
         }
@@ -105,16 +89,18 @@ function MissionTools:setupAdditionalAllowedVehicles()
     -- destructibleRockMission = {},
 end
 
+-- replace the getIsMissionWorkAllowed with our own function that also checks the additional tools
 function MissionTools:getIsMissionWorkAllowed(superFunc, farmId, x, z, workAreaType)
     local mission = self:getMissionAtWorldPosition(x, z)
     if mission ~= nil and mission.type ~= nil and mission.farmId == farmId then
         local missionType = mission.type.name
     
-        if MissionTools.debug then printf('-- MissionTools :: missionType: %s | workAreaType: %s', missionType, workAreaType) end
+        if ContractBoost.debug then printf('-- ContractBoost:MissionTools :: missionType: %s | workAreaType: %s', missionType, workAreaType) end
 
         local additionalWorkAreaTypes = MissionTools.additionalAllowedVehicles[missionType] or {}
-        -- if MissionTools.debug then
-        --     print('-- MissionTools :: additionalAllowedVehicles')
+        
+        -- if ContractBoost.debug then
+        --     print('-- ContractBoost:MissionTools :: additionalAllowedVehicles')
         --     DebugUtil.printTableRecursively(additionalWorkAreaTypes)
         -- end
 
@@ -129,5 +115,3 @@ function MissionTools:getIsMissionWorkAllowed(superFunc, farmId, x, z, workAreaT
 
     return false
 end
-
-MissionTools:init()
