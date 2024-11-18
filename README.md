@@ -23,7 +23,7 @@ This mod is intended to work alongside **BetterContracts** (once it's updated fo
 ## Installation Instructions
 1. Download this package from GitHub on the releases page, save the `FS25_ContractBoost.zip` into your mod folder.
 2. Launch the game, and activate the mod.
-3. If you wish to customize any of the settings, visit your savegame folder structure, and look for the settings file: `/FarmingSimulator2025/modSettings/ContractBoost.xml`. Each item above has it's own setting, and the file explains the full settings and what appropriate values for each are.
+3. If you wish to customize any of the settings, visit your savegame folder structure, and look for the settings file: `/FarmingSimulator2025/modSettings/ContractBoost.xml`, which is created once you load the mod into any save. Each item above has it's own setting, and the file explains the full settings and what appropriate values for each are.
 
 _Enjoy!_
 
