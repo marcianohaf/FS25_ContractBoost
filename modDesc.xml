@@ -47,7 +47,7 @@ GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
         </de>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
-    <multiplayer supported="false" />
+    <multiplayer supported="true" />
     <extraSourceFiles>
         <sourceFile filename="scripts/ContractBoost.lua" />
     </extraSourceFiles>

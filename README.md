@@ -29,3 +29,24 @@ _Enjoy!_
 
 
 ## Screenshots
+
+![Run more than three active contracts!](/_screenshots/screenshot_activeContractsMenu.png)
+<br/><br/>
+
+![Control how many active contracts you can have per farm!](/_screenshots/screenshot_activeContracts.png)
+<br/><br/>
+
+![Collect straw during harvest contracts!](/_screenshots/screenshot_straw.png)
+<br/><br/>
+
+![Enable the use of Macdon windrower & pickup header on a Harvest contract!](/_screenshots/screenshot_macdon.png)
+<br/><br/>
+
+![Windrow, bale & collect grass during mowing contracts!](/_screenshots/screenshot_grass.png)
+<br/><br/>
+
+![Fertilizer included on fertilizing contracts!](/_screenshots/screenshot_fertilizer.png)
+<br/><br/>
+
+![Herbicide included on spraying contracts!](/_screenshots/screenshot_herbicide.png)
+<br/><br/>
