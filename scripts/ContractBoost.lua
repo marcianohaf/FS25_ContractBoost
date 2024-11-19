@@ -24,6 +24,10 @@ function ContractBoost:init()
     g_missionManager.loadMapData = Utils.appendedFunction(MissionManager.loadMapData, ContractBoost.loadMapData)
     MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed, MissionTools.getIsMissionWorkAllowed)
 
+    if ContractBoost.config.enableFieldworkToolFillItems then
+        AbstractMission.onSpawnedVehicle = Utils.overwrittenFunction(AbstractMission.onSpawnedVehicle, MissionBorrow.onSpawnedVehicle)
+    end
+
     printf('-- ContractBoost :: loaded. debug: %s', ContractBoost.debug and "on" or "off")
 end
 
@@ -31,13 +35,13 @@ function ContractBoost:loadMapData()
     if ContractBoost.debug then print('-- ContractBoost :: loadMapData') end
 
     -- MissionBalance: on map load apply new mission settings
-    if ContractBoost.config.enableContractValueOverrides then 
+    if ContractBoost.config.enableContractValueOverrides then
         MissionBalance:initMissionSettings()
         MissionBalance:scaleMissionReward()
     end
 
     -- MissionBorrow: on map load add items for fieldwork tools
-    if ContractBoost.config.enableFieldworkToolFillItems then 
+    if ContractBoost.config.enableFieldworkToolFillItems then
         MissionBorrow:addFillItemsToMissionTools()
     end
 
