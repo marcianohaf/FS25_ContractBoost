@@ -50,3 +50,134 @@ _Enjoy!_
 
 ![Herbicide included on spraying contracts!](/_screenshots/screenshot_herbicide.png)
 <br/><br/>
+
+
+## Detailed Configuration Instructions
+
+**Contract Boost** is entirely controlled by a configuration file that is copied into your `modSettings/` folder on first usage. The file is located in the same folder that your `savegame##` folder is located, roughly here:
+
+`/FarmingSimulator2025/modSettings/ContractBoost.xml`
+
+The file itself contains documentation for all of the primary settings, which I'll copy here.
+
+```
+    <settings>
+        <!--
+            debugMode: turn on extra debug that gets sent to the log
+            ~ values: true/false
+            ~ default: false
+        -->
+        <debugMode>false</debugMode>
+        
+        <!--
+            enableContractValueOverrides: enables overriding contract system default setting values;
+               disables all of the following settings:
+               - rewardFactor
+               - maxContractsPerFarm
+               - maxContractsPerType
+               - maxContractsOverall
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableContractValueOverrides>true</enableContractValueOverrides>
+
+        <!--
+            enableStrawFromHarvestMissions: should straw be collectible from during harvest missions?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableStrawFromHarvestMissions>true</enableStrawFromHarvestMissions>
+
+        <!--
+            enableSwathingForHarvestMissions: should you be able to use a Swather for harvest missions?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableSwathingForHarvestMissions>true</enableSwathingForHarvestMissions>
+
+        <!--
+            enableGrassFromMowingMissions: should grass be collectible from during mowing missions?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableGrassFromMowingMissions>true</enableGrassFromMowingMissions>
+        
+        <!--
+            enableStonePickingFromMissions: should stones be collectible from during tilling & sowing missions?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableStonePickingFromMissions>true</enableStonePickingFromMissions>
+
+        <!--
+            enableFieldworkToolFillItems: should borrowed equipment come with free fieldwork items to fill your tools?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableFieldworkToolFillItems>true</enableFieldworkToolFillItems>
+
+        <!--
+            rewardFactor: applies a multiplier to the base game rewardPer value
+            ~ minValue: 0.5 
+            ~ maxValue: 5.0
+            ~ mod default: 1.5
+            ~ game default: 1.0
+        -->
+        <rewardFactor>1.5</rewardFactor>
+
+        <!--
+            maxContractsPerFarm: how many contracts can be active at once
+            ~ minValue: 1 
+            ~ maxValue: 100
+            ~ mod default: 10
+            ~ game default: 3
+        -->
+        <maxContractsPerFarm>10</maxContractsPerFarm>
+
+        <!--
+            maxContractsPerType: how many contracts per contract type can be available
+            ~ minValue: 1 
+            ~ maxValue: 20
+            ~ mod default: 5
+            ~ game default: 1-4 depending on type
+        -->
+        <maxContractsPerType>5</maxContractsPerType>
+
+        <!--
+            maxContractsOverall: how many contracts overall can be available
+            ~ minValue: 1 
+            ~ maxValue: 100
+            ~ mod default: 50
+            ~ game default: 20
+        -->
+        <maxContractsOverall>50</maxContractsOverall>
+
+    </settings>
+```
+
+For the `customRewards` section, the same documentation was not included in the document as it would be somewhat repetitive, but let's include that here!
+
+One thing to call out that may not be obvious - the `<rewardFactor>1.5</rewardFactor>` setting above in the file is already being applied to the contract rates, which means that you're already getting a 150% boost applied to _all contracts_, but the custom rewards allows the player to further customize each of those values to tailor to their needs. any `customReward` value will override the `rewardFactor` setting.... so if the reward factor is set to `1.5`, that means that for bale missions you are already getting a per-hectare rate of `2200 * 1.5 = 3300`. For a 2ha contract, that means you should get roughly `$6600`. 
+
+For the example value that is already set in the file, setting `baleMission` to `3500`, if you have a 2ha contract, then the contract reward should be roughly `$7000`.
+
+
+### Some settings are calculated "per item" (per bale, per rock)
+- `<baleWrapMission />` (per bale) [default value: `300`]
+- `<deadwoodMission />` (per tree) [default value: `150`]
+- `<destructibleRockMission/>` (per rock) [default value: `550`]
+
+
+### All remaining settings are calculated per hectare of the contract 
+- `<baleMission />` (per HA) [default value: `2200`]
+- `<plowMission />` (per HA) [default value: `2800`]
+- `<cultivateMission />` (per HA) [default value: `2300`]
+- `<sowMission />` (per HA) [default value: `2000`]
+- `<harvestMission />` (per HA) [default value: `2500`]
+- `<hoeMission />` (per HA) [default value: `1500`]
+- `<weedMission />` (per HA) [default value: `2000`]
+- `<herbicideMission />` (per HA) [default value: `1500`]
+- `<fertilizeMission />` (per HA) [default value: `1500`]
+- `<mowMission />` (per HA) [default value: `2500`]
+- `<tedderMission />` (per HA) [default value: `1500`]
+- `<stonePickMission />` (per HA) [default value: `2200`]

@@ -20,7 +20,7 @@ function MissionBalance:scaleMissionReward()
     if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: scaleMissionReward') end
 
     local rewardFactor = ContractBoost.config.rewardFactor
-
+    
     for _, missionType in ipairs(g_missionManager.missionTypes) do
         
         local typeName = missionType.name
