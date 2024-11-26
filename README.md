@@ -54,7 +54,7 @@ _Enjoy!_
 
 ## Detailed Configuration Instructions
 
-**Contract Boost** is entirely controlled by a configuration file that is copied into your `modSettings/` folder on first usage. The file is located in the same folder that your `savegame##` folder is located, roughly here:
+**Contract Boost** is entirely controlled by a named configuration file (`ContractBoost.xml`) that is copied into your `modSettings/` folder on first usage. The file is located in the same folder that your `savegame##` folder is located, roughly here:
 
 `/FarmingSimulator2025/modSettings/ContractBoost.xml`
 
