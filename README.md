@@ -60,7 +60,7 @@ _Enjoy!_
 
 The file itself contains documentation for all of the primary settings, which I'll copy here.
 
-```
+```xml
     <settings>
         <!--
             debugMode: turn on extra debug that gets sent to the log
