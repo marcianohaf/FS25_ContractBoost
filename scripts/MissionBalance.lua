@@ -45,8 +45,8 @@ function MissionBalance:scaleMissionReward()
             missionType.data.rewardPerHa = newValue
         end
 
-        -- update the number of each type to 5
-        missionType.data.maxNumInstances = ContractBoost.config.maxContractsPerType
+        -- update the maximum number of each type to it's custom value if it exists else use the default
+        missionType.data.maxNumInstances = ContractBoost.config.customMaxType[typeName] or ContractBoost.config.maxContractsPerType
 
         if ContractBoost.debug then printf('---- ContractBoost:MissionBalance :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue) end
     end

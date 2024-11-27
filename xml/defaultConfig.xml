@@ -112,4 +112,23 @@
         <!-- <treeTransportMission></treeTransportMission> -->
         <!-- <destructibleRockMission></destructibleRockMission> -->
     </customRewards>
+
+    <customMaxType>
+        <!-- <baleMission></baleMission> -->
+        <!-- <baleWrapMission></baleWrapMission> -->
+        <!-- <plowMission></plowMission> -->
+        <!-- <cultivateMission></cultivateMission>  -->
+        <!-- <sowMission></sowMission> -->
+        <harvestMission>12</harvestMission>
+        <!-- <hoeMission></hoeMission> -->
+        <!-- <weedMission></weedMission> -->
+        <!-- <herbicideMission></herbicideMission> -->
+        <!-- <fertilizeMission></fertilizeMission> -->
+        <!-- <mowMission></mowMission> -->
+        <!-- <tedderMission></tedderMission> -->
+        <!-- <stonePickMission></stonePickMission> -->
+        <deadwoodMission>1</deadwoodMission>
+        <treeTransportMission>1</treeTransportMission>
+        <destructibleRockMission>1</destructibleRockMission>
+    </customMaxType>
 </contractBoost>
