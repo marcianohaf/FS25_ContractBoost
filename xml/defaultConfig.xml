@@ -119,7 +119,7 @@
         <!-- <plowMission></plowMission> -->
         <!-- <cultivateMission></cultivateMission>  -->
         <!-- <sowMission></sowMission> -->
-        <harvestMission>12</harvestMission>
+        <harvestMission>8</harvestMission>
         <!-- <hoeMission></hoeMission> -->
         <!-- <weedMission></weedMission> -->
         <!-- <herbicideMission></herbicideMission> -->
@@ -127,8 +127,8 @@
         <!-- <mowMission></mowMission> -->
         <!-- <tedderMission></tedderMission> -->
         <!-- <stonePickMission></stonePickMission> -->
-        <deadwoodMission>1</deadwoodMission>
-        <treeTransportMission>1</treeTransportMission>
-        <destructibleRockMission>1</destructibleRockMission>
-    </customMaxType>
+        <!-- <deadwoodMission></deadwoodMission> -->
+        <!-- <treeTransportMission></treeTransportMission> -->
+        <!-- <destructibleRockMission></destructibleRockMission> -->
+    </customMaxPerType>
 </contractBoost>
