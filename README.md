@@ -187,7 +187,7 @@ For the example value that is already set in the file, setting `baleMission` to 
 The `customMaxPerType` allows setting a specific maximum amount of contracts per type.
 You can stop specific types from showing by setting the value to `0`. Furthermore the mod has a set maximum of 20 contracts per type.
 
-### All Game Defaults of Max Contracts per type 
+### All Game Defaults for Max Contracts per type 
 
 - `baleMission:` `3`
 - `baleWrapMission:` `2`
