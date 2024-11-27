@@ -113,7 +113,7 @@
         <!-- <destructibleRockMission></destructibleRockMission> -->
     </customRewards>
 
-    <customMaxType>
+    <customMaxPerType>
         <!-- <baleMission></baleMission> -->
         <!-- <baleWrapMission></baleWrapMission> -->
         <!-- <plowMission></plowMission> -->
