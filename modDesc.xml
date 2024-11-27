@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="92">
     <author>GMNGjoy</author>
     <version>1.0.0.1</version>
@@ -7,8 +7,8 @@
         <de>Auftragssteigerung</de>
     </title>
     <description>
-        <en>
-<![CDATA[Boost your contracts by making more money, and allowing collection of the spoils!
+        <en><![CDATA[
+Boost your contracts by making more money, and allowing collection of the spoils!
 
 Features:
 - 50% more profit from every contract
@@ -24,10 +24,10 @@ Features:
 All of the above settings can be modified via an XML settings file at FarmingSimulator2025/modSettings/ContractBoost.xml
 
 GitHub link: https://github.com/GMNGjoy/FS25_ContractBoost
-]]>
-        </en>
-        <de>
-<![CDATA[Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
+
+]]></en>
+        <de><![CDATA[
+Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
 
 Features:
 - 50% mehr Umsatz von jedem Auftrag
@@ -43,12 +43,12 @@ Features:
 All diese Einstellungen können über eine XML Datei unter FarmingSimulator2025/modSettings/ContractBoost.xml angepasst werden
 
 GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
-]]>
-        </de>
+
+]]></de>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
-    <multiplayer supported="true" />
+    <multiplayer supported="true"/>
     <extraSourceFiles>
-        <sourceFile filename="scripts/ContractBoost.lua" />
+        <sourceFile filename="scripts/ContractBoost.lua"/>
     </extraSourceFiles>
 </modDesc>
