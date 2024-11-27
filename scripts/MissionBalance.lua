@@ -28,6 +28,9 @@ function MissionBalance:scaleMissionReward()
             local prevValue = nil
             local newValue = nil
 
+            -- update the maximum number of each type to it's custom value if it exists else use the default
+            missionType.data.maxNumInstances = math.min(ContractBoost.config.customMaxPerType[typeName] or ContractBoost.config.maxContractsPerType, 20)
+
             -- if ContractBoost.debug then
             --     printf('---- ContractBoost:MissionBalance :: %s data', typeName)
             --     DebugUtil.printTableRecursively(missionType.data)
@@ -53,9 +56,6 @@ function MissionBalance:scaleMissionReward()
                     newValue = ContractBoost.config.customRewards[typeName] or missionType.data.rewardPerHa * rewardFactor
                     missionType.data.rewardPerHa = newValue
                 end
-
-                -- update the maximum number of each type to it's custom value if it exists else use the default
-                missionType.data.maxNumInstances = ContractBoost.config.customMaxPerType[typeName] or ContractBoost.config.maxContractsPerType
 
                 if ContractBoost.debug then printf('---- ContractBoost:MissionBalance :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue) end
             end
