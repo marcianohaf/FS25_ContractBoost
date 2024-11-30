@@ -12,7 +12,16 @@ function MissionBalance:initMissionSettings()
     MissionManager.MAX_MISSIONS_PER_FARM = ContractBoost.config.maxContractsPerFarm
     MissionManager.MISSION_GENERATION_INTERVAL = 180000 --360000
 
+    -- AbstractMission.getDetails(self, details)
+    AbstractMission.getDetails = Utils.appendedFunction(AbstractMission.getDetails, MissionBalance.getDetails)
+
     if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: settings updated.') end
+end
+
+function MissionBalance:getDetails(self, details)
+    if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: getDetails') end
+
+    DebugUtil.printTableRecursively(details)
 end
 
 --- Scale the mission rewards based on user configuration
