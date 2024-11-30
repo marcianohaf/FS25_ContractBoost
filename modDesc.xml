@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="92">
     <author>GMNGjoy</author>
-    <version>1.0.0.1</version>
+    <version>1.0.0.13</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
     </title>
     <description>
-        <en><![CDATA[
+        <en>
 Boost your contracts by making more money, and allowing collection of the spoils!
 
 Features:
@@ -27,8 +27,8 @@ GitHub link: https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.1
 - Added safety check for custom maps that don't contain every type of contract
-]]></en>
-        <de><![CDATA[
+</en>
+        <de>
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
 
 Features:
@@ -48,7 +48,7 @@ GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.1
 - Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
-]]></de>
+</de>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="true"/>
