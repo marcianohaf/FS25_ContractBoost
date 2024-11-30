@@ -25,6 +25,8 @@ All of the above settings can be modified via an XML settings file at FarmingSim
 
 GitHub link: https://github.com/GMNGjoy/FS25_ContractBoost
 
+Changelog 1.0.0.1
+- Added safety check for custom maps that don't contain every type of contract
 ]]></en>
         <de><![CDATA[
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
@@ -44,6 +46,8 @@ All diese Einstellungen können über eine XML Datei unter FarmingSimulator2025/
 
 GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
 
+Changelog 1.0.0.1
+- Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
 ]]></de>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
