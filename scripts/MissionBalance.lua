@@ -5,6 +5,7 @@
 -- @license CC0 1.0 Universal
 
 MissionBalance = {}
+MissionBalance.boosted = {}
 
 --- Initialize the mission setting overrides based on user configuration
 function MissionBalance:initMissionSettings()
@@ -15,18 +16,29 @@ function MissionBalance:initMissionSettings()
     if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: settings updated.') end
 end
 
-<<<<<<< Updated upstream
-=======
 -- AbstractMission.getDetails(self, details)
 function MissionBalance:getDetails(superFunc)
     if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: getDetails') end
     
-    local details = superFunc()
-    DebugUtil.printTableRecursively(details)
+    -- Load the default details from AbstractMission
+    local details = superFunc(self)
 
+    -- The mission knows what the missionTypeId is
+    local missionTypeId = self.type.typeId
+
+    -- if we've stored the boosted amount, add it to the details.
+    if rawget(MissionBalance.boosted, missionTypeId) ~= nil then
+        local boostAmount = MissionBalance.boosted[missionTypeId]
+        local isPositive = boostAmount > 0 and '+' or ''
+        table.insert(details,  {
+            title = g_i18n:getText("contract_boosted"),
+            value = string.format("%s%d %%", isPositive, boostAmount)
+        })
+    end
+
+    return details
 end
 
->>>>>>> Stashed changes
 --- Scale the mission rewards based on user configuration
 function MissionBalance:scaleMissionReward()
     if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: scaleMissionReward') end
@@ -72,6 +84,7 @@ function MissionBalance:scaleMissionReward()
                 if newValue == prevValue and newValue == nil then
                     printf('---- ContractBoost:MissionBalance :: Mission %s: %s | skipped, not founnd on map', missionType.typeId, missionType.name)
                 else
+                    MissionBalance.boosted[missionType.typeId] = ((newValue / prevValue) * 100) - 100
                     printf('---- ContractBoost:MissionBalance :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue)
                 end
             end

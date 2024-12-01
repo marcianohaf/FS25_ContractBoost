@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="92">
     <author>GMNGjoy</author>
-    <version>1.0.0.17</version>
+    <version>1.0.0.28</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
@@ -55,4 +55,5 @@ Changelog 1.0.0.1
     <extraSourceFiles>
         <sourceFile filename="scripts/ContractBoost.lua"/>
     </extraSourceFiles>
+    <l10n filenamePrefix="languages/l10n"/>
 </modDesc>
