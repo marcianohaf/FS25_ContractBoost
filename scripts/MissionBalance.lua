@@ -29,10 +29,10 @@ function MissionBalance:scaleMissionReward()
             local prevValue = nil
             local newValue = nil
 
-            if ContractBoost.debug then
-                printf('---- ContractBoost:MissionBalance :: %s data', typeName)
-                DebugUtil.printTableRecursively(missionType.data)
-            end
+            -- if ContractBoost.debug then
+            --     printf('---- ContractBoost:MissionBalance :: %s data', typeName)
+            --     DebugUtil.printTableRecursively(missionType.data)
+            -- end
 
             -- don't process the contract type if there are no instances
             if typeName == "baleWrapMission" and rawget(missionType.data, "rewardPerBale") ~= nil then
@@ -58,7 +58,7 @@ function MissionBalance:scaleMissionReward()
 
             if ContractBoost.debug then 
                 if newValue == prevValue and newValue == nil then
-                    printf('---- ContractBoost:MissionBalance :: Mission %s: %s | skipped, not founnd on map', missionType.typeId, missionType.name)
+                    printf('---- ContractBoost:MissionBalance :: Mission %s: %s | skipped, not found on map', missionType.typeId, missionType.name)
                 else
                     printf('---- ContractBoost:MissionBalance :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue)
                 end
