@@ -28,6 +28,8 @@ function ContractBoost:init()
         AbstractMission.onSpawnedVehicle = Utils.overwrittenFunction(AbstractMission.onSpawnedVehicle, MissionBorrow.onSpawnedVehicle)
     end
 
+    AbstractMission.getDetails = Utils.overwrittenFunction(AbstractMission.getDetails, MissionBalance.getDetails)
+
     printf('-- ContractBoost :: loaded. debug: %s', ContractBoost.debug and "on" or "off")
 end
 

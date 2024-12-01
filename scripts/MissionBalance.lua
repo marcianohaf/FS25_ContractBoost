@@ -15,6 +15,18 @@ function MissionBalance:initMissionSettings()
     if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: settings updated.') end
 end
 
+<<<<<<< Updated upstream
+=======
+-- AbstractMission.getDetails(self, details)
+function MissionBalance:getDetails(superFunc)
+    if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: getDetails') end
+    
+    local details = superFunc()
+    DebugUtil.printTableRecursively(details)
+
+end
+
+>>>>>>> Stashed changes
 --- Scale the mission rewards based on user configuration
 function MissionBalance:scaleMissionReward()
     if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: scaleMissionReward') end
@@ -29,10 +41,10 @@ function MissionBalance:scaleMissionReward()
             local prevValue = nil
             local newValue = nil
 
-            if ContractBoost.debug then
-                printf('---- ContractBoost:MissionBalance :: %s data', typeName)
-                DebugUtil.printTableRecursively(missionType.data)
-            end
+            -- if ContractBoost.debug then
+            --     printf('---- ContractBoost:MissionBalance :: %s data', typeName)
+            --     DebugUtil.printTableRecursively(missionType.data)
+            -- end
 
             -- don't process the contract type if there are no instances
             if typeName == "baleWrapMission" and rawget(missionType.data, "rewardPerBale") ~= nil then
