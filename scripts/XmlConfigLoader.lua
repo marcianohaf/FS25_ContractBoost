@@ -8,7 +8,7 @@ XmlConfigLoader = {}
 XmlConfigLoader.path = g_currentModDirectory;
 XmlConfigLoader.modName = g_currentModName;
 XmlConfigLoader.loadComplete = false;
-XmlConfigLoader.loadDebug = false;
+XmlConfigLoader.loadDebug = true;
 
 -- configuration files and loading states
 XmlConfigLoader.userConfig = {};

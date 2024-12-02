@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="92">
     <author>GMNGjoy</author>
-    <version>1.0.0.1</version>
+    <version>1.0.0.2</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
     </title>
     <description>
-        <en><![CDATA[
+        <en>
 Boost your contracts by making more money, and allowing collection of the spoils!
 
 Features:
@@ -26,8 +26,10 @@ All of the above settings can be modified via an XML settings file at FarmingSim
 
 GitHub link: https://github.com/GMNGjoy/FS25_ContractBoost
 
-]]></en>
-        <de><![CDATA[
+Changelog 1.0.0.2
+- Added safety check for custom maps that don't contain every type of contract
+</en>
+        <de>
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
 
 Features:
@@ -46,7 +48,9 @@ All diese Einstellungen können über eine XML Datei unter FarmingSimulator2025/
 
 GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
 
-]]></de>
+Changelog 1.0.0.2
+- Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
+</de>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="true"/>
