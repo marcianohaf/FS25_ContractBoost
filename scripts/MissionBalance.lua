@@ -82,7 +82,7 @@ function MissionBalance:scaleMissionReward()
 
             if ContractBoost.debug then 
                 if newValue == prevValue and newValue == nil then
-                    printf('---- ContractBoost:MissionBalance :: Mission %s: %s | skipped, not founnd on map', missionType.typeId, missionType.name)
+                    printf('---- ContractBoost:MissionBalance :: Mission %s: %s | skipped, not found on map', missionType.typeId, missionType.name)
                 else
                     MissionBalance.boosted[missionType.typeId] = ((newValue / prevValue) * 100) - 100
                     printf('---- ContractBoost:MissionBalance :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue)

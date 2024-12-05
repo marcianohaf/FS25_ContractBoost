@@ -7,7 +7,7 @@
             ~ values: true/false
             ~ default: false
         -->
-        <debugMode>false</debugMode>
+        <debugMode>true</debugMode>
         
         <!--
             enableContractValueOverrides: enables overriding contract system default setting values;
@@ -78,7 +78,7 @@
             ~ mod default: 1.5
             ~ game default: 1.0
         -->
-        <rewardFactor>1.5</rewardFactor>
+        <rewardFactor>0.5</rewardFactor>
 
         <!--
             maxContractsPerFarm: how many contracts can be active at once
@@ -124,7 +124,7 @@
         <!-- <tedderMission></tedderMission> -->
         <!-- <stonePickMission></stonePickMission> -->
         <!-- <deadwoodMission></deadwoodMission> -->
-        <!-- <treeTransportMission></treeTransportMission> -->
+        <treeTransportMission>400</treeTransportMission>
         <!-- <destructibleRockMission></destructibleRockMission> -->
     </customRewards>
 </contractBoost>
