@@ -23,6 +23,7 @@ XmlConfigLoader.enableContractValueOverrides = true
 XmlConfigLoader.enableStrawFromHarvestMissions = true
 XmlConfigLoader.enableSwathingForHarvestMissions = true
 XmlConfigLoader.enableGrassFromMowingMissions = true
+XmlConfigLoader.enableHayFromTedderMissions = true
 XmlConfigLoader.enableStonePickingFromMissions = true
 XmlConfigLoader.enableFieldworkToolFillItems = true
 XmlConfigLoader.debugMode = false
@@ -88,6 +89,7 @@ function XmlConfigLoader.initXml()
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableStrawFromHarvestMissions", "should straw be collectible from during harvest missions?", XmlConfigLoader.enableStrawFromHarvestMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableSwathingForHarvestMissions", "should you be able to use a Swather for harvest missions?", XmlConfigLoader.enableSwathingForHarvestMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableGrassFromMowingMissions", "should grass be collectible from during mowing missions?", XmlConfigLoader.enableGrassFromMowingMissions)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableHayFromTedderMissions", "should hay be collectible from during tedder missions?", XmlConfigLoader.enableHayFromTedderMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableStonePickingFromMissions", "should stones be collectible from during tilling & sowing missions?", XmlConfigLoader.enableStonePickingFromMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableFieldworkToolFillItems", "should borrowed equipment come with free fieldwork items to fill your tools", XmlConfigLoader.enableFieldworkToolFillItems)
 
@@ -134,6 +136,7 @@ function XmlConfigLoader.importConfig(xmlFilename)
 		loadedConfig.enableStrawFromHarvestMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableStrawFromHarvestMissions", XmlConfigLoader.enableStrawFromHarvestMissions)
 		loadedConfig.enableSwathingForHarvestMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableSwathingForHarvestMissions", XmlConfigLoader.enableSwathingForHarvestMissions)
 		loadedConfig.enableGrassFromMowingMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableGrassFromMowingMissions", XmlConfigLoader.enableGrassFromMowingMissions)
+		loadedConfig.enableHayFromTedderMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableHayFromTedderMissions", XmlConfigLoader.enableHayFromTedderMissions)
 		loadedConfig.enableStonePickingFromMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableStonePickingFromMissions", XmlConfigLoader.enableStonePickingFromMissions)
 		loadedConfig.enableFieldworkToolFillItems = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableFieldworkToolFillItems", XmlConfigLoader.enableFieldworkToolFillItems)
 		

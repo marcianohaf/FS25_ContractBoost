@@ -41,6 +41,13 @@
             ~ default: true
         -->
         <enableGrassFromMowingMissions>true</enableGrassFromMowingMissions>
+
+        <!--
+            enableHayFromTedderMissions: should hay be collectible from during tedder missions?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableHayFromTedderMissions>true</enableHayFromTedderMissions>
         
         <!--
             enableStonePickingFromMissions: should stones be collectible from during tilling & sowing missions?

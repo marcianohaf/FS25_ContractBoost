@@ -59,7 +59,6 @@ function MissionTools:setupAdditionalAllowedVehicles()
             [WorkAreaTypes.CUTTER] = true,
             [WorkAreaTypes.FORAGEWAGON] = true,
             [WorkAreaTypes.BALER] = true,
-            [WorkAreaTypes.FORAGEWAGON] = true,
             [WorkAreaTypes.WINDROWER] = true,
         }
     end
@@ -73,6 +72,14 @@ function MissionTools:setupAdditionalAllowedVehicles()
         }
         MissionTools.additionalAllowedVehicles.sowMission = {
             [WorkAreaTypes.STONEPICKER] = true,
+        }
+    end
+
+    if ContractBoost.config.enableHayFromTedderMissions then
+        MissionTools.additionalAllowedVehicles.tedderMission = {
+            [WorkAreaTypes.FORAGEWAGON] = true,
+            [WorkAreaTypes.BALER] = true,
+            [WorkAreaTypes.WINDROWER] = true,
         }
     end
 
