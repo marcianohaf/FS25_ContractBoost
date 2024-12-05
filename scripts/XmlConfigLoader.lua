@@ -180,6 +180,15 @@ function XmlConfigLoader.importConfig(xmlFilename)
 			loadedConfig.maxContractsOverall = XmlConfigLoader.maxContractsOverall
 			
 		end
+
+		-- Custom rewards now only support steps of 500 since the introduction of UI settings
+		for propName, value in loadedConfig.customRewards do
+			if value ~= nil and value % 500 ~= 0 then
+				-- Round to steps of 500
+				loadedConfig.customRewards[propName] = math.floor((value + 250) / 500) * 500
+				printf('-- ContractBoost:XmlConfigLoader :: Rounded property customRewards.%s from %d to %d', propName, value, loadedConfig.customRewards[propName])
+			end
+		end
 		
 	end
 

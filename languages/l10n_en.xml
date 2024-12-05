@@ -3,5 +3,32 @@
     <translationContributors/>
     <texts>
         <text name="contract_boosted" text="Contract Boost" />
+
+        <text name="cb_enableContractValueOverrides_short" text="Enable Contract Value Overrides" />
+        <text name="cb_enableContractValueOverrides_long" text="Enables overriding contract system default setting values. Disables the next four settings if set to false." />
+        <text name="cb_rewardFactor_short" text="Reward Factor" />
+        <text name="cb_rewardFactor_long" text="Multiplies all contract rewards with the given factor." />
+        <text name="cb_maxContractsPerFarm_short" text="Max. Contracts Per Farm" />
+        <text name="cb_maxContractsPerFarm_long" text="Defines the maximum number of contracts each farm may have active at any given time." />
+        <text name="cb_maxContractsPerType_short" text="Max. Contracts Per Type" />
+        <text name="cb_maxContractsPerType_long" text="Defines the maximum number of contracts of the same type which may be offered to you." />
+        <text name="cb_maxContractsOverall_short" text="Max. Contracts Available" />
+        <text name="cb_maxContractsOverall_long" text="Defines the maximum number of contracts which can be offered to you." />
+        <text name="cb_enableStrawFromHarvestMissions_short" text="Allow Collecting Straw" />
+        <text name="cb_enableStrawFromHarvestMissions_long" text="Allows collecting straw from harvest contracts." />
+        <text name="cb_enableSwathingForHarvestMissions_short" text="Allow Swathing Crops" />
+        <text name="cb_enableSwathingForHarvestMissions_long" text="Allows using a swather for harvest contracts." />
+        <text name="cb_enableGrassFromMowingMissions_short" text="Allow Collecting Grass" />
+        <text name="cb_enableGrassFromMowingMissions_long" text="Allows collecting straw from mowing contracts." />
+        <text name="cb_enableStonePickingFromMissions_short" text="Allow Picking Stones" />
+        <text name="cb_enableStonePickingFromMissions_long" text="Allows collecting stones from tillage and sowing contracts." />
+        <text name="cb_enableFieldworkToolFillItems_short" text="Add Fieldwork Fill Items" />
+        <text name="cb_enableFieldworkToolFillItems_long" text="Adds free items to fill your tools when borrowing equipment for a contract." />
+        <text name="cb_baleMissionReward_short" text="Bale Contract Reward" />
+        <text name="cb_baleMissionReward_long" text="The base reward for baling contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_baleWrapMissionReward_short" text="Bale Wrap Contract Reward" />
+        <text name="cb_baleWrapMissionReward_long" text="The base reward for bale wrapping contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_treeTransportMissionReward_short" text="Tree Transport Contract Reward" />
+        <text name="cb_treeTransportMissionReward_long" text="The base reward for transporting trees. If set to '-', the base game rewards will be applied." />
     </texts>
 </l10n>
