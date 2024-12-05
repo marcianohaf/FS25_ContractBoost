@@ -26,6 +26,7 @@ XmlConfigLoader.enableGrassFromMowingMissions = true
 XmlConfigLoader.enableHayFromTedderMissions = true
 XmlConfigLoader.enableStonePickingFromMissions = true
 XmlConfigLoader.enableFieldworkToolFillItems = true
+XmlConfigLoader.enableCollectingBalesFromContracts = false
 XmlConfigLoader.debugMode = false
 
 -- xmlConfigFiles
@@ -92,6 +93,8 @@ function XmlConfigLoader.initXml()
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableHayFromTedderMissions", "should hay be collectible from during tedder missions?", XmlConfigLoader.enableHayFromTedderMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableStonePickingFromMissions", "should stones be collectible from during tilling & sowing missions?", XmlConfigLoader.enableStonePickingFromMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableFieldworkToolFillItems", "should borrowed equipment come with free fieldwork items to fill your tools", XmlConfigLoader.enableFieldworkToolFillItems)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableCollectingBalesFromContracts", "should you be able to collect bales from baling and baleWrapping contracts?", XmlConfigLoader.enableCollectingBalesFromContracts)
+
 
 	XmlConfigLoader.xmlSchema:register(XMLValueType.FLOAT, XmlConfigLoader.xmlTag..".settings.rewardFactor", "applies a multiplier to the base game rewardPer value", XmlConfigLoader.rewardFactor)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".settings.maxContractsPerFarm", "how many contracts can be active at once", XmlConfigLoader.maxContractsPerFarm)
@@ -139,6 +142,7 @@ function XmlConfigLoader.importConfig(xmlFilename)
 		loadedConfig.enableHayFromTedderMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableHayFromTedderMissions", XmlConfigLoader.enableHayFromTedderMissions)
 		loadedConfig.enableStonePickingFromMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableStonePickingFromMissions", XmlConfigLoader.enableStonePickingFromMissions)
 		loadedConfig.enableFieldworkToolFillItems = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableFieldworkToolFillItems", XmlConfigLoader.enableFieldworkToolFillItems)
+		loadedConfig.enableCollectingBalesFromContracts = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableCollectingBalesFromContracts", XmlConfigLoader.enableCollectingBalesFromContracts)
 		
 		loadedConfig.rewardFactor = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.rewardFactor", XmlConfigLoader.rewardFactor)
 		loadedConfig.maxContractsPerFarm = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.maxContractsPerFarm", XmlConfigLoader.maxContractsPerFarm)

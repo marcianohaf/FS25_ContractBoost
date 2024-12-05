@@ -18,7 +18,7 @@ end
 
 -- AbstractMission.getDetails(self, details)
 function MissionBalance:getDetails(superFunc)
-    if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: getDetails') end
+    -- if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: getDetails') end
     
     -- Load the default details from AbstractMission
     local details = superFunc(self)

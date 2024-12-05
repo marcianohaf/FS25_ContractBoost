@@ -122,3 +122,21 @@ function MissionTools:getIsMissionWorkAllowed(superFunc, farmId, x, z, workAreaT
 
     return false
 end
+
+-- replace the BaleMission.addBale function with our own function that updates the owner of the bale to the player.
+function MissionTools:addBale(superFunc, bale)
+    -- call the overwritten function
+    superFunc(bale)
+
+    -- one last check that we have a bale, and change the owner.
+    if bale ~= nil then
+        if ContractBoost.debug then printf('-- ContractBoost:MissionTools :: addBale changeOwner %s', g_localPlayer.farmId) end
+        bale:setOwnerFarmId(g_localPlayer.farmId)
+    end
+ end
+
+-- replace the BaleWrapMission.finishField and BaleMission.finishField functions with our own function that doesn't delete the bales.
+function MissionTools.finishField()
+    local parentClass = BaleWrapMission:superClass()
+    parentClass.finishField(parentClass)
+ end

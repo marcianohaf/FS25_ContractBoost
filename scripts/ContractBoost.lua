@@ -24,8 +24,16 @@ function ContractBoost:init()
     g_missionManager.loadMapData = Utils.appendedFunction(MissionManager.loadMapData, ContractBoost.loadMapData)
     MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed, MissionTools.getIsMissionWorkAllowed)
 
+    -- enable extra fieldwork fill items to be added to contract items
     if ContractBoost.config.enableFieldworkToolFillItems then
         AbstractMission.onSpawnedVehicle = Utils.overwrittenFunction(AbstractMission.onSpawnedVehicle, MissionBorrow.onSpawnedVehicle)
+    end
+
+    -- enable collecting of bales from baling contracts.
+    if ContractBoost.config.enableCollectingBalesFromContracts then
+        BaleMission.addBale = Utils.overwrittenFunction(BaleMission.addBale, MissionTools.addBale)
+        BaleMission.finishField = Utils.overwrittenFunction(BaleMission.finishField, MissionTools.finishField)
+        BaleWrapMission.finishField = Utils.overwrittenFunction(BaleWrapMission.finishField, MissionTools.finishField)
     end
 
     AbstractMission.getDetails = Utils.overwrittenFunction(AbstractMission.getDetails, MissionBalance.getDetails)
