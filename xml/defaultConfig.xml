@@ -124,7 +124,7 @@
         <!-- <tedderMission></tedderMission> -->
         <!-- <stonePickMission></stonePickMission> -->
         <!-- <deadwoodMission></deadwoodMission> -->
-        <treeTransportMission>400</treeTransportMission>
+        <treeTransportMission>500</treeTransportMission>
         <!-- <destructibleRockMission></destructibleRockMission> -->
     </customRewards>
 </contractBoost>
