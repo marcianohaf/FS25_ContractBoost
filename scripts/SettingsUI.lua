@@ -97,14 +97,14 @@ function SettingsUI:injectUiSettings(loadedConfig)
     end
 
     UIHelper.createControlsDynamically(settingsPage, "contract_boosted", self, controlProperties, "cb_")
-    UIHelper.setupAutoBindControls(self, self.loadedConfig)
+    UIHelper.setupAutoBindControls(self, self.loadedConfig, SettingsUI.updateUiElements)
 
     -- Apply initial values
     self:updateUiElements()
 
     -- Update any additional settings whenever the frame gets opened
     InGameMenuSettingsFrame.onFrameOpen = Utils.appendedFunction(InGameMenuSettingsFrame.onFrameOpen, function()
-        self:updateUiElements(true)
+        self:updateUiElements(true) -- We can skip autobind controls here since they are already registered to onFrameOpen
     end)
 end
 

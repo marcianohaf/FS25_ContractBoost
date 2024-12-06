@@ -1,6 +1,7 @@
 ---This class allows easier creation of configuration options in the general settings page.
 ---Originally created by Farmsim Tim based on discoveries made by Shad0wlife
 ---Feel free to use this class in your own mods. You may change anything except for the first three lines of this file.
+---version 1.0
 ---@class UIHelper
 UIHelper = {}
 
@@ -167,7 +168,6 @@ function UIHelper.createControlsDynamically(settingsPage, sectionTitle, owningTa
 		local uiControl
 		local id = prefix .. controlProps.name
 		local callback = "on_" .. controlProps.name .. "_changed"
-		print("Creating " .. tostring(id))
 		if controlProps.min ~= nil then
 			-- number range control
 			uiControl = UIHelper.createRangeElement(
@@ -223,27 +223,17 @@ end
 
 ---Makes sure UI controls are being populated with data from targetTable when the settings frame gets opened, and updates the properties in targetTable when the user changes values.
 ---If you need to populate the controls at additional points in time, you can call the "populateAutoBindControls" function in owningTable after calling this method.
----Whenever a value changes, an updateUiElements method will be called in owningTable, if such a function exists
+---Whenever a value changes, the updateFunc will be called, if it was supplied
 ---@param owningTable table @The table which owns the controls.
 ---@param targetTable table @The table which holds the settings. The name of the controls and the name of the settings must be identical
-function UIHelper.setupAutoBindControls(owningTable, targetTable)
+---@param updateFunc function @This function will be called whenever any auto-bound value changes
+function UIHelper.setupAutoBindControls(owningTable, targetTable, updateFunc)
 	-- Define and store a function which is able to populate the automatically bound controls
 	owningTable.populateAutoBindControls = function()
 		for _, control in ipairs(owningTable.controls) do
 			if control.autoBind then
-				local value
-				if control.subTable == nil then
-					value = targetTable[control.propName or control.name]
-				else
-					value = targetTable[control.subTable][control.propName or control.name]
-				end
-				if control.min ~= nil then
-					UIHelper.setRangeValue(control, value)
-				elseif control.values ~= nil then
-					UIHelper.setChoiceValue(control, value)
-				else
-					UIHelper.setBoolValue(control, value)
-				end
+				local value = UIHelper.getAutoBoundValueFromTable(control, targetTable)
+				UIHelper.setControlValue(control, value)
 			end
 		end
 	end
@@ -251,37 +241,13 @@ function UIHelper.setupAutoBindControls(owningTable, targetTable)
 	InGameMenuSettingsFrame.onFrameOpen = Utils.appendedFunction(InGameMenuSettingsFrame.onFrameOpen, owningTable.populateAutoBindControls)
 	-- Dynamically create callbacks
 	for _, control in ipairs(owningTable.controls) do
-		print("Analyzing control " .. tostring(control.name))
 		if control.autoBind then
-			print("Setting up autobind callback for control " .. tostring(control.name))
 			local callbackName = "on_autoBind_" .. control.name .. "_changed"
-			local updateFunc = owningTable["updateUiElements"]
-			if control.min ~= nil then
-				owningTable[callbackName] = function(self, newState)
-					local currentValue = UIHelper.getAutoBoundValueFromTable(control, targetTable)
-					targetTable[control.name] = UIHelper.getRangeValue(control, newState)
-					if updateFunc then
-						updateFunc(owningTable)
-					end
-					printf("Changed %s from %s to %s", control.name, currentValue, targetTable[control.name])
-				end
-			elseif control.values ~= nil then
-				owningTable[callbackName] = function(self, newState)
-					local currentValue = UIHelper.getAutoBoundValueFromTable(control, targetTable)
-					targetTable[control.name] = UIHelper.getChoiceValue(control, newState)
-					if updateFunc then
-						updateFunc(owningTable)
-					end
-					printf("Changed %s from %s to %s", control.name, currentValue, targetTable[control.name])
-				end
-			else
-				owningTable[callbackName] = function(self, newState)
-					local currentValue = UIHelper.getAutoBoundValueFromTable(control, targetTable)
-					targetTable[control.name] = UIHelper.getBoolValue(newState)
-					if updateFunc then
-						updateFunc(owningTable)
-					end
-					printf("Changed %s from %s to %s", control.name, currentValue, targetTable[control.name])
+			owningTable[callbackName] = function(self, newState)
+				local newValue = UIHelper.getControlValue(control, newState)
+				UIHelper.setAutoBoundValueInTable(control, newValue, targetTable)
+				if updateFunc then
+					updateFunc(owningTable)
 				end
 			end
 			-- Update the callback
@@ -302,6 +268,21 @@ function UIHelper.getAutoBoundValueFromTable(control, targetTable)
 	end
 end
 
+---Writes the current value for an auto bound control to the settings object
+---@param control table @The UI control
+---@param value any @The value
+---@param targetTable table @The table which is bound to the control
+function UIHelper.setAutoBoundValueInTable(control, value, targetTable)
+	if control.subTable == nil then
+		targetTable[control.propName or control.name or "ERROR"] = value
+	else
+		targetTable[control.subTable][control.propName or control.name] = value
+	end
+end
+
+---Sets a range control to the given value. The method will find the appropriate index for the value automatically.
+---@param control table @The UI control
+---@param value number @The value which shall be displayed to the user
 function UIHelper.setRangeValue(control, value)
 	local valueIndex
 	if control.nillable and value == nil then
@@ -315,6 +296,10 @@ function UIHelper.setRangeValue(control, value)
 	control.elements[1]:setState(valueIndex)
 end
 
+---Retrieves the current value of a UI range control.
+---@param control table @The UI control
+---@param controlState number @The currently selected index
+---@return number|nil @The value which was selected by the user (rather than the index)
 function UIHelper.getRangeValue(control, controlState)
 	if control.nillable and controlState == 1 then
 		return nil
@@ -327,6 +312,9 @@ function UIHelper.getRangeValue(control, controlState)
 	end
 end
 
+---Sets a choice control to the given value. The method will find the appropriate index for the value automatically.
+---@param control table @The UI control
+---@param value number @The value which shall be displayed to the user
 function UIHelper.setChoiceValue(control, value)
 	for index, val in control.values do
 		if val == value then
@@ -335,14 +323,51 @@ function UIHelper.setChoiceValue(control, value)
 	end
 end
 
+---Retrieves the current value of a UI choice control.
+---@param control table @The UI control
+---@param controlState number @The currently selected index
+---@return number|nil @The value which was selected by the user (rather than the index)
 function UIHelper.getChoiceValue(control, controlState)
 	return control.values[controlState]
 end
 
+---Sets the current value for a UI yes/no control.
+---@param control table @The UI control
+---@param value number @The value which shall be displayed to the user
 function UIHelper.setBoolValue(control, value)
 	control.elements[1]:setState(value and 2 or 1)
 end
 
+---Gets the current value of a UI yes/no control
+---@param controlState number @The currently selected index of the control.
+---@return boolean @The yes/no value as selected by the user
 function UIHelper.getBoolValue(controlState)
 	return controlState == 2
+end
+
+---Sets the given value for the given control. The function will automatically determine whether this is a yes/no, an enum or a number range value
+---@param control table @The control
+---@param value any @The value
+function UIHelper.setControlValue(control, value)
+	if control.min ~= nil then
+		UIHelper.setRangeValue(control, value)
+	elseif control.values ~= nil then
+		UIHelper.setChoiceValue(control, value)
+	else
+		UIHelper.setBoolValue(control, value)
+	end
+end
+
+---Retrieves the value from the given control based on the control state (which is obtained from the callback function)
+---@param control table @The UI control
+---@param controlState number @The current index of the selected value
+---@return any @The value of the control. This could be a boolean, a number value, an enum value or nil dependent on the type of control
+function UIHelper.getControlValue(control, controlState)
+	if control.min ~= nil then
+		return UIHelper.getRangeValue(control, controlState)
+	elseif control.values ~= nil then
+		return UIHelper.getChoiceValue(control, controlState)
+	else
+		return UIHelper.getBoolValue(controlState)
+	end
 end
