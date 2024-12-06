@@ -97,7 +97,7 @@ function SettingsUI:injectUiSettings(loadedConfig)
     end
 
     UIHelper.createControlsDynamically(settingsPage, "contract_boosted", self, controlProperties, "cb_")
-    UIHelper.setupAutoBindControls(self, self.loadedConfig, SettingsUI.updateUiElements)
+    UIHelper.setupAutoBindControls(self, self.loadedConfig, SettingsUI.onSettingsChange)
 
     -- Apply initial values
     self:updateUiElements()
@@ -106,6 +106,12 @@ function SettingsUI:injectUiSettings(loadedConfig)
     InGameMenuSettingsFrame.onFrameOpen = Utils.appendedFunction(InGameMenuSettingsFrame.onFrameOpen, function()
         self:updateUiElements(true) -- We can skip autobind controls here since they are already registered to onFrameOpen
     end)
+end
+
+function SettingsUI:onSettingsChange(control)
+    self:updateUiElements()
+    -- TODO: Multiplayer synchronization
+    -- TODO: Make use of the new values. You can use control or control.name in order to handle different cases
 end
 
 ---Updates the UI elements to reflect the current settings

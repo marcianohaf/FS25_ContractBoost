@@ -247,7 +247,7 @@ function UIHelper.setupAutoBindControls(owningTable, targetTable, updateFunc)
 				local newValue = UIHelper.getControlValue(control, newState)
 				UIHelper.setAutoBoundValueInTable(control, newValue, targetTable)
 				if updateFunc then
-					updateFunc(owningTable)
+					updateFunc(owningTable, control)
 				end
 			end
 			-- Update the callback
