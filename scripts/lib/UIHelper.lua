@@ -189,6 +189,10 @@ function UIHelper.createControlsDynamically(settingsPage, sectionTitle, owningTa
 			uiControl = UIHelper.createBoolElement(settingsPage, id, id, owningTable, callback)
 		end
 
+		uiControl.autoBind = controlProps.autoBind
+		uiControl.name = controlProps.name
+		uiControl.subTable = controlProps.subTable
+		uiControl.propName = controlProps.propName
 		table.insert(owningTable.controls, uiControl)
 		owningTable[controlProps.name] = uiControl -- allow accessing the control by its name
 
@@ -217,12 +221,93 @@ function UIHelper.registerFocusControls(controls)
 	end)
 end
 
+---Makes sure UI controls are being populated with data from targetTable when the settings frame gets opened, and updates the properties in targetTable when the user changes values.
+---If you need to populate the controls at additional points in time, you can call the "populateAutoBindControls" function in owningTable after calling this method.
+---Whenever a value changes, an updateUiElements method will be called in owningTable, if such a function exists
+---@param owningTable table @The table which owns the controls.
+---@param targetTable table @The table which holds the settings. The name of the controls and the name of the settings must be identical
+function UIHelper.setupAutoBindControls(owningTable, targetTable)
+	-- Define and store a function which is able to populate the automatically bound controls
+	owningTable.populateAutoBindControls = function()
+		for _, control in ipairs(owningTable.controls) do
+			if control.autoBind then
+				local value
+				if control.subTable == nil then
+					value = targetTable[control.propName or control.name]
+				else
+					value = targetTable[control.subTable][control.propName or control.name]
+				end
+				if control.min ~= nil then
+					UIHelper.setRangeValue(control, value)
+				elseif control.values ~= nil then
+					UIHelper.setChoiceValue(control, value)
+				else
+					UIHelper.setBoolValue(control, value)
+				end
+			end
+		end
+	end
+	-- Call the function when the settings frame is being opened
+	InGameMenuSettingsFrame.onFrameOpen = Utils.appendedFunction(InGameMenuSettingsFrame.onFrameOpen, owningTable.populateAutoBindControls)
+	-- Dynamically create callbacks
+	for _, control in ipairs(owningTable.controls) do
+		print("Analyzing control " .. tostring(control.name))
+		if control.autoBind then
+			print("Setting up autobind callback for control " .. tostring(control.name))
+			local callbackName = "on_autoBind_" .. control.name .. "_changed"
+			local updateFunc = owningTable["updateUiElements"]
+			if control.min ~= nil then
+				owningTable[callbackName] = function(self, newState)
+					local currentValue = UIHelper.getAutoBoundValueFromTable(control, targetTable)
+					targetTable[control.name] = UIHelper.getRangeValue(control, newState)
+					if updateFunc then
+						updateFunc(owningTable)
+					end
+					printf("Changed %s from %s to %s", control.name, currentValue, targetTable[control.name])
+				end
+			elseif control.values ~= nil then
+				owningTable[callbackName] = function(self, newState)
+					local currentValue = UIHelper.getAutoBoundValueFromTable(control, targetTable)
+					targetTable[control.name] = UIHelper.getChoiceValue(control, newState)
+					if updateFunc then
+						updateFunc(owningTable)
+					end
+					printf("Changed %s from %s to %s", control.name, currentValue, targetTable[control.name])
+				end
+			else
+				owningTable[callbackName] = function(self, newState)
+					local currentValue = UIHelper.getAutoBoundValueFromTable(control, targetTable)
+					targetTable[control.name] = UIHelper.getBoolValue(newState)
+					if updateFunc then
+						updateFunc(owningTable)
+					end
+					printf("Changed %s from %s to %s", control.name, currentValue, targetTable[control.name])
+				end
+			end
+			-- Update the callback
+			control.elements[1]:setCallback("onClickCallback", callbackName)
+		end
+	end
+end
+
+---Reads the current value of an auto bound control from the settings object (rather than from the UI control's current state)
+---@param control table @The UI control
+---@param targetTable table @The table which is bound to the control
+---@return any @The value
+function UIHelper.getAutoBoundValueFromTable(control, targetTable)
+	if control.subTable == nil then
+		return targetTable[control.propName or control.name]
+	else
+		return targetTable[control.subTable][control.propName or control.name]
+	end
+end
+
 function UIHelper.setRangeValue(control, value)
 	local valueIndex
 	if control.nillable and value == nil then
 		valueIndex = 1
 	else
-		valueIndex = (value - control.min) / control.step + 1
+		valueIndex = math.floor(((value - control.min) / control.step + 1) + 0.5) -- floor(x+0.5) = round(x)
 		if control.nillable then
 			valueIndex = valueIndex + 1
 		end

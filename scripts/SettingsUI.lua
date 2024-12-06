@@ -15,7 +15,20 @@
 ---@field enableFieldworkToolFillItems table @A UI control
 ---@field baleMissionReward table @A UI control
 ---@field baleWrapMissionReward table @A UI control
+---@field plowMissionReward table @A UI control
+---@field cultivateMissionReward table @A UI control
+---@field sowMissionReward table @A UI control
+---@field harvestMissionReward table @A UI control
+---@field hoeMissionReward table @A UI control
+---@field weedMissionReward table @A UI control
+---@field herbicideMissionReward table @A UI control
+---@field fertilizeMissionReward table @A UI control
+---@field mowMissionReward table @A UI control
+---@field tedderMissionReward table @A UI control
+---@field stonePickMissionReward table @A UI control
+---@field deadwoodMissionReward table @A UI control
 ---@field treeTransportMissionReward table @A UI control
+---@field destructibleRockMissionReward table @A UI control
 SettingsUI = {
 }
 
@@ -25,88 +38,100 @@ local SettingsUI_mt = Class(SettingsUI)
 ---Creates the settings UI object
 ---@return SettingsUI @The new object
 function SettingsUI.new()
-	local self = setmetatable({}, SettingsUI_mt)
+    local self = setmetatable({}, SettingsUI_mt)
 
-	self.controls = {}
-	self.loadedConfig = nil
-	self.isInitialized = false
+    self.controls = {}
+    self.loadedConfig = nil
+    self.isInitialized = false
 
-	return self
+    return self
 end
 
 ---Injects the UI controls into the general settings menu
 ---@param loadedConfig table @The loaded config
 function SettingsUI:injectUiSettings(loadedConfig)
-	-- Remember the settings object
-	self.loadedConfig = loadedConfig
+    -- Remember the settings object
+    self.loadedConfig = loadedConfig
 
-	if self.isInitialized then
-		return
-	end
-	self.isInitialized = true
+    if self.isInitialized then
+        return
+    end
+    self.isInitialized = true
 
-	-- Get a reference to the base game general settings page
-	local settingsPage = g_gui.screenControllers[InGameMenu].pageSettings
+    -- Get a reference to the base game general settings page
+    local settingsPage = g_gui.screenControllers[InGameMenu].pageSettings
 
-	-- Define the UI controls. For bool values, supply just the name, for ranges, supply min, max and step, and for choices, supply a values table
-	-- For every name, a <prefix>_<name>_long and _short text must exist in the l10n files
-	-- The _short text will be the title of the setting, the _long" text will be its tool tip
-	-- For each control, a on_<name>_changed callback will be called on change
-	local controlProperties = {
-		{ name = "enableContractValueOverrides" },
-		{ name = "rewardFactor", min = 0.5, max = 5.0, step = 0.1 },
-		{ name = "maxContractsPerFarm", values = { 1, 2, 3, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 } },
-		{ name = "maxContractsPerType", min = 1, max = 20, step = 1 },
-		{ name = "maxContractsOverall", values = { 1, 2, 3, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 } },
-		{ name = "enableStrawFromHarvestMissions" },
-		{ name = "enableSwathingForHarvestMissions" },
-		{ name = "enableGrassFromMowingMissions" },
-		{ name = "enableStonePickingFromMissions" },
-		{ name = "enableFieldworkToolFillItems" },
-		{ name = "baleMissionReward", nillable = true, min = 0, max = 10000, step = 500 },
-		{ name = "baleWrapMissionReward", nillable = true, min = 0, max = 10000, step = 500 },
-		{ name = "treeTransportMissionReward", nillable = true, min = 0, max = 10000, step = 500 }
-	}
-	UIHelper.createControlsDynamically(settingsPage, "contract_boosted", self, controlProperties, "cb_")
+    -- Define the UI controls. For bool values, supply just the name, for ranges, supply min, max and step, and for choices, supply a values table
+    -- For every name, a <prefix>_<name>_long and _short text must exist in the l10n files
+    -- The _short text will be the title of the setting, the _long" text will be its tool tip
+    -- For each control, a on_<name>_changed callback will be called on change
+    local controlProperties = {
+        { name = "enableContractValueOverrides", autoBind = true },
+        { name = "rewardFactor", min = 0.5, max = 5.0, step = 0.1, autoBind = true },
+        { name = "maxContractsPerFarm", values = { 1, 2, 3, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 }, autoBind = true },
+        { name = "maxContractsPerType", min = 1, max = 20, step = 1, autoBind = true },
+        { name = "maxContractsOverall", values = { 1, 2, 3, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 }, autoBind = true },
+        { name = "enableStrawFromHarvestMissions", autoBind = true },
+        { name = "enableSwathingForHarvestMissions", autoBind = true },
+        { name = "enableGrassFromMowingMissions", autoBind = true },
+        { name = "enableStonePickingFromMissions", autoBind = true },
+        { name = "enableFieldworkToolFillItems", autoBind = true }
+    }
+    -- Dynamically add the rest since they're all the same
+    local customRewardProps = {
+        "baleMission", "baleWrapMission", "plowMission", "cultivateMission", "sowMission", "harvestMission", "hoeMission", "weedMission",
+        "herbicideMission", "fertilizeMission", "mowMission", "tedderMission", "stonePickMission",
+        "deadwoodMission", "treeTransportMission", "destructibleRockMission"
+    }
+    for _, prop in customRewardProps do
+        table.insert(controlProperties, {
+            name = prop .. "Reward",
+            nillable = true,
+            min = 0,
+            max = 10000,
+            step = 500,
+            autoBind = true,
+            subTable = "customRewards",
+            propName = prop
+        })
+    end
 
-	-- Apply initial values
-	self:updateUiElements()
+    UIHelper.createControlsDynamically(settingsPage, "contract_boosted", self, controlProperties, "cb_")
+    UIHelper.setupAutoBindControls(self, self.loadedConfig)
 
-	-- Update the settings controls whenever the frame gets opened
-	InGameMenuSettingsFrame.onFrameOpen = Utils.appendedFunction(InGameMenuSettingsFrame.onFrameOpen, function()
-		self:updateUiElements()
-	end)
+    -- Apply initial values
+    self:updateUiElements()
+
+    -- Update any additional settings whenever the frame gets opened
+    InGameMenuSettingsFrame.onFrameOpen = Utils.appendedFunction(InGameMenuSettingsFrame.onFrameOpen, function()
+        self:updateUiElements(true)
+    end)
 end
 
 ---Updates the UI elements to reflect the current settings
-function SettingsUI:updateUiElements()
-	UIHelper.setBoolValue(self.enableContractValueOverrides,self.loadedConfig.enableContractValueOverrides)
-	UIHelper.setRangeValue(self.rewardFactor, self.loadedConfig.rewardFactor)
-	UIHelper.setChoiceValue(self.maxContractsPerFarm, self.loadedConfig.maxContractsPerFarm)
-	UIHelper.setRangeValue(self.maxContractsPerType, self.loadedConfig.maxContractsPerType)
-	UIHelper.setChoiceValue(self.maxContractsOverall, self.loadedConfig.maxContractsOverall)
-	UIHelper.setBoolValue(self.enableStrawFromHarvestMissions, self.loadedConfig.enableStrawFromHarvestMissions)
-	UIHelper.setBoolValue(self.enableSwathingForHarvestMissions, self.loadedConfig.enableSwathingForHarvestMissions)
-	UIHelper.setBoolValue(self.enableGrassFromMowingMissions, self.loadedConfig.enableGrassFromMowingMissions)
-	UIHelper.setBoolValue(self.enableStonePickingFromMissions, self.loadedConfig.enableStonePickingFromMissions)
-	UIHelper.setBoolValue(self.enableFieldworkToolFillItems, self.loadedConfig.enableFieldworkToolFillItems)
-	UIHelper.setRangeValue(self.baleMissionReward, self.loadedConfig.customRewards.baleMission)
-	UIHelper.setRangeValue(self.baleWrapMissionReward, self.loadedConfig.customRewards.baleWrapMission)
-	UIHelper.setRangeValue(self.treeTransportMissionReward, self.loadedConfig.customRewards.treeTransportMission)
+---@param skipAutoBindControls boolean|nil @True if controls with the autoBind properties shall not be newly populated
+function SettingsUI:updateUiElements(skipAutoBindControls)
 
-	-- Disable all other settings if requested
-	for _, control in ipairs(self.controls) do
-		if control ~= self.enableContractValueOverrides then
-			control:setDisabled(not self.loadedConfig.enableContractValueOverrides)
-		end
-	end
+    if not skipAutoBindControls then
+        -- Note: This method is created dynamically by UIHelper.setupAutoBindControls
+        self.populateAutoBindControls()
+    end
 
-	-- Update the focus manager
-	local settingsPage = g_gui.screenControllers[InGameMenu].pageSettings
-	settingsPage.generalSettingsLayout:invalidateLayout()
-end
+    -- Disable settings if required
+    local contractValueOverrideRewards = {
+        self.rewardFactor, self.maxContractsPerFarm, self.maxContractsPerType, self.maxContractsOverall,
+        self.baleMissionReward, self.baleWrapMissionReward, self.plowMissionReward, self.cultivateMissionReward,
+        self.sowMissionReward, self.harvestMissionReward, self.hoeMissionReward, self.weedMissionReward, 
+        self.herbicideMissionReward, self.fertilizeMissionReward, self.mowMissionReward, self.tedderMissionReward,
+        self.stonePickMissionReward, self.deadwoodMissionReward, self.treeTransportMissionReward, self.destructibleRockMissionReward
+    }
+    for _, control in ipairs(contractValueOverrideRewards) do
+        if control ~= self.enableContractValueOverrides then
+            control:setDisabled(not self.loadedConfig.enableContractValueOverrides)
+        end
+    end
 
-function SettingsUI:on_enableContractValueOverrides_changed(newState)
-	self.loadedConfig.enableContractValueOverrides = UIHelper.getBoolValue(newState)
-	self:updateUiElements()
+    -- Update the focus manager
+    local settingsPage = g_gui.screenControllers[InGameMenu].pageSettings
+    settingsPage.generalSettingsLayout:invalidateLayout()
 end

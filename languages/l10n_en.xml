@@ -28,7 +28,33 @@
         <text name="cb_baleMissionReward_long" text="The base reward for baling contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_baleWrapMissionReward_short" text="Bale Wrap Contract Reward" />
         <text name="cb_baleWrapMissionReward_long" text="The base reward for bale wrapping contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_plowMissionReward_short" text="Plowing Contract Reward" />
+        <text name="cb_plowMissionReward_long" text="The base reward for Plowing contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_cultivateMissionReward_short" text="Cultivating Contract Reward" />
+        <text name="cb_cultivateMissionReward_long" text="The base reward for Cultivating contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_sowMissionReward_short" text="Sowing Contract Reward" />
+        <text name="cb_sowMissionReward_long" text="The base reward for Sowing contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_harvestMissionReward_short" text="Harvesting Contract Reward" />
+        <text name="cb_harvestMissionReward_long" text="The base reward for Harvesting contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_hoeMissionReward_short" text="Hoeing Contract Reward" />
+        <text name="cb_hoeMissionReward_long" text="The base reward for Hoeing contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_weedMissionReward_short" text="Weeding Contract Reward" />
+        <text name="cb_weedMissionReward_long" text="The base reward for Weeding contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_herbicideMissionReward_short" text="Spraying Contract Reward" />
+        <text name="cb_herbicideMissionReward_long" text="The base reward for Spraying contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_fertilizeMissionReward_short" text="Fertilizing Contract Reward" />
+        <text name="cb_fertilizeMissionReward_long" text="The base reward for Fertilizing contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_mowMissionReward_short" text="Mowing Contract Reward" />
+        <text name="cb_mowMissionReward_long" text="The base reward for Mowing contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_tedderMissionReward_short" text="Tedding Contract Reward" />
+        <text name="cb_tedderMissionReward_long" text="The base reward for Tedding contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_stoneMissionReward_short" text="Stone Collection Contract Reward" />
+        <text name="cb_stoneMissionReward_long" text="The base reward for stone collection contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_deadwoodMissionReward_short" text="Deadwood Contract Reward" />
+        <text name="cb_deadwoodMissionReward_long" text="The base reward for deadwood contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_treeTransportMissionReward_short" text="Tree Transport Contract Reward" />
         <text name="cb_treeTransportMissionReward_long" text="The base reward for transporting trees. If set to '-', the base game rewards will be applied." />
+        <text name="cb_destructibleRockMissionReward_short" text="Rock Removal Contract Reward" />
+        <text name="cb_destructibleRockMissionReward_long" text="The base reward for rock removal contracts. If set to '-', the base game rewards will be applied." />
     </texts>
 </l10n>
