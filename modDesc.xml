@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="93">
     <author>GMNGjoy</author>
-    <version>1.0.1.0</version>
+    <version>1.0.2.0</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
@@ -31,6 +31,7 @@ Changelog 1.0.0.2
 - Added safety check for custom maps that don't contain every type of contract
 
 Changelog 1.1.0.0
+- User contributed translations: fr, cz, it
 - Allow collecting hay from tedding missions
 - Allow collecting straw bales from baling missions
 - Allow collecting wrapped silage bales from bale-wrapping missions
