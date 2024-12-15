@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<modDesc descVersion="92">
+<modDesc descVersion="93">
     <author>GMNGjoy</author>
-    <version>1.0.0.2</version>
+    <version>1.0.1.0</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
     </title>
     <description>
-        <en>
+        <en><![CDATA[
 Boost your contracts by making more money, and allowing collection of the spoils!
 
 Features:
@@ -28,8 +28,13 @@ GitHub link: https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2
 - Added safety check for custom maps that don't contain every type of contract
-</en>
-        <de>
+
+Changelog 1.1.0.0
+- Allow collecting hay from tedding missions
+- Allow collecting straw bales from baling missions
+- Allow collecting wrapped silage bales from bale-wrapping missions
+]]></en>
+        <de><![CDATA[
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
 
 Features:
@@ -50,11 +55,12 @@ GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2
 - Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
-</de>
+]]></de>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="true"/>
     <extraSourceFiles>
         <sourceFile filename="scripts/ContractBoost.lua"/>
     </extraSourceFiles>
+    <l10n filenamePrefix="languages/l10n"/>
 </modDesc>

@@ -5,6 +5,7 @@
 -- @license CC0 1.0 Universal
 
 MissionBalance = {}
+MissionBalance.boosted = {}
 
 --- Initialize the mission setting overrides based on user configuration
 function MissionBalance:initMissionSettings()
@@ -13,6 +14,29 @@ function MissionBalance:initMissionSettings()
     MissionManager.MISSION_GENERATION_INTERVAL = 180000 --360000
 
     if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: settings updated.') end
+end
+
+-- AbstractMission.getDetails(self, details)
+function MissionBalance:getDetails(superFunc)
+    -- if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: getDetails') end
+    
+    -- Load the default details from AbstractMission
+    local details = superFunc(self)
+
+    -- The mission knows what the missionTypeId is
+    local missionTypeId = self.type.typeId
+
+    -- if we've stored the boosted amount, add it to the details.
+    if rawget(MissionBalance.boosted, missionTypeId) ~= nil then
+        local boostAmount = MissionBalance.boosted[missionTypeId]
+        local isPositive = boostAmount > 0 and '+' or ''
+        table.insert(details,  {
+            title = g_i18n:getText("contract_boosted"),
+            value = string.format("%s%d %%", isPositive, boostAmount)
+        })
+    end
+
+    return details
 end
 
 --- Scale the mission rewards based on user configuration
@@ -29,11 +53,10 @@ function MissionBalance:scaleMissionReward()
             local prevValue = nil
             local newValue = nil
 
-            
-            if ContractBoost.debug then
-                printf('---- ContractBoost:MissionBalance :: %s data', typeName)
-                DebugUtil.printTableRecursively(missionType.data)
-            end
+            -- if ContractBoost.debug then
+            --     printf('---- ContractBoost:MissionBalance :: %s data', typeName)
+            --     DebugUtil.printTableRecursively(missionType.data)
+            -- end
 
             -- don't process the contract type if there are no instances
             if typeName == "baleWrapMission" and rawget(missionType.data, "rewardPerBale") ~= nil then
@@ -59,8 +82,9 @@ function MissionBalance:scaleMissionReward()
 
             if ContractBoost.debug then 
                 if newValue == prevValue and newValue == nil then
-                    printf('---- ContractBoost:MissionBalance :: Mission %s: %s | skipped, not founnd on map', missionType.typeId, missionType.name)
+                    printf('---- ContractBoost:MissionBalance :: Mission %s: %s | skipped, not found on map', missionType.typeId, missionType.name)
                 else
+                    MissionBalance.boosted[missionType.typeId] = ((newValue / prevValue) * 100) - 100
                     printf('---- ContractBoost:MissionBalance :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue)
                 end
             end
