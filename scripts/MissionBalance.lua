@@ -5,6 +5,7 @@
 -- @license CC0 1.0 Universal
 
 MissionBalance = {}
+MissionBalance.boosted = {}
 
 --- Initialize the mission setting overrides based on user configuration
 function MissionBalance:initMissionSettings()
@@ -13,6 +14,29 @@ function MissionBalance:initMissionSettings()
     MissionManager.MISSION_GENERATION_INTERVAL = 180000 --360000
 
     if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: settings updated.') end
+end
+
+-- AbstractMission.getDetails(self, details)
+function MissionBalance:getDetails(superFunc)
+    -- if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: getDetails') end
+    
+    -- Load the default details from AbstractMission
+    local details = superFunc(self)
+
+    -- The mission knows what the missionTypeId is
+    local missionTypeId = self.type.typeId
+
+    -- if we've stored the boosted amount, add it to the details.
+    if rawget(MissionBalance.boosted, missionTypeId) ~= nil then
+        local boostAmount = MissionBalance.boosted[missionTypeId]
+        local isPositive = boostAmount > 0 and '+' or ''
+        table.insert(details,  {
+            title = g_i18n:getText("contract_boosted"),
+            value = string.format("%s%d %%", isPositive, boostAmount)
+        })
+    end
+
+    return details
 end
 
 --- Scale the mission rewards based on user configuration
@@ -53,13 +77,14 @@ function MissionBalance:scaleMissionReward()
                 missionType.data.rewardPerHa = newValue
             end
 
-            -- update the number of each type to 5
-            missionType.data.maxNumInstances = ContractBoost.config.maxContractsPerType
+            -- update the maximum number of each type to it's custom value if it exists else use the default
+            missionType.data.maxNumInstances = math.min(ContractBoost.config.customMaxPerType[typeName] or ContractBoost.config.maxContractsPerType, 20)
 
             if ContractBoost.debug then 
                 if newValue == prevValue and newValue == nil then
                     printf('---- ContractBoost:MissionBalance :: Mission %s: %s | skipped, not found on map', missionType.typeId, missionType.name)
                 else
+                    MissionBalance.boosted[missionType.typeId] = ((newValue / prevValue) * 100) - 100
                     printf('---- ContractBoost:MissionBalance :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue)
                 end
             end

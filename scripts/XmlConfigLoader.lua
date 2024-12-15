@@ -23,8 +23,10 @@ XmlConfigLoader.enableContractValueOverrides = true
 XmlConfigLoader.enableStrawFromHarvestMissions = true
 XmlConfigLoader.enableSwathingForHarvestMissions = true
 XmlConfigLoader.enableGrassFromMowingMissions = true
+XmlConfigLoader.enableHayFromTedderMissions = true
 XmlConfigLoader.enableStonePickingFromMissions = true
 XmlConfigLoader.enableFieldworkToolFillItems = true
+XmlConfigLoader.enableCollectingBalesFromContracts = false
 XmlConfigLoader.debugMode = false
 
 -- xmlConfigFiles
@@ -88,8 +90,11 @@ function XmlConfigLoader.initXml()
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableStrawFromHarvestMissions", "should straw be collectible from during harvest missions?", XmlConfigLoader.enableStrawFromHarvestMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableSwathingForHarvestMissions", "should you be able to use a Swather for harvest missions?", XmlConfigLoader.enableSwathingForHarvestMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableGrassFromMowingMissions", "should grass be collectible from during mowing missions?", XmlConfigLoader.enableGrassFromMowingMissions)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableHayFromTedderMissions", "should hay be collectible from during tedder missions?", XmlConfigLoader.enableHayFromTedderMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableStonePickingFromMissions", "should stones be collectible from during tilling & sowing missions?", XmlConfigLoader.enableStonePickingFromMissions)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableFieldworkToolFillItems", "should borrowed equipment come with free fieldwork items to fill your tools", XmlConfigLoader.enableFieldworkToolFillItems)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.BOOL, XmlConfigLoader.xmlTag..".settings.enableCollectingBalesFromContracts", "should you be able to collect bales from baling and baleWrapping contracts?", XmlConfigLoader.enableCollectingBalesFromContracts)
+
 
 	XmlConfigLoader.xmlSchema:register(XMLValueType.FLOAT, XmlConfigLoader.xmlTag..".settings.rewardFactor", "applies a multiplier to the base game rewardPer value", XmlConfigLoader.rewardFactor)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".settings.maxContractsPerFarm", "how many contracts can be active at once", XmlConfigLoader.maxContractsPerFarm)
@@ -112,6 +117,23 @@ function XmlConfigLoader.initXml()
 	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customRewards.deadwoodMission", "custom rewardPerTree for deadwoodMission", nil)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customRewards.treeTransportMission", "custom rewardPerTree for treeTransportMission", nil)
 	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customRewards.destructibleRockMission", "custom rewardPerHa for destructibleRockMission", nil)
+
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.baleMission", "custom maximum mission types for baleMissions", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.baleWrapMission", "custom maximum mission types for baleWrapMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.plowMission", "custom maximum mission types for plowMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.cultivateMission", "custom maximum mission types for cultivateMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.sowMission", "custom maximum mission types for sowMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.harvestMission", "custom maximum mission types for harvestMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.hoeMission", "custom maximum mission types for hoeMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.weedMission", "custom maximum mission types for weedMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.herbicideMission", "custom maximum mission types for herbicideMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.fertilizeMission", "custom maximum mission types for fertilizeMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.mowMission", "custom maximum mission types for mowMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.tedderMission", "custom maximum mission types for tedderMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.stonePickMission", "custom maximum mission types for stonePickMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.deadwoodMission", "custom maximum mission types for deadwoodMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.treeTransportMission", "custom maximum mission types for treeTransportMission", nil)
+	XmlConfigLoader.xmlSchema:register(XMLValueType.INT, XmlConfigLoader.xmlTag..".customMaxPerType.destructibleRockMission", "custom maximum mission types for destructibleRockMission", nil)
 	
 end
 
@@ -134,8 +156,10 @@ function XmlConfigLoader.importConfig(xmlFilename)
 		loadedConfig.enableStrawFromHarvestMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableStrawFromHarvestMissions", XmlConfigLoader.enableStrawFromHarvestMissions)
 		loadedConfig.enableSwathingForHarvestMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableSwathingForHarvestMissions", XmlConfigLoader.enableSwathingForHarvestMissions)
 		loadedConfig.enableGrassFromMowingMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableGrassFromMowingMissions", XmlConfigLoader.enableGrassFromMowingMissions)
+		loadedConfig.enableHayFromTedderMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableHayFromTedderMissions", XmlConfigLoader.enableHayFromTedderMissions)
 		loadedConfig.enableStonePickingFromMissions = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableStonePickingFromMissions", XmlConfigLoader.enableStonePickingFromMissions)
 		loadedConfig.enableFieldworkToolFillItems = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableFieldworkToolFillItems", XmlConfigLoader.enableFieldworkToolFillItems)
+		loadedConfig.enableCollectingBalesFromContracts = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.enableCollectingBalesFromContracts", XmlConfigLoader.enableCollectingBalesFromContracts)
 		
 		loadedConfig.rewardFactor = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.rewardFactor", XmlConfigLoader.rewardFactor)
 		loadedConfig.maxContractsPerFarm = xmlFile:getValue(XmlConfigLoader.xmlTag..".settings.maxContractsPerFarm", XmlConfigLoader.maxContractsPerFarm)
@@ -159,6 +183,23 @@ function XmlConfigLoader.importConfig(xmlFilename)
 		loadedConfig.customRewards.deadwoodMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customRewards.deadwoodMission", nil)
 		loadedConfig.customRewards.treeTransportMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customRewards.treeTransportMission", nil)
 		loadedConfig.customRewards.destructibleRockMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customRewards.destructibleRockMission", nil)
+
+		loadedConfig.customMaxPerType = {}
+		loadedConfig.customMaxPerType.baleMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.baleMission", nil)
+		loadedConfig.customMaxPerType.baleWrapMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.baleWrapMission", nil)
+		loadedConfig.customMaxPerType.plowMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.plowMission", nil)
+		loadedConfig.customMaxPerType.cultivateMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.cultivateMission", nil)
+		loadedConfig.customMaxPerType.sowMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.sowMission", nil)
+		loadedConfig.customMaxPerType.harvestMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.harvestMission", nil)
+		loadedConfig.customMaxPerType.hoeMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.hoeMission", nil)
+		loadedConfig.customMaxPerType.weedMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.weedMission", nil)
+		loadedConfig.customMaxPerType.herbicideMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.herbicideMission", nil)
+		loadedConfig.customMaxPerType.mowMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.mowMission", nil)
+		loadedConfig.customMaxPerType.tedderMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.tedderMission", nil)
+		loadedConfig.customMaxPerType.stonePickMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.stonePickMission", nil)
+		loadedConfig.customMaxPerType.deadwoodMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.deadwoodMission", nil)
+		loadedConfig.customMaxPerType.treeTransportMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.treeTransportMission", nil)
+		loadedConfig.customMaxPerType.destructibleRockMission = xmlFile:getValue(XmlConfigLoader.xmlTag..".customMaxPerType.destructibleRockMission", nil)
 
 		-- ensure that values are within limits for numerical values
 		if loadedConfig.rewardFactor < 0.1 or loadedConfig.rewardFactor > 5.0 then
