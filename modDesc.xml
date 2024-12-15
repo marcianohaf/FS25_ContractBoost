@@ -5,6 +5,7 @@
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
+        <fr>Contrat Amélioré</fr>
     </title>
     <description>
         <en><![CDATA[
@@ -18,7 +19,7 @@ Features:
 - 50 total contracts available
 - Borrowed contract equipment comes with free fieldwork items to fill your tools
 - Allow using swathing equipment on harvest missions
-- Allow collecting straw from harvest missionss
+- Allow collecting straw from harvest missions
 - Allow collecting grass from mowing missions
 - Allow collecting stones from plow, cultivate, and sowing missions
 
@@ -56,6 +57,27 @@ GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
 Changelog 1.0.0.2
 - Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
 ]]></de>
+        <fr><![CDATA[
+Augmentez vos revenus grâce à vos contrats et récupérez les ressources collectées !
+
+Fonctionnalités :
+- 50 % de profit supplémentaire pour chaque contrat
+- Jusqu'à 10 contrats actifs
+- Jusqu'à 5 contrats actifs par type
+- Jusqu'à 50 contrats disponibles au total
+- Les équipements loués pour les contrats incluent gratuitement des consommables pour remplir vos outils
+- Permet d'utiliser la coupe en andains lors des missions de récolte
+- Permet de collecter la paille lors des missions de récolte
+- Permet de collecter l'herbe lors des missions de fauchage
+- Permet de collecter les pierres lors des missions de labour, de culture et de semis
+
+Tous ces paramètres peuvent être modifiés via un fichier XML dans FarmingSimulator2025/modSettings/ContractBoost.xml
+
+Lien GitHub : https://github.com/GMNGjoy/FS25_ContractBoost
+
+Changelog 1.0.0.2 :
+- Ajout d'une vérification de sécurité pour les cartes personnalisées ne contenant pas tous les types de contrats
+]]></fr>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="true"/>
