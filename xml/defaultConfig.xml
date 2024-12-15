@@ -78,7 +78,7 @@
             ~ mod default: 1.5
             ~ game default: 1.0
         -->
-        <rewardFactor>0.5</rewardFactor>
+        <rewardFactor>1.5</rewardFactor>
 
         <!--
             maxContractsPerFarm: how many contracts can be active at once
