@@ -41,6 +41,13 @@
             ~ default: true
         -->
         <enableGrassFromMowingMissions>true</enableGrassFromMowingMissions>
+
+        <!--
+            enableHayFromTedderMissions: should hay be collectible from during tedder missions?
+            ~ values: true/false
+            ~ default: true
+        -->
+        <enableHayFromTedderMissions>true</enableHayFromTedderMissions>
         
         <!--
             enableStonePickingFromMissions: should stones be collectible from during tilling & sowing missions?
@@ -55,6 +62,14 @@
             ~ default: true
         -->
         <enableFieldworkToolFillItems>true</enableFieldworkToolFillItems>
+
+        <!--
+            enableCollectingBalesFromContracts: should you be able to collect bales from baling and baleWrapping contracts?
+            !! NOTE: enabling this will prevent the game from deleting bales from these kind of contracts, don't enable this unless you *want* to collect those bales.
+            ~ values: true/false
+            ~ default: false
+        -->
+        <enableCollectingBalesFromContracts>false</enableCollectingBalesFromContracts>
 
         <!--
             rewardFactor: applies a multiplier to the base game rewardPer value
@@ -109,7 +124,26 @@
         <!-- <tedderMission></tedderMission> -->
         <!-- <stonePickMission></stonePickMission> -->
         <!-- <deadwoodMission></deadwoodMission> -->
-        <treeTransportMission>400</treeTransportMission>
+        <treeTransportMission>500</treeTransportMission>
         <!-- <destructibleRockMission></destructibleRockMission> -->
     </customRewards>
+
+    <customMaxPerType>
+        <!-- <baleMission></baleMission> -->
+        <!-- <baleWrapMission></baleWrapMission> -->
+        <!-- <plowMission></plowMission> -->
+        <!-- <cultivateMission></cultivateMission>  -->
+        <!-- <sowMission></sowMission> -->
+        <harvestMission>8</harvestMission>
+        <!-- <hoeMission></hoeMission> -->
+        <!-- <weedMission></weedMission> -->
+        <!-- <herbicideMission></herbicideMission> -->
+        <!-- <fertilizeMission></fertilizeMission> -->
+        <!-- <mowMission></mowMission> -->
+        <!-- <tedderMission></tedderMission> -->
+        <!-- <stonePickMission></stonePickMission> -->
+        <!-- <deadwoodMission></deadwoodMission> -->
+        <!-- <treeTransportMission></treeTransportMission> -->
+        <!-- <destructibleRockMission></destructibleRockMission> -->
+    </customMaxPerType>
 </contractBoost>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="93">
     <author>GMNGjoy</author>
-    <version>1.0.0.2</version>
+    <version>1.0.1.0</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
@@ -14,7 +14,8 @@ Boost your contracts by making more money, and allowing collection of the spoils
 Features:
 - 50% more profit from every contract
 - 10 max contracts
-- 5 max contracts per type
+- 5 max contracts per type by default
+- Allow setting a custom amount per type of contract
 - 50 total contracts available
 - Borrowed contract equipment comes with free fieldwork items to fill your tools
 - Allow using swathing equipment on harvest missions
@@ -28,6 +29,11 @@ GitHub link: https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2
 - Added safety check for custom maps that don't contain every type of contract
+
+Changelog 1.1.0.0
+- Allow collecting hay from tedding missions
+- Allow collecting straw bales from baling missions
+- Allow collecting wrapped silage bales from bale-wrapping missions
 ]]></en>
         <de><![CDATA[
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
@@ -35,7 +41,8 @@ Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute
 Features:
 - 50% mehr Umsatz von jedem Auftrag
 - Bis zu 10 angenommene Aufträge
-- Bis zu 5 Aufträge pro Art
+- Standardmäßig maximal 5 Verträge pro Typ
+- Anpassung einer individuellen Anzahl pro Vertragsart ermöglichen
 - Bis zu 50 angebotene Aufträge
 - Beim Mieten der Maschinen werden auch kostenlos Verbrauchsgüter zum Füllen der Geräte bereitgestellt
 - Ernteaufträge können auch mit Schwadmähern durchgeführt werden
@@ -77,4 +84,5 @@ Changelog 1.0.0.2 :
     <extraSourceFiles>
         <sourceFile filename="scripts/ContractBoost.lua"/>
     </extraSourceFiles>
+    <l10n filenamePrefix="languages/l10n"/>
 </modDesc>
