@@ -102,7 +102,9 @@ function MissionTools:getIsMissionWorkAllowed(superFunc, farmId, x, z, workAreaT
     if mission ~= nil and mission.type ~= nil and mission.farmId == farmId then
         local missionType = mission.type.name
     
-        -- if ContractBoost.debug then printf('-- ContractBoost:MissionTools :: missionType: %s | workAreaType: %s', missionType, workAreaType) end
+        -- if ContractBoost.debug then 
+        -- printf('-- ContractBoost:MissionTools :: missionType: %s | workAreaType: %s', missionType, workAreaType)
+        -- end
 
         local additionalWorkAreaTypes = MissionTools.additionalAllowedVehicles[missionType] or {}
         
