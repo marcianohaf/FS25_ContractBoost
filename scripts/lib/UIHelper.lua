@@ -4,7 +4,7 @@
 ---version 1.2
 ---Changelog:
 ---v1.1: Fixed choice controls when using string values
----v1.2: Chioce controls can now be nillable, too
+---v1.2: Choice controls can now be nillable, too
 ---@class UIHelper
 UIHelper = {}
 

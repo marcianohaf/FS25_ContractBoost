@@ -130,6 +130,11 @@ function MissionTools:addBale(superFunc, bale)
     -- call the overwritten function
     superFunc(bale)
 
+    -- exit if not enabled
+    if not ContractBoost.config.enableCollectingBalesFromMissions then
+        superFunc(bale)
+    end
+
     -- one last check that we have a bale, and change the owner.
     if bale ~= nil then
         if ContractBoost.debug then printf('-- ContractBoost:MissionTools :: addBale changeOwner %s', g_localPlayer.farmId) end
@@ -138,7 +143,12 @@ function MissionTools:addBale(superFunc, bale)
  end
 
 -- replace the BaleWrapMission.finishField and BaleMission.finishField functions with our own function that doesn't delete the bales.
-function MissionTools.finishField()
+function MissionTools.finishField(superFunc, ...)
+    -- exit if not enabled
+    if not ContractBoost.config.enableCollectingBalesFromMissions then
+        superFunc(...)
+    end
+
     local parentClass = BaleWrapMission:superClass()
     parentClass.finishField(parentClass)
  end

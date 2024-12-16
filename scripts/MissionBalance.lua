@@ -48,7 +48,7 @@ function MissionBalance:scaleMissionReward()
 
     if #g_missionManager.missionTypes ~= 0 then
         for _, missionType in ipairs(g_missionManager.missionTypes) do
-            
+
             local typeName = missionType.name
             local prevValue = nil
             local newValue = nil
@@ -60,26 +60,30 @@ function MissionBalance:scaleMissionReward()
 
             -- don't process the contract type if there are no instances
             if typeName == "baleWrapMission" and rawget(missionType.data, "rewardPerBale") ~= nil then
-                prevValue = missionType.data.rewardPerBale
+                prevValue = missionType.data.baseRewardPerBale or missionType.data.rewardPerBale
                 newValue = ContractBoost.config.customRewards[typeName] or missionType.data.rewardPerBale * rewardFactor
+                missionType.data.baseRewardPerBale = prevValue
                 missionType.data.rewardPerBale = newValue
             elseif (typeName == "deadwoodMission" or typeName == "treeTransportMission") and rawget(missionType.data, "rewardPerTree") ~= nil then
-                prevValue = missionType.data.rewardPerTree
+                prevValue = missionType.data.baseRewardPerTree or missionType.data.rewardPerTree
                 newValue = ContractBoost.config.customRewards[typeName] or missionType.data.rewardPerTree * rewardFactor
+                missionType.data.baseRewardPerTree = prevValue
                 missionType.data.rewardPerTree = newValue
             elseif typeName == "destructibleRockMission" and rawget(missionType.data, "rewardPerRock") ~= nil  then
-                prevValue = missionType.data.rewardPerRock
+                prevValue = missionType.data.baseRewardPerRock or missionType.data.rewardPerRock
                 newValue = ContractBoost.config.customRewards[typeName] or missionType.data.rewardPerRock * rewardFactor
+                missionType.data.baseRewardPerRock = prevValue
                 missionType.data.rewardPerRock = newValue
             elseif rawget(missionType.data, "rewardPerHa") ~= nil then
-                prevValue = missionType.data.rewardPerHa
+                prevValue = missionType.data.baseRewardPerHa or missionType.data.rewardPerHa
                 newValue = ContractBoost.config.customRewards[typeName] or missionType.data.rewardPerHa * rewardFactor
+                missionType.data.baseRewardPerHa = prevValue
                 missionType.data.rewardPerHa = newValue
             end
 
             -- update the maximum number of each type to it's custom value if it exists else use the default
             missionType.data.maxNumInstances = math.min(ContractBoost.config.customMaxPerType[typeName] or ContractBoost.config.maxContractsPerType, 20)
-
+            
             if ContractBoost.debug then 
                 if newValue == prevValue and newValue == nil then
                     printf('---- ContractBoost:MissionBalance :: Mission %s: %s | skipped, not found on map', missionType.typeId, missionType.name)

@@ -11,9 +11,14 @@ MissionBorrow.pallets = {
     bigBagPallet_fertilizer = true,
     herbicideTank = true,
 }
+MissionBorrow.fillItemsAdded = false
 
 -- 
 function MissionBorrow:onSpawnedVehicle(superFunc, vehicle, ...)
+    if not ContractBoost.config.enableFieldworkToolFillItems then
+        superFunc(self, vehicle, ...)
+    end
+
     if vehicle ~= nil then
         local configNameClean = vehicle[1].configFileNameClean
 
@@ -34,6 +39,10 @@ end
 -- Adds fill items to the mission tools for each type of mission where needed.
 function MissionBorrow:addFillItemsToMissionTools()
     if ContractBoost.debug then print('-- ContractBoost:MissionBorrow :: fillMissionTools') end
+
+    if MissionBorrow.fillItemsAdded then
+        return
+    end
 
     local fillMissionTypes = {
         "fertilizeMission",
@@ -90,6 +99,9 @@ function MissionBorrow:addFillItemsToMissionTools()
             end
         end
     end
+
+    -- prevent from being added again
+    MissionBorrow.fillItemsAdded = true
 
     if ContractBoost.debug then print('-- ContractBoost:MissionBorrow :: fillMissionTools complete') end
 end
