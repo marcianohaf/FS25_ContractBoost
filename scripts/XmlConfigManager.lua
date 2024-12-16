@@ -270,8 +270,8 @@ end
 
 
 ---Writes the settings to our own XML file
-function XmlConfigManager:storeConfig()
-    local xmlPath = ContractBoost.xmlManager:getSavegameXmlFilePath()
+function XmlConfigManager:saveConfig()
+    local xmlPath = self:getSavegameXmlFilePath()
     if xmlPath == nil then
         Logging.warning(MOD_NAME .. ": Could not store settings.") -- another warning has been logged before this
         return
@@ -280,7 +280,7 @@ function XmlConfigManager:storeConfig()
     local config = ContractBoost.config;
     local missionTypes = ContractBoost.xmlManager.missionTypes;
 
-    print('-- ContractBoost:XmlConfigManager :: storeConfig')
+    print('-- ContractBoost:XmlConfigManager :: saveConfig')
     DebugUtil.printTableRecursively(config)
 
     -- Create an empty XML file in memory

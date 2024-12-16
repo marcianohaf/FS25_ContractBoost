@@ -78,6 +78,6 @@ BaseMission.loadMapFinished = Utils.prependedFunction(BaseMission.loadMapFinishe
 end)
 
 -- Save the config when the savegame is being saved
-FSBaseMission.saveSavegame = Utils.appendedFunction(FSBaseMission.saveSavegame, XmlConfigManager.storeConfig)
-
-
+FSBaseMission.saveSavegame = Utils.appendedFunction(FSBaseMission.saveSavegame,  function(...)
+	ContractBoost.xmlManager:saveConfig()
+end)

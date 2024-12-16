@@ -158,33 +158,42 @@ function SettingsUI:onSettingsChange(control)
     local setting = control.elements[1]
     local newValue = setting.texts[setting.state]
 
-    -- Type conversion from the current "value" to boolean
-    if newValue == 'On' then newValue = true end
-    if newValue == 'Off' then newValue = false end
+    local fullResetSettings = {
 
-    -- Allow nil values from the UI, from the 'nillable' property
-    if newValue == '-' then newValue = nil end
-
-    -- Type conversion from strings back to numbers 
-    if tonumber(newValue) ~= nil then newValue = tonumber(newValue) end
-
-    -- Check for a subTable and if one is there - put the value back into the config object
-    local subTable = setting.parent.subTable or nil
-    local propName = setting.parent.propName or nil
-    if subTable ~= nil and propName ~= nil then
-        if ContractBoost.debug then
-            printf('!! settings change: ContractBoost.config.%s.%s | value: %s ', subTable, propName, newValue)
-        end
-        if not ContractBoost.config[subTable] then
-            ContractBoost.config[subTable] = {}
-        end
-        ContractBoost.config[subTable][propName] = newValue
-    else
-        if ContractBoost.debug then 
-            printf('!! settings change: ContractBoost.config.%s | value: %s ', control.name, newValue)
-        end
-        ContractBoost.config[control.name] = newValue
+    }
+    
+    if fullResetSettings[setting] then
+        ContractBoost:activateSettings()
     end
+
+
+    -- -- Type conversion from the current "value" to boolean
+    -- if newValue == 'On' then newValue = true end
+    -- if newValue == 'Off' then newValue = false end
+
+    -- -- Allow nil values from the UI, from the 'nillable' property
+    -- if newValue == '-' then newValue = nil end
+
+    -- -- Type conversion from strings back to numbers 
+    -- if tonumber(newValue) ~= nil then newValue = tonumber(newValue) end
+
+    -- -- Check for a subTable and if one is there - put the value back into the config object
+    -- local subTable = setting.parent.subTable or nil
+    -- local propName = setting.parent.propName or nil
+    -- if subTable ~= nil and propName ~= nil then
+    --     if ContractBoost.debug then
+    --         printf('!! settings change: ContractBoost.config.%s.%s | value: %s ', subTable, propName, newValue)
+    --     end
+    --     if not ContractBoost.config[subTable] then
+    --         ContractBoost.config[subTable] = {}
+    --     end
+    --     ContractBoost.config[subTable][propName] = newValue
+    -- else
+    --     if ContractBoost.debug then 
+    --         printf('!! settings change: ContractBoost.config.%s | value: %s ', control.name, newValue)
+    --     end
+    --     ContractBoost.config[control.name] = newValue
+    -- end
 
 end
 
