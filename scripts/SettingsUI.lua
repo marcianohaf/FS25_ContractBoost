@@ -1,3 +1,8 @@
+--- SettingsUI
+-- @author Timmeey86, GMNGjoy
+-- @copyright 12/16/2024
+-- @contact https://github.com/GMNGjoy/FS25_ContractBoost
+-- @license CC0 1.0 Universal
 ---This class is responsible for adding UI settings and mapping them to the existing settings variables
 ---@class SettingsUI
 ---@field sectionTitle table @The UI control which displays the section title
@@ -97,7 +102,6 @@ function SettingsUI:injectUiSettings(loadedConfig)
 
     -- Add in the customRewards types
     for _, prop in missionTypes do
-        
         if missionTypesCalculatedPerItem[prop] then 
             table.insert(controlProperties, {
                 name = prop .. "Reward",
@@ -156,45 +160,33 @@ function SettingsUI:onSettingsChange(control)
 
     -- Grab the setting and new value from the UI element
     local setting = control.elements[1]
-    local newValue = setting.texts[setting.state]
+    local subTable = setting.parent.subTable or nil
 
-    local fullResetSettings = {
-
+    local settingsRequiringActivation = {
+        enableStrawFromHarvestMissions = true,
+        enableSwathingForHarvestMissions = true,
+        enableGrassFromMowingMissions = true,
+        enableStonePickingFromMissions = true,
+        enableHayFromTedderMissions = true,
+        enableFieldworkToolFillItems = true,
     }
-    
-    if fullResetSettings[setting] then
+    local settingsRequiringScaleReward = {
+        maxContractsOverall = true,
+        maxContractsPerFarm = true,
+        maxContractsPerType = true,
+        rewardFactor = true,
+    }
+    if settingsRequiringActivation[control.name] then
+        if ContractBoost.debug then
+            printf('-- ContractBoost:SettingsUI :: calling activateSettings with setting: %s', control.name)
+        end
         ContractBoost:activateSettings()
+    elseif subTable ~= nil or settingsRequiringScaleReward[control.name] then
+        if ContractBoost.debug then
+            printf('-- ContractBoost:SettingsUI :: calling scaleMissionReward with setting: %s', control.name)
+        end
+        MissionBalance:scaleMissionReward()
     end
-
-
-    -- -- Type conversion from the current "value" to boolean
-    -- if newValue == 'On' then newValue = true end
-    -- if newValue == 'Off' then newValue = false end
-
-    -- -- Allow nil values from the UI, from the 'nillable' property
-    -- if newValue == '-' then newValue = nil end
-
-    -- -- Type conversion from strings back to numbers 
-    -- if tonumber(newValue) ~= nil then newValue = tonumber(newValue) end
-
-    -- -- Check for a subTable and if one is there - put the value back into the config object
-    -- local subTable = setting.parent.subTable or nil
-    -- local propName = setting.parent.propName or nil
-    -- if subTable ~= nil and propName ~= nil then
-    --     if ContractBoost.debug then
-    --         printf('!! settings change: ContractBoost.config.%s.%s | value: %s ', subTable, propName, newValue)
-    --     end
-    --     if not ContractBoost.config[subTable] then
-    --         ContractBoost.config[subTable] = {}
-    --     end
-    --     ContractBoost.config[subTable][propName] = newValue
-    -- else
-    --     if ContractBoost.debug then 
-    --         printf('!! settings change: ContractBoost.config.%s | value: %s ', control.name, newValue)
-    --     end
-    --     ContractBoost.config[control.name] = newValue
-    -- end
-
 end
 
 ---Updates the UI elements to reflect the current settings

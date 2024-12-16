@@ -59,7 +59,13 @@ function MissionBorrow:addFillItemsToMissionTools()
                     table.insert(vehicle.vehicles, {
                         filename = 'data/objects/bigBagPallet/seeds/bigBagPallet_seeds.xml'
                     })
+                    table.insert(vehicle.vehicles, {
+                        filename = 'data/objects/bigBagPallet/seeds/bigBagPallet_seeds.xml'
+                    })
                     if size == "large" then
+                        table.insert(vehicle.vehicles, {
+                            filename = 'data/objects/bigBagPallet/seeds/bigBagPallet_seeds.xml'
+                        })
                         table.insert(vehicle.vehicles, {
                             filename = 'data/objects/bigBagPallet/seeds/bigBagPallet_seeds.xml'
                         })

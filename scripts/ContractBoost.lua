@@ -1,6 +1,6 @@
 -- ContractBoost:core
 -- @author GMNGjoy
--- @copyright 11/15/2024
+-- @copyright 12/16/2024
 -- @contact https://github.com/GMNGjoy/FS25_ContractBoost
 -- @license CC0 1.0 Universal
 
@@ -57,7 +57,7 @@ function ContractBoost:activateSettings()
 
     -- MissionBalance: on map load apply new mission settings
     if ContractBoost.config.enableContractValueOverrides then
-        MissionBalance:initMissionSettings()
+        MissionBalance:setMissionSettings()
         MissionBalance:scaleMissionReward()
     end
 

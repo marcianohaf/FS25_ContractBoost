@@ -1,6 +1,6 @@
 --- XML Config Loader
 -- @author GMNGjoy
--- @copyright 11/15/2024
+-- @copyright 12/16/2024
 -- @contact https://github.com/GMNGjoy/FS25_ContractBoost
 -- @license CC0 1.0 Universal
 ---This class is responsible for loading User Settings
@@ -72,7 +72,6 @@ function XmlConfigManager.new()
         "treeTransportMission",
         "destructibleRockMission"
     }
-    self.isInitialized = false
 
     return self
 end
@@ -132,12 +131,7 @@ end
 function XmlConfigManager:initXmlSchema()
     if self.loadDebug then print("---- ContractBoost:XmlConfigManager: init xml schema") end
 
-    print('-- ContractBoost:XmlConfigManager :: self')
-    DebugUtil.printTableRecursively(self)
-
     self.xmlSchema = XMLSchema.new(XMLTAG)
-
-    print('post create schema')
 
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.debugMode", "Turn debugMode on for additional log output", self.defaultConfig.debugMode)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableContractValueOverrides", "enables overriding contract system default setting values", self.defaultConfig.enableContractValueOverrides)
@@ -153,22 +147,16 @@ function XmlConfigManager:initXmlSchema()
     self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerType", "how many contracts per contract type can be available", self.defaultConfig.maxContractsPerType)
     self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsOverall", "how many contracts overall can be available", self.defaultConfig.maxContractsOverall)
 
-    print('post primary register')
-
     -- loop through the mission types to setup the customRewards
     for _, missionType in self.missionTypes do
         self.xmlSchema:register(XMLValueType.INT, XMLTAG..".customRewards."..missionType, "custom rewards for "..missionType, nil)
     end
-
-    print('post customRewards')
 
     -- loop through the mission types to setup the customMaxPerType
     for _, missionType in self.missionTypes do
         self.xmlSchema:register(XMLValueType.INT, XMLTAG..".customMaxPerType."..missionType, "custom maxPerType for "..missionType, nil)
     end
 
-    print('post customMaxPerType')
-    
     if self.loadDebug then print("---- ContractBoost:XmlConfigManager: xml complete") end
 end
 
@@ -216,22 +204,22 @@ function XmlConfigManager:importConfig(xmlFilename)
         -- ensure that values are within limits for numerical values
         if loadedConfig.rewardFactor < 0.1 or loadedConfig.rewardFactor > 5.0 then
             printf('-- ContractBoost:XmlConfigManager :: user configured rewardFactor (%s) outside of limits, reset to default.', loadedConfig.rewardFactor)
-            loadedConfig.rewardFactor = self.rewardFactor
+            loadedConfig.rewardFactor = self.defaultConfig.rewardFactor
         end
 
         if loadedConfig.maxContractsPerFarm < 1 or loadedConfig.maxContractsPerFarm > 100 then
             printf('-- ContractBoost:XmlConfigManager :: user configured maxContractsPerFarm (%s) outside of limits, reset to default.', loadedConfig.maxContractsPerFarm)
-            loadedConfig.maxContractsPerFarm = self.maxContractsPerFarm
+            loadedConfig.maxContractsPerFarm = self.defaultConfig.maxContractsPerFarm
         end
 
         if loadedConfig.maxContractsPerType < 1 or loadedConfig.maxContractsPerType > 20 then
             printf('-- ContractBoost:XmlConfigManager :: user configured maxContractsPerType (%s) outside of limits, reset to default.', loadedConfig.maxContractsPerType)
-            loadedConfig.maxContractsPerType = self.maxContractsPerType
+            loadedConfig.maxContractsPerType = self.defaultConfig.maxContractsPerType
         end
 
         if loadedConfig.maxContractsOverall < 1 or loadedConfig.maxContractsOverall > 100 then
             printf('-- ContractBoost:XmlConfigManager :: user configured maxContractsOverall (%d) outside of limits, reset to default.', loadedConfig.maxContractsOverall)
-            loadedConfig.maxContractsOverall = self.maxContractsOverall
+            loadedConfig.maxContractsOverall = self.defaultConfig.maxContractsOverall
             
         end
 
@@ -278,10 +266,9 @@ function XmlConfigManager:saveConfig()
     end
 
     local config = ContractBoost.config;
-    local missionTypes = ContractBoost.xmlManager.missionTypes;
+    local missionTypes = self.missionTypes;
 
     print('-- ContractBoost:XmlConfigManager :: saveConfig')
-    DebugUtil.printTableRecursively(config)
 
     -- Create an empty XML file in memory
     local xmlFileId = createXMLFile("ContractBoost", xmlPath, XMLTAG)
@@ -304,7 +291,6 @@ function XmlConfigManager:saveConfig()
 
     -- loop through the mission types to pull the customRewards
     for _, missionType in missionTypes do
-        printf('---- customRewards missionType: %s | %s', missionType, config.customRewards[missionType])
         if config.customRewards[missionType] ~= nil then
             setXMLInt(xmlFileId, XMLTAG..".customRewards."..missionType, config.customRewards[missionType])
         end
@@ -312,7 +298,6 @@ function XmlConfigManager:saveConfig()
 
     -- loop through the mission types to pull the customMaxPerType
     for _, missionType in missionTypes do
-        printf('---- customMaxPerType missionType: %s | %s', missionType, config.customMaxPerType[missionType])
         if config.customMaxPerType[missionType] ~= nil then
             setXMLInt(xmlFileId, XMLTAG..".customMaxPerType."..missionType, config.customMaxPerType[missionType])
         end

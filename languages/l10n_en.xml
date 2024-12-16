@@ -63,37 +63,37 @@
         <text name="cb_destructibleRockMissionReward_short" text="Rock Removal Contract Reward" />
         <text name="cb_destructibleRockMissionReward_long" text="The reward per rock for rock removal contracts. If set to '-', the base game rewards will be applied." />
 
-        <text name="cb_baleMissionMaxPerType_short" text="Max. Bale Contracts" />
-        <text name="cb_baleMissionMaxPerType_long" text="The maximum number of generated baling contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
-        <text name="cb_baleWrapMissionMaxPerType_short" text="Max. Bale Wrap Contracts" />
-        <text name="cb_baleWrapMissionMaxPerType_long" text="The maximum number of generated bale wrapping contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
-        <text name="cb_plowMissionMaxPerType_short" text="Max. Plowing Contracts" />
-        <text name="cb_plowMissionMaxPerType_long" text="The maximum number of generated Plowing contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
-        <text name="cb_cultivateMissionMaxPerType_short" text="Max. Cultivating Contracts" />
-        <text name="cb_cultivateMissionMaxPerType_long" text="The maximum number of generated Cultivating contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
-        <text name="cb_sowMissionMaxPerType_short" text="Max. Sowing Contracts" />
-        <text name="cb_sowMissionMaxPerType_long" text="The maximum number of generated Sowing contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
-        <text name="cb_harvestMissionMaxPerType_short" text="Max. Harvesting Contracts" />
-        <text name="cb_harvestMissionMaxPerType_long" text="The maximum number of generated Harvesting contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_baleMissionMaxPerType_short" text="Maximum Bale Contracts" />
+        <text name="cb_baleMissionMaxPerType_long" text="The maximum number of generated baling contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_baleWrapMissionMaxPerType_short" text="Maximum Bale Wrap Contracts" />
+        <text name="cb_baleWrapMissionMaxPerType_long" text="The maximum number of generated bale wrapping contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_plowMissionMaxPerType_short" text="Maximum Plowing Contracts" />
+        <text name="cb_plowMissionMaxPerType_long" text="The maximum number of generated Plowing contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_cultivateMissionMaxPerType_short" text="Maximum Cultivating Contracts" />
+        <text name="cb_cultivateMissionMaxPerType_long" text="The maximum number of generated Cultivating contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_sowMissionMaxPerType_short" text="Maximum Sowing Contracts" />
+        <text name="cb_sowMissionMaxPerType_long" text="The maximum number of generated Sowing contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_harvestMissionMaxPerType_short" text="Maximum Harvesting Contracts" />
+        <text name="cb_harvestMissionMaxPerType_long" text="The maximum number of generated Harvesting contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_hoeMissionMaxPerType_short" text="Maximum Hoeing Contracts" />
-        <text name="cb_hoeMissionMaxPerType_long" text="The maximum number of generated Hoeing contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_hoeMissionMaxPerType_long" text="The maximum number of generated Hoeing contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_weedMissionMaxPerType_short" text="Maximum Weeding Contracts" />
-        <text name="cb_weedMissionMaxPerType_long" text="The maximum number of generated Weeding contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_weedMissionMaxPerType_long" text="The maximum number of generated Weeding contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_herbicideMissionMaxPerType_short" text="Maximum Spraying Contracts" />
-        <text name="cb_herbicideMissionMaxPerType_long" text="The maximum number of generated Spraying contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_herbicideMissionMaxPerType_long" text="The maximum number of generated Spraying contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_fertilizeMissionMaxPerType_short" text="Maximum Fertilizing Contracts" />
-        <text name="cb_fertilizeMissionMaxPerType_long" text="The maximum number of generated Fertilizing contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_fertilizeMissionMaxPerType_long" text="The maximum number of generated Fertilizing contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_mowMissionMaxPerType_short" text="Maximum Mowing Contracts" />
-        <text name="cb_mowMissionMaxPerType_long" text="The maximum number of generated Mowing contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_mowMissionMaxPerType_long" text="The maximum number of generated Mowing contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_tedderMissionMaxPerType_short" text="Maximum Tedding Contracts" />
-        <text name="cb_tedderMissionMaxPerType_long" text="The maximum number of generated Tedding contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_tedderMissionMaxPerType_long" text="The maximum number of generated Tedding contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_stonePickMissionMaxPerType_short" text="Maximum Stone Collection Contracts" />
-        <text name="cb_stonePickMissionMaxPerType_long" text="The maximum number of generated stone collection contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_stonePickMissionMaxPerType_long" text="The maximum number of generated stone collection contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_deadwoodMissionMaxPerType_short" text="Maximum Deadwood Contracts" />
-        <text name="cb_deadwoodMissionMaxPerType_long" text="The maximum number of generated deadwood contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
-        <text name="cb_treeTransportMissionMaxPerType_short" text="Maximum Tree Transport Contracts" />
-        <text name="cb_treeTransportMissionMaxPerType_long" text="The maximum number of generated transporting trees. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_deadwoodMissionMaxPerType_long" text="The maximum number of generated deadwood contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_treeTransportMissionMaxPerType_short" text="Maximum Wood Transport Contracts" />
+        <text name="cb_treeTransportMissionMaxPerType_long" text="The maximum number of generated transporting trees. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_destructibleRockMissionMaxPerType_short" text="Maximum Rock Removal Contracts" />
-        <text name="cb_destructibleRockMissionMaxPerType_long" text="The maximum number of generated rock removal contracts. If set to '-', the 'Max. Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_destructibleRockMissionMaxPerType_long" text="The maximum number of generated rock removal contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
     </texts>
 </l10n>

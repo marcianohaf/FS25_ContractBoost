@@ -31,29 +31,56 @@ _Enjoy!_
 
 ## Screenshots
 
-![Run more than three active contracts!](/_screenshots/screenshot_activeContractsMenu.png)
+![Run more than three active contracts!](/_screenshots/screenshot_02_activeContractsMenu.png)
 <br/><br/>
 
 ![Control how many active contracts you can have per farm!](/_screenshots/screenshot_activeContracts.png)
 <br/><br/>
 
-![Collect straw during harvest contracts!](/_screenshots/screenshot_straw.png)
+![Collect straw during harvest contracts!](/_screenshots/screenshot_01_straw.png)
 <br/><br/>
 
-![Enable the use of Macdon windrower & pickup header on a Harvest contract!](/_screenshots/screenshot_macdon.png)
+![Enable the use of Macdon windrower & pickup header on a Harvest contract!](/_screenshots/screenshot_03_macdon.png)
 <br/><br/>
 
-![Windrow, bale & collect grass during mowing contracts!](/_screenshots/screenshot_grass.png)
+![Windrow, bale & collect grass during mowing contracts!](/_screenshots/screenshot_04_grass.png)
 <br/><br/>
 
-![Fertilizer included on fertilizing contracts!](/_screenshots/screenshot_fertilizer.png)
+![Fertilizer included on fertilizing contracts!](/_screenshots/screenshot_05_fertilizer.png)
 <br/><br/>
 
-![Herbicide included on spraying contracts!](/_screenshots/screenshot_herbicide.png)
+![Herbicide included on spraying contracts!](/_screenshots/screenshot_06_herbicide.png)
 <br/><br/>
 
+## CHANGELOG
 
-## Detailed Configuration Instructions
+### Changelog 1.0.0.2
+- Added safety check for custom maps that don't contain every type of contract
+
+### Changelog 1.0.3.0
+- User contributed translations: fr, cz, it
+- Allow collecting hay from tedding conracts
+- Allow collecting straw bales from baling conracts
+- Allow collecting wrapped silage bales from bale-wrapping conracts
+- Suppport customizing of the number of contracts for each type of contract individually, with the ability to "disable" contract types you don't want to see.
+- All settings previously in the configuration file can be set in the General Settings panel in-game.
+- Configuration file in modSettings folder has been depreciated
+- New configuration file in savegame folder can only be manually edited while game is not running.
+
+
+
+## Configuration Instructions (1.0.3.0)
+
+All settings are now configurable within the UI. Note: most setting changes _**will not**_ affect existing contracts, only new contracts.
+
+![New in-game Contract Boost settings control.](/_screenshots/screenshot_07_settingsControl.png)
+
+![Detailed customization of the rewards per contract type, as well as the maximum number of contracts that can be generated per type.](/_screenshots/screenshot_08_settingsCustomization.png)
+
+The previous configuration file is now _depreciated_, but will be used if it exists as the "defaults" until the settings are customized in-game.
+
+
+## Detailed Configuration Instructions (pre 1.0.3.0)
 
 **Contract Boost** is entirely controlled by a named configuration file (`ContractBoost.xml`) that is copied into your `modSettings/` folder on first usage. The file is located in the same folder that your `savegame##` folder is located, roughly here:
 

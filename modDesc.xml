@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="93">
     <author>GMNGjoy</author>
-    <version>1.0.2.78</version>
+    <version>1.0.3.0</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
         <fr>Contrat Amélioré</fr>
     </title>
     <description>
-        <en>
-<![CDATA[
+        <en><![CDATA[
 Boost your contracts by making more money, and allowing collection of the spoils!
 
 Features:
@@ -19,12 +18,17 @@ Features:
 - Allow setting a custom amount per type of contract
 - 50 total contracts available
 - Borrowed contract equipment comes with free fieldwork items to fill your tools
-- Allow using swathing equipment on harvest missions
-- Allow collecting straw from harvest missions
-- Allow collecting grass from mowing missions
-- Allow collecting stones from plow, cultivate, and sowing missions
+- Allow using swathing equipment on harvest conracts
+- Allow collecting straw from harvest conracts
+- Allow collecting grass from mowing conracts
+- Allow collecting stones from plow, cultivate, and sowing conracts
+- Allow collecting hay from tedding conracts
+- Allow collecting straw bales from baling conracts
+- Allow collecting wrapped silage bales from bale-wrapping conracts
 
-All of the above settings can be modified via an XML settings file at FarmingSimulator2025/modSettings/ContractBoost.xml
+All of the above settings can be modified in-game through the General Settings panel.
+
+NOTE: Setting changes that may affect the reward or number of missions will *not* affect any already generated contracts.
 
 GitHub link: https://github.com/GMNGjoy/FS25_ContractBoost
 
@@ -33,15 +37,15 @@ Changelog 1.0.0.2
 
 Changelog 1.1.0.0
 - User contributed translations: fr, cz, it
-- Allow collecting hay from tedding missions
-- Allow collecting straw bales from baling missions
-- Allow collecting wrapped silage bales from bale-wrapping missions
+- Allow collecting hay from tedding conracts
+- Allow collecting straw bales from baling conracts
+- Allow collecting wrapped silage bales from bale-wrapping conracts
+- Suppport customizing of the number of contracts for each type of contract individually, with the ability to "disable" contract types you don't want to see.
 - All settings previously in the configuration file can be set in the General Settings panel in-game.
-- Configuration file moved from modSettings to the savegame folder
-]]>
-</en>
-        <de>
-<![CDATA[
+- Configuration file in modSettings folder has been depreciated
+- New configuration file in savegame folder can only be manually edited while game is not running.
+]]></en>
+        <de><![CDATA[
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
 
 Features:
@@ -62,11 +66,9 @@ GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2
 - Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
-]]>
-</de>
-        <fr>
-<![CDATA[
-Augmentez vos revenus grâce à vos contrats et récupérez les ressources collectées !
+]]></de>
+        <fr><![CDATA[
+        Augmentez vos revenus grâce à vos contrats et récupérez les ressources collectées !
 
 Fonctionnalités :
 - 50 % de profit supplémentaire pour chaque contrat
@@ -85,8 +87,7 @@ Lien GitHub : https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2 :
 - Ajout d'une vérification de sécurité pour les cartes personnalisées ne contenant pas tous les types de contrats
-]]>
-</fr>
+]]></fr>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="true"/>
