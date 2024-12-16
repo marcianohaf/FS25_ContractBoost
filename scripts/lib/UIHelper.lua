@@ -1,7 +1,10 @@
 ---This class allows easier creation of configuration options in the general settings page.
 ---Originally created by Farmsim Tim based on discoveries made by Shad0wlife
 ---Feel free to use this class in your own mods. You may change anything except for the first three lines of this file.
----version 1.0
+---version 1.2
+---Changelog:
+---v1.1: Fixed choice controls when using string values
+---v1.2: Chioce controls can now be nillable, too
 ---@class UIHelper
 UIHelper = {}
 
@@ -85,21 +88,28 @@ end
 ---@param i18nValueMap          table       @An map of values containing translation IDs for the possible values
 ---@param target                table       @The object which contains the callback func
 ---@param callbackFunc          string      @The name of the function to call when the value changes
+---@param nillable              string      @If set to true, the first entry will mean the setting has no effect. The text value will be "-".
 ---@return                      table       @The created object
-function UIHelper.createChoiceElement(generalSettingsPage, id, i18nTextId, i18nValueMap, target, callbackFunc)
+function UIHelper.createChoiceElement(generalSettingsPage, id, i18nTextId, i18nValueMap, target, callbackFunc, nillable)
 	local choiceElementBox = createElement(generalSettingsPage, generalSettingsPage.multiVolumeVoiceBox, id, i18nTextId, target, callbackFunc)
 
 	local choiceElement = choiceElementBox.elements[1]
 	local texts = {}
+
+	if nillable then
+		table.insert(texts, "-")
+	end
 	for _, valueEntry in pairs(i18nValueMap) do
 		local value
 		if type(valueEntry) == "number" then
 			value = tostring(valueEntry)
 		elseif type(valueEntry) == "string" then
 			value = g_i18n:getText(valueEntry)
+			choiceElementBox.hasStrings = true
 		else
 			-- legacy syntax
 			value = g_i18n:getText(valueEntry.i18nTextId)
+			choiceElementBox.hasStrings = true
 		end
 		table.insert(texts, value)
 	end
@@ -182,8 +192,9 @@ function UIHelper.createControlsDynamically(settingsPage, sectionTitle, owningTa
 
 		elseif controlProps.values ~= nil then
 			-- enum control
-			uiControl = UIHelper.createChoiceElement(settingsPage, id, id, controlProps.values, owningTable, callback)
+			uiControl = UIHelper.createChoiceElement(settingsPage, id, id, controlProps.values, owningTable, callback, controlProps.nillable)
 			uiControl.values = controlProps.values -- for mapping values later on, if necessary
+			uiControl.nillable = controlProps.nillable
 		else
 			-- bool switch
 			uiControl = UIHelper.createBoolElement(settingsPage, id, id, owningTable, callback)
@@ -314,11 +325,16 @@ end
 
 ---Sets a choice control to the given value. The method will find the appropriate index for the value automatically.
 ---@param control table @The UI control
----@param value number @The value which shall be displayed to the user
+---@param value number @The value which shall be displayed to the user, except for enums, where this is the index
 function UIHelper.setChoiceValue(control, value)
-	for index, val in control.values do
-		if val == value then
-			control.elements[1]:setState(index)
+	if control.hasStrings then
+		control.elements[1]:setState(value)
+	else
+		-- Find the index of the value which is being used
+		for index, val in control.values do
+			if val == value then
+				control.elements[1]:setState(index)
+			end
 		end
 	end
 end
@@ -326,9 +342,13 @@ end
 ---Retrieves the current value of a UI choice control.
 ---@param control table @The UI control
 ---@param controlState number @The currently selected index
----@return number|nil @The value which was selected by the user (rather than the index)
+---@return number|nil @The value which was selected by the user (rather than the index, except for enums, where this will be the index)
 function UIHelper.getChoiceValue(control, controlState)
-	return control.values[controlState]
+	if control.hasStrings then
+		return controlState
+	else
+		return control.values[controlState]
+	end
 end
 
 ---Sets the current value for a UI yes/no control.
