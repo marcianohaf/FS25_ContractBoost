@@ -68,30 +68,72 @@ function SettingsUI:injectUiSettings(loadedConfig)
     local controlProperties = {
         { name = "enableContractValueOverrides", autoBind = true },
         { name = "rewardFactor", min = 0.5, max = 5.0, step = 0.1, autoBind = true },
-        { name = "maxContractsPerFarm", values = { 1, 2, 3, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 }, autoBind = true },
-        { name = "maxContractsPerType", min = 1, max = 20, step = 1, autoBind = true },
-        { name = "maxContractsOverall", values = { 1, 2, 3, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 }, autoBind = true },
+        { name = "maxContractsPerFarm", values = { 1, 2, 3, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100 }, autoBind = true },
+        { name = "maxContractsPerType", min = 1, max = 25, step = 1, autoBind = true },
+        { name = "maxContractsOverall", values = { 1, 2, 3, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100 }, autoBind = true },
         { name = "enableStrawFromHarvestMissions", autoBind = true },
         { name = "enableSwathingForHarvestMissions", autoBind = true },
         { name = "enableGrassFromMowingMissions", autoBind = true },
+        { name = "enableHayFromTedderMissions", autoBind = true },
         { name = "enableStonePickingFromMissions", autoBind = true },
-        { name = "enableFieldworkToolFillItems", autoBind = true }
+        { name = "enableCollectingBalesFromMissions", autoBind = true },
+        { name = "enableFieldworkToolFillItems", autoBind = true },
     }
+
     -- Dynamically add the rest since they're all the same
-    local customRewardProps = {
+    local missionTypes = {
         "baleMission", "baleWrapMission", "plowMission", "cultivateMission", "sowMission", "harvestMission", "hoeMission", "weedMission",
         "herbicideMission", "fertilizeMission", "mowMission", "tedderMission", "stonePickMission",
         "deadwoodMission", "treeTransportMission", "destructibleRockMission"
     }
-    for _, prop in customRewardProps do
+
+    local missionTypesCalculatedPerItem = {
+        baleMission = true,
+        baleWrapMission = true,
+        deadwoodMission = true,
+        treeTransportMission = true,
+        destructibleRockMission = true,
+    }
+
+    -- Add in the customRewards types
+    for _, prop in missionTypes do
+        
+        if missionTypesCalculatedPerItem[prop] then 
+            table.insert(controlProperties, {
+                name = prop .. "Reward",
+                nillable = true,
+                min = 0,
+                max = 1000,
+                step = 50,
+                autoBind = true,
+                subTable = "customRewards",
+                propName = prop
+            })
+        else 
+            table.insert(controlProperties, {
+                name = prop .. "Reward",
+                nillable = true,
+                min = 0,
+                max = 5000,
+                step = 100,
+                autoBind = true,
+                subTable = "customRewards",
+                propName = prop
+            })
+        end
+    end
+
+    -- Add in the customMaxPerType
+    for _, prop in missionTypes do
         table.insert(controlProperties, {
-            name = prop .. "Reward",
+            name = prop .. "MaxPerType",
             nillable = true,
+            -- values = { '-', 0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50 },
             min = 0,
-            max = 10000,
-            step = 500,
+            max = 50,
+            step = 1,
             autoBind = true,
-            subTable = "customRewards",
+            subTable = "customMaxPerType",
             propName = prop
         })
     end
@@ -111,7 +153,39 @@ end
 function SettingsUI:onSettingsChange(control)
     self:updateUiElements()
     -- TODO: Multiplayer synchronization
-    -- TODO: Make use of the new values. You can use control or control.name in order to handle different cases
+
+    -- Grab the setting and new value from the UI element
+    local setting = control.elements[1]
+    local newValue = setting.texts[setting.state]
+
+    -- Type conversion from the current "value" to boolean
+    if newValue == 'On' then newValue = true end
+    if newValue == 'Off' then newValue = false end
+
+    -- Allow nil values from the UI, from the 'nillable' property
+    if newValue == '-' then newValue = nil end
+
+    -- Type conversion from strings back to numbers 
+    if tonumber(newValue) ~= nil then newValue = tonumber(newValue) end
+
+    -- Check for a subTable and if one is there - put the value back into the config object
+    local subTable = setting.parent.subTable or nil
+    local propName = setting.parent.propName or nil
+    if subTable ~= nil and propName ~= nil then
+        if ContractBoost.debug then
+            printf('!! settings change: ContractBoost.config.%s.%s | value: %s ', subTable, propName, newValue)
+        end
+        if not ContractBoost.config[subTable] then
+            ContractBoost.config[subTable] = {}
+        end
+        ContractBoost.config[subTable][propName] = newValue
+    else
+        if ContractBoost.debug then 
+            printf('!! settings change: ContractBoost.config.%s | value: %s ', control.name, newValue)
+        end
+        ContractBoost.config[control.name] = newValue
+    end
+
 end
 
 ---Updates the UI elements to reflect the current settings

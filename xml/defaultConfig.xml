@@ -64,12 +64,12 @@
         <enableFieldworkToolFillItems>true</enableFieldworkToolFillItems>
 
         <!--
-            enableCollectingBalesFromContracts: should you be able to collect bales from baling and baleWrapping contracts?
+            enableCollectingBalesFromMissions: should you be able to collect bales from baling and baleWrapping contracts?
             !! NOTE: enabling this will prevent the game from deleting bales from these kind of contracts, don't enable this unless you *want* to collect those bales.
             ~ values: true/false
             ~ default: false
         -->
-        <enableCollectingBalesFromContracts>false</enableCollectingBalesFromContracts>
+        <enableCollectingBalesFromMissions>false</enableCollectingBalesFromMissions>
 
         <!--
             rewardFactor: applies a multiplier to the base game rewardPer value
