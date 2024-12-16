@@ -63,7 +63,7 @@ _Enjoy!_
 - Allow collecting straw bales from baling contracts
 - Allow collecting wrapped silage bales from bale-wrapping contracts
 - Support customizing of the number of contracts for each type of contract individually, with the ability to "disable" contract types you don't want to see.
-- All settings previously in the configuration file can be set in the General Settings panel in-game.
+- All settings previously in the configuration file can be set in the General Settings panel in-game, and will be updated when saving your game.
 - Configuration file in modSettings folder has been depreciated
 - New configuration file in savegame folder can only be manually edited while game is not running.
 

@@ -51,56 +51,58 @@ function MissionBorrow:addFillItemsToMissionTools()
     }
 
     for _, fillMissionType in pairs(fillMissionTypes) do
-        for size, vehicles in pairs(g_missionManager.missionVehicles[fillMissionType]) do
-            for v, vehicle in pairs(vehicles) do
+        if g_missionManager.missionVehicles[fillMissionType] ~= nil then
+            for size, vehicles in pairs(g_missionManager.missionVehicles[fillMissionType]) do
+                for v, vehicle in pairs(vehicles) do
 
-                if fillMissionType == 'sowMission' then
+                    if fillMissionType == 'sowMission' then
 
-                    table.insert(vehicle.vehicles, {
-                        filename = 'data/objects/bigBagPallet/seeds/bigBagPallet_seeds.xml'
-                    })
-                    table.insert(vehicle.vehicles, {
-                        filename = 'data/objects/bigBagPallet/seeds/bigBagPallet_seeds.xml'
-                    })
-                    if size == "large" then
                         table.insert(vehicle.vehicles, {
                             filename = 'data/objects/bigBagPallet/seeds/bigBagPallet_seeds.xml'
                         })
                         table.insert(vehicle.vehicles, {
                             filename = 'data/objects/bigBagPallet/seeds/bigBagPallet_seeds.xml'
                         })
-                    end
+                        if size == "large" then
+                            table.insert(vehicle.vehicles, {
+                                filename = 'data/objects/bigBagPallet/seeds/bigBagPallet_seeds.xml'
+                            })
+                            table.insert(vehicle.vehicles, {
+                                filename = 'data/objects/bigBagPallet/seeds/bigBagPallet_seeds.xml'
+                            })
+                        end
 
-                elseif fillMissionType == 'fertilizeMission' then
+                    elseif fillMissionType == 'fertilizeMission' then
 
-                    table.insert(vehicle.vehicles, {
-                        filename = 'data/objects/bigBagPallet/fertilizer/bigBagPallet_fertilizer.xml'
-                    })
-
-                    if size ~= "small" then
                         table.insert(vehicle.vehicles, {
                             filename = 'data/objects/bigBagPallet/fertilizer/bigBagPallet_fertilizer.xml'
                         })
-                    end
 
-                    if size == "large" then
-                        table.insert(vehicle.vehicles, {
-                            filename = 'data/objects/bigBagPallet/fertilizer/bigBagPallet_fertilizer.xml'
-                        })
-                    end
+                        if size ~= "small" then
+                            table.insert(vehicle.vehicles, {
+                                filename = 'data/objects/bigBagPallet/fertilizer/bigBagPallet_fertilizer.xml'
+                            })
+                        end
 
-                elseif fillMissionType == 'herbicideMission' then
+                        if size == "large" then
+                            table.insert(vehicle.vehicles, {
+                                filename = 'data/objects/bigBagPallet/fertilizer/bigBagPallet_fertilizer.xml'
+                            })
+                        end
 
-                    table.insert(vehicle.vehicles, {
-                        filename = 'data/objects/pallets/liquidTank/herbicideTank.xml'
-                    })
+                    elseif fillMissionType == 'herbicideMission' then
 
-                    if size == "large" then
                         table.insert(vehicle.vehicles, {
                             filename = 'data/objects/pallets/liquidTank/herbicideTank.xml'
                         })
-                    end
 
+                        if size == "large" then
+                            table.insert(vehicle.vehicles, {
+                                filename = 'data/objects/pallets/liquidTank/herbicideTank.xml'
+                            })
+                        end
+
+                    end
                 end
             end
         end
