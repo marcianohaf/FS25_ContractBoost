@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="93">
     <author>GMNGjoy</author>
-    <version>1.0.3.2</version>
+    <version>1.0.3.3</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
@@ -45,7 +45,7 @@ Changelog 1.1.0.0
 - Configuration file in modSettings folder has been depreciated
 - New configuration file in savegame folder can only be manually edited while game is not running.
 
-### Changelog 1.0.3.1
+### Changelog 1.0.3.2
 - Fixed baleMission setting to be perHa instead of perBale
 - Added cultivator to seeding missions, just in case you mess up
 - Fixed minor bug while debug mode is off.
@@ -109,7 +109,7 @@ Changelog 1.1.0.0 :
 - Le fichier de configuration dans le dossier modSettings est obsolète
 - Nouveau fichier de configuration dans le dossier savegame, éditable uniquement hors jeu
 
-### Changelog 1.0.3.1
+### Changelog 1.0.3.2
 - Correction du paramètre des missions de balles pour qu'il soit défini par hectare au lieu de par balle.
 - Ajout d'un cultivateur aux missions d'ensemencement, au cas où vous feriez une erreur.
 - Correction d'un bug mineur lorsque le mode débogage est désactivé.
