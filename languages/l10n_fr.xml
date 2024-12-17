@@ -35,27 +35,27 @@
         <text name="cb_baleWrapMissionReward_short" text="Récompense de contrat d'enrubannage de balles" />
         <text name="cb_baleWrapMissionReward_long" text="Récompense par balle pour les contrats d'enrubannage. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_plowMissionReward_short" text="Récompense de contrat de labourage" />
-        <text name="cb_plowMissionReward_long" text="Récompense par ha pour les contrats de labourage. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
+        <text name="cb_plowMissionReward_long" text="Récompense par hectare pour les contrats de labourage. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_cultivateMissionReward_short" text="Récompense de contrat de travail des champs" />
-        <text name="cb_cultivateMissionReward_long" text="Récompense par ha pour les contrats de travail des champs. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
+        <text name="cb_cultivateMissionReward_long" text="Récompense par hectare pour les contrats de travail des champs. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_sowMissionReward_short" text="Récompense de contrat d'ensemencement" />
-        <text name="cb_sowMissionReward_long" text="Récompense par ha pour les contrats d'ensemencement. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
+        <text name="cb_sowMissionReward_long" text="Récompense par hectare pour les contrats d'ensemencement. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_harvestMissionReward_short" text="Récompense de contrat de récolte" />
-        <text name="cb_harvestMissionReward_long" text="Récompense par ha pour les contrats de récolte. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
+        <text name="cb_harvestMissionReward_long" text="Récompense par hectare pour les contrats de récolte. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_hoeMissionReward_short" text="Récompense de contrat de binage" />
-        <text name="cb_hoeMissionReward_long" text="Récompense par ha pour les contrats de binage. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
+        <text name="cb_hoeMissionReward_long" text="Récompense par hectare pour les contrats de binage. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_weedMissionReward_short" text="Récompense de contrat de désherbage" />
-        <text name="cb_weedMissionReward_long" text="Récompense par ha pour les contrats de désherbage. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
+        <text name="cb_weedMissionReward_long" text="Récompense par hectare pour les contrats de désherbage. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_herbicideMissionReward_short" text="Récompense de contrat de pulvérisation" />
-        <text name="cb_herbicideMissionReward_long" text="Récompense par ha pour les contrats de pulvérisation. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
+        <text name="cb_herbicideMissionReward_long" text="Récompense par hectare pour les contrats de pulvérisation. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_fertilizeMissionReward_short" text="Récompense de contrat de fertilisation" />
-        <text name="cb_fertilizeMissionReward_long" text="Récompense par ha pour les contrats de fertilisation. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
+        <text name="cb_fertilizeMissionReward_long" text="Récompense par hectare pour les contrats de fertilisation. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_mowMissionReward_short" text="Récompense de contrat de fauchage" />
-        <text name="cb_mowMissionReward_long" text="Récompense par ha pour les contrats de fauchage. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
+        <text name="cb_mowMissionReward_long" text="Récompense par hectare pour les contrats de fauchage. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_tedderMissionReward_short" text="Récompense de contrat de fanage" />
-        <text name="cb_tedderMissionReward_long" text="Récompense par ha pour les contrats de fanage. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
+        <text name="cb_tedderMissionReward_long" text="Récompense par hectare pour les contrats de fanage. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_stonePickMissionReward_short" text="Récompense de contrat de ramassage de pierres" />
-        <text name="cb_stonePickMissionReward_long" text="Récompense par ha pour les contrats de ramassage de pierres. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
+        <text name="cb_stonePickMissionReward_long" text="Récompense par hectare pour les contrats de ramassage de pierres. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_deadwoodMissionReward_short" text="Récompense de contrat de bois mort" />
         <text name="cb_deadwoodMissionReward_long" text="Récompense par arbre pour les contrats de bois mort. Si défini sur '-', les récompenses par défaut du jeu de base seront appliquées." />
         <text name="cb_treeTransportMissionReward_short" text="Récompense de contrat de transport d'arbres" />
