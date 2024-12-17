@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="93">
     <author>GMNGjoy</author>
-    <version>1.0.3.1</version>
+    <version>1.0.3.2</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
         <fr>Contrat Amélioré</fr>
     </title>
     <description>
-        <en><![CDATA[
+        <en>
 Boost your contracts by making more money, and allowing collection of the spoils!
 
 Features:
@@ -44,8 +44,8 @@ Changelog 1.1.0.0
 - All settings previously in the configuration file can be set in the General Settings panel in-game.
 - Configuration file in modSettings folder has been depreciated
 - New configuration file in savegame folder can only be manually edited while game is not running.
-]]></en>
-        <de><![CDATA[
+</en>
+        <de>
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
 
 Features:
@@ -66,8 +66,8 @@ GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2
 - Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
-]]></de>
-        <fr><![CDATA[
+</de>
+        <fr>
 Augmentez vos revenus grâce à vos contrats et récupérez les ressources collectées !
 
 Fonctionnalités :
@@ -103,7 +103,7 @@ Changelog 1.1.0.0 :
 - Tous les paramètres précédemment dans le fichier de configuration sont désormais accessibles via le panneau Paramètres généraux en jeu
 - Le fichier de configuration dans le dossier modSettings est obsolète
 - Nouveau fichier de configuration dans le dossier savegame, éditable uniquement hors jeu
-]]></fr>
+</fr>
 
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
