@@ -44,6 +44,11 @@ Changelog 1.1.0.0
 - All settings previously in the configuration file can be set in the General Settings panel in-game.
 - Configuration file in modSettings folder has been depreciated
 - New configuration file in savegame folder can only be manually edited while game is not running.
+
+### Changelog 1.0.3.1
+- Fixed baleMission setting to be perHa instead of perBale
+- Added cultivator to seeding missions, just in case you mess up
+- Fixed minor bug while debug mode is off.
 </en>
         <de>
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
@@ -103,8 +108,12 @@ Changelog 1.1.0.0 :
 - Tous les paramètres précédemment dans le fichier de configuration sont désormais accessibles via le panneau Paramètres généraux en jeu
 - Le fichier de configuration dans le dossier modSettings est obsolète
 - Nouveau fichier de configuration dans le dossier savegame, éditable uniquement hors jeu
-</fr>
 
+### Changelog 1.0.3.1
+- Correction du paramètre des missions de balles pour qu'il soit défini par hectare au lieu de par balle.
+- Ajout d'un cultivateur aux missions d'ensemencement, au cas où vous feriez une erreur.
+- Correction d'un bug mineur lorsque le mode débogage est désactivé.
+</fr>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="true"/>
