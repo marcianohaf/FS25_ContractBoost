@@ -5,5 +5,95 @@
     </translationContributors>
     <texts>
         <text name="contract_boosted" text="Auftragssteigerung" />
+        <text name="cb_enableStrawFromHarvestMissions_short" text="Stroh sammeln" />
+        <text name="cb_enableStrawFromHarvestMissions_long" text="Erlaubt das Bergen von Stroh bei Ernte-Aufträgen." />
+        <text name="cb_enableSwathingForHarvestMissions_short" text="Schwadernte" />
+        <text name="cb_enableSwathingForHarvestMissions_long" text="Erlaubt den Einsatz von Schwadmähern bei Ernte-Aufträgen." />
+        <text name="cb_enableGrassFromMowingMissions_short" text="Gras sammeln" />
+        <text name="cb_enableGrassFromMowingMissions_long" text="Erlaubt das Bergen von Gras bei Mäh-Aufträgen." />
+        <text name="cb_enableHayFromTedderMissions_short" text="Heu sammeln" />
+        <text name="cb_enableHayFromTedderMissions_long" text="Erlaubt das Bergen von Heu bei Mäh-Aufträgen." />
+        <text name="cb_enableStonePickingFromMissions_short" text="Steine sammeln" />
+        <text name="cb_enableStonePickingFromMissions_long" text="Erlaubt das Bergen von Steinen bei Grubber- und Sä-Aufträgen." />
+        <text name="cb_enableFieldworkToolFillItems_short" text="Verbrauchsgüter" />
+        <text name="cb_enableFieldworkToolFillItems_long" text="Fügt dem Leasing-Equipment kostenlose Verbrauchsgüter hinzu. Achtung: Nicht benutzte Verbrauchsgüter werden bei Vertragsende entfernt." />
+        <text name="cb_enableCollectingBalesFromMissions_short" text="Ballen sammeln" />
+        <text name="cb_enableCollectingBalesFromMissions_long" text="Erlaubt das Bergen von Ballen bei Ballenpress- und Wickel-Aufträgen. Achtung: Wenn aktiviert, bleiben alle Ballen auf dem Feld, die nicht geborgen werden." />
+
+        <text name="cb_enableContractValueOverrides_short" text="Auftragsparameter" />
+        <text name="cb_enableContractValueOverrides_long" text="Ermöglicht das Ändern von Parametern des Auftragssystems. Deaktiviert die nächsten 4 Einstellungen, wenn ausgeschaltet." />
+        <text name="cb_rewardFactor_short" text="Vertragswert" />
+        <text name="cb_rewardFactor_long" text="Multipliziert alle Auftragswerte mit dem angegebenen Faktor." />
+        <text name="cb_maxContractsPerFarm_short" text="Maximalzahl Aufträge" />
+        <text name="cb_maxContractsPerFarm_long" text="Setzt die maximale Anzahl der aktiven Aufträge pro Farm." />
+        <text name="cb_maxContractsOverall_short" text="Gesamtzahl Aufträge" />
+        <text name="cb_maxContractsOverall_long" text="Setzt die maximale Anzahl der angebotenen Aufträge." />
+        <text name="cb_maxContractsPerType_short" text="Maximale Aufträge per Typ" />
+        <text name="cb_maxContractsPerType_long" text="Setzt die maximale Anzahl der pro Vetragsart angebotenen Aufträge." />
+        <text name="cb_baleMissionReward_short" text="Vertragswert Ballen Pressen" />
+        <text name="cb_baleMissionReward_long" text="Lohn pro ha bei Ballenpress-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_baleWrapMissionReward_short" text="Vertragswert Ballen Wickeln" />
+        <text name="cb_baleWrapMissionReward_long" text="Lohn pro Ballen bei Ballenwickel-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_plowMissionReward_short" text="Vertragswert Pflügen" />
+        <text name="cb_plowMissionReward_long" text="Lohn pro ha bei Pflug-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_cultivateMissionReward_short" text="Vertragswert Grubbern" />
+        <text name="cb_cultivateMissionReward_long" text="Lohn pro ha bei Grubber-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_sowMissionReward_short" text="Vertragswert Säen" />
+        <text name="cb_sowMissionReward_long" text="Lohn pro ha bei Sä-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_harvestMissionReward_short" text="Vertragswert Ernten" />
+        <text name="cb_harvestMissionReward_long" text="Lohn pro ha bei Ernte-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_hoeMissionReward_short" text="Vertragswert Hacken" />
+        <text name="cb_hoeMissionReward_long" text="Lohn pro ha bei Hack-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_weedMissionReward_short" text="Vertragswert Striegeln" />
+        <text name="cb_weedMissionReward_long" text="Lohn pro ha bei Striegel-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_herbicideMissionReward_short" text="Vertragswert Spritzen" />
+        <text name="cb_herbicideMissionReward_long" text="Lohn pro ha bei Spritz-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_fertilizeMissionReward_short" text="Vertragswert Düngen" />
+        <text name="cb_fertilizeMissionReward_long" text="Lohn pro ha bei Dünge-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_mowMissionReward_short" text="Vertragswert Mähen" />
+        <text name="cb_mowMissionReward_long" text="Lohn pro ha bei Mäh-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_tedderMissionReward_short" text="Vertragswert Wenden" />
+        <text name="cb_tedderMissionReward_long" text="Lohn pro ha bei Wende-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_stonePickMissionReward_short" text="Vertragswert Steine sammeln" />
+        <text name="cb_stonePickMissionReward_long" text="Lohn pro ha bei Steinesammel-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_deadwoodMissionReward_short" text="Vertragswert Totholz" />
+        <text name="cb_deadwoodMissionReward_long" text="Lohn pro Stamm bei Totholz-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_treeTransportMissionReward_short" text="Vertragswert Holztransport" />
+        <text name="cb_treeTransportMissionReward_long" text="Lohn pro Stamm bei Holztransport-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+        <text name="cb_destructibleRockMissionReward_short" text="Vertragswert Felsen entfernen" />
+        <text name="cb_destructibleRockMissionReward_long" text="Lohn pro Felsen bei Felsentfernen-Aufträgen. '-' lässt den Standardwert des Basisspiels unverändert." />
+
+        <text name="cb_baleMissionMaxPerType_short" text="Max Aufträge Ballen pressen" />
+        <text name="cb_baleMissionMaxPerType_long" text="Maximalzahl angebotener Ballenpress-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_baleWrapMissionMaxPerType_short" text="Max Aufträge Ballen wickeln" />
+        <text name="cb_baleWrapMissionMaxPerType_long" text="Maximalzahl angebotener Ballenwickel-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_plowMissionMaxPerType_short" text="Max Aufträge Pflügen" />
+        <text name="cb_plowMissionMaxPerType_long" text="Maximalzahl angebotener Pflug-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_cultivateMissionMaxPerType_short" text="Max Aufträge Grubbern" />
+        <text name="cb_cultivateMissionMaxPerType_long" text="Maximalzahl angebotener Grubber-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_sowMissionMaxPerType_short" text="Max Aufträge Säen" />
+        <text name="cb_sowMissionMaxPerType_long" text="Maximalzahl angebotener Sä-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_harvestMissionMaxPerType_short" text="Max Aufträge Ernten" />
+        <text name="cb_harvestMissionMaxPerType_long" text="Maximalzahl angebotener Ernte-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_hoeMissionMaxPerType_short" text="Max Aufträge Hacken" />
+        <text name="cb_hoeMissionMaxPerType_long" text="Maximalzahl angebotener Hack-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_weedMissionMaxPerType_short" text="Max Aufträge Striegeln" />
+        <text name="cb_weedMissionMaxPerType_long" text="Maximalzahl angebotener Striegel-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_herbicideMissionMaxPerType_short" text="Max Aufträge Spritzen" />
+        <text name="cb_herbicideMissionMaxPerType_long" text="Maximalzahl angebotener Spritz-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_fertilizeMissionMaxPerType_short" text="Max Aufträge Düngen" />
+        <text name="cb_fertilizeMissionMaxPerType_long" text="Maximalzahl angebotener Dünge-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_mowMissionMaxPerType_short" text="Max Aufträge Mähen" />
+        <text name="cb_mowMissionMaxPerType_long" text="Maximalzahl angebotener Mäh-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_tedderMissionMaxPerType_short" text="Max Aufträge Wenden" />
+        <text name="cb_tedderMissionMaxPerType_long" text="Maximalzahl angebotener Wende-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_stonePickMissionMaxPerType_short" text="Max Aufträge Steine sammeln" />
+        <text name="cb_stonePickMissionMaxPerType_long" text="Maximalzahl angebotener Steinsammel-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_deadwoodMissionMaxPerType_short" text="Max Aufträge Totholz" />
+        <text name="cb_deadwoodMissionMaxPerType_long" text="Maximalzahl angebotener Totholz-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_treeTransportMissionMaxPerType_short" text="Max Aufträge Holztransport" />
+        <text name="cb_treeTransportMissionMaxPerType_long" text="Maximalzahl angebotener Holztransport-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
+        <text name="cb_destructibleRockMissionMaxPerType_short" text="Max Aufträge Felsen entfernen" />
+        <text name="cb_destructibleRockMissionMaxPerType_long" text="Maximalzahl angebotener Felsentfernen-Aufträge. '-' setzt den Wert aus 'Maximale Aufträge pro Typ' weiter oben. '0' verhindert die Generierung dieser Auftragsart." />
     </texts>
 </l10n>
