@@ -41,10 +41,11 @@ end
 
 --- Scale the mission rewards based on user configuration
 function MissionBalance:scaleMissionReward()
-    if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: scaleMissionReward') end
-
     local rewardFactor = ContractBoost.config.rewardFactor
-    printf('---- ContractBoost:MissionBalance :: rewardFactor:%s', rewardFactor)
+
+    -- assume giants can't store floating point numbers.
+    rewardFactor = math.ceil(rewardFactor * 10) / 10
+    if ContractBoost.debug then printf('-- ContractBoost:MissionBalance :: scaleMissionReward:%s', rewardFactor) end
 
     if #g_missionManager.missionTypes ~= 0 then
         for _, missionType in ipairs(g_missionManager.missionTypes) do
@@ -84,11 +85,14 @@ function MissionBalance:scaleMissionReward()
             -- update the maximum number of each type to it's custom value if it exists else use the default
             missionType.data.maxNumInstances = math.min(ContractBoost.config.customMaxPerType[typeName] or ContractBoost.config.maxContractsPerType, 50)
             
-            if ContractBoost.debug then 
-                if newValue == prevValue and newValue == nil then
+            
+            if newValue == prevValue and newValue == nil then
+                if ContractBoost.debug then 
                     printf('---- ContractBoost:MissionBalance :: Mission %s: %s | skipped, not found on map', missionType.typeId, missionType.name)
-                else
-                    MissionBalance.boosted[missionType.typeId] = ((newValue / prevValue) * 100) - 100
+                end
+            else
+                MissionBalance.boosted[missionType.typeId] = ((newValue / prevValue) * 100) - 100
+                if ContractBoost.debug then 
                     printf('---- ContractBoost:MissionBalance :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue)
                 end
             end

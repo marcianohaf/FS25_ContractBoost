@@ -43,6 +43,7 @@ function MissionTools:setupAdditionalAllowedVehicles()
             [WorkAreaTypes.FORAGEWAGON] = true,
             [WorkAreaTypes.BALER] = true,
             [WorkAreaTypes.WINDROWER] = true,
+            [WorkAreaTypes.WEEDER] = true,
         }
     end
 
@@ -82,6 +83,12 @@ function MissionTools:setupAdditionalAllowedVehicles()
             [WorkAreaTypes.WINDROWER] = true,
         }
     end
+
+    -- allow cultivating when seeding in case you plant the wrong crop
+    if not MissionTools.additionalAllowedVehicles.sowMission then
+        MissionTools.additionalAllowedVehicles.sowMission = {}
+    end
+    MissionTools.additionalAllowedVehicles.sowMission[WorkAreaTypes.CULTIVATOR] = true
 
     -- baleMission = {},
     -- baleWrapMission = {},

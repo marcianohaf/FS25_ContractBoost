@@ -93,7 +93,6 @@ function SettingsUI:injectUiSettings(loadedConfig)
     }
 
     local missionTypesCalculatedPerItem = {
-        baleMission = true,
         baleWrapMission = true,
         deadwoodMission = true,
         treeTransportMission = true,
