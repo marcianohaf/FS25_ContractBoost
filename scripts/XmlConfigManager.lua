@@ -265,10 +265,8 @@ function XmlConfigManager:saveConfig()
         return
     end
 
-    local config = ContractBoost.config;
-    local missionTypes = self.missionTypes;
-
-    print('-- ContractBoost:XmlConfigManager :: saveConfig')
+    local config = ContractBoost.config
+    local missionTypes = self.missionTypes
 
     -- Create an empty XML file in memory
     local xmlFileId = createXMLFile("ContractBoost", xmlPath, XMLTAG)

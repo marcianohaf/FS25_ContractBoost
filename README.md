@@ -67,7 +67,10 @@ _Enjoy!_
 - Configuration file in modSettings folder has been depreciated
 - New configuration file in savegame folder can only be manually edited while game is not running.
 
-
+### Changelog 1.0.3.1
+- Fixed baleMission setting to be perHa instead of perBale
+- Added cultivator to seeding missions, just in case you mess up
+- Fixed minor bug while debug mode is off.
 
 ## Configuration Instructions (1.0.3.0)
 

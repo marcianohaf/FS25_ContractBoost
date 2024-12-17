@@ -31,31 +31,31 @@
         <text name="cb_maxContractsPerType_long" text="Defines the maximum number of contracts of the same type which may be offered to you." />
         
         <text name="cb_baleMissionReward_short" text="Bale Contract Reward" />
-        <text name="cb_baleMissionReward_long" text="The reward per bale for baling contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_baleMissionReward_long" text="The reward per hectare for baling contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_baleWrapMissionReward_short" text="Bale Wrap Contract Reward" />
         <text name="cb_baleWrapMissionReward_long" text="The reward per bale for bale wrapping contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_plowMissionReward_short" text="Plowing Contract Reward" />
-        <text name="cb_plowMissionReward_long" text="The reward per ha. for Plowing contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_plowMissionReward_long" text="The reward per hectare for Plowing contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_cultivateMissionReward_short" text="Cultivating Contract Reward" />
-        <text name="cb_cultivateMissionReward_long" text="The reward per ha. for Cultivating contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_cultivateMissionReward_long" text="The reward per hectare for Cultivating contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_sowMissionReward_short" text="Sowing Contract Reward" />
-        <text name="cb_sowMissionReward_long" text="The reward per ha. for Sowing contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_sowMissionReward_long" text="The reward per hectare for Sowing contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_harvestMissionReward_short" text="Harvesting Contract Reward" />
-        <text name="cb_harvestMissionReward_long" text="The per ha. reward for Harvesting contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_harvestMissionReward_long" text="The per hectare reward for Harvesting contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_hoeMissionReward_short" text="Hoeing Contract Reward" />
-        <text name="cb_hoeMissionReward_long" text="The reward per ha. for Hoeing contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_hoeMissionReward_long" text="The reward per hectare for Hoeing contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_weedMissionReward_short" text="Weeding Contract Reward" />
-        <text name="cb_weedMissionReward_long" text="The reward per ha. for Weeding contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_weedMissionReward_long" text="The reward per hectare for Weeding contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_herbicideMissionReward_short" text="Spraying Contract Reward" />
-        <text name="cb_herbicideMissionReward_long" text="The reward per ha. for Spraying contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_herbicideMissionReward_long" text="The reward per hectare for Spraying contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_fertilizeMissionReward_short" text="Fertilizing Contract Reward" />
-        <text name="cb_fertilizeMissionReward_long" text="The reward per ha. for Fertilizing contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_fertilizeMissionReward_long" text="The reward per hectare for Fertilizing contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_mowMissionReward_short" text="Mowing Contract Reward" />
-        <text name="cb_mowMissionReward_long" text="The reward per ha. for Mowing contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_mowMissionReward_long" text="The reward per hectare for Mowing contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_tedderMissionReward_short" text="Tedding Contract Reward" />
-        <text name="cb_tedderMissionReward_long" text="The reward per ha. for Tedding contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_tedderMissionReward_long" text="The reward per hectare for Tedding contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_stonePickMissionReward_short" text="Stone Collection Contract Reward" />
-        <text name="cb_stonePickMissionReward_long" text="The reward per ha. for stone collection contracts. If set to '-', the base game rewards will be applied." />
+        <text name="cb_stonePickMissionReward_long" text="The reward per hectare for stone collection contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_deadwoodMissionReward_short" text="Deadwood Contract Reward" />
         <text name="cb_deadwoodMissionReward_long" text="The reward per tree for deadwood contracts. If set to '-', the base game rewards will be applied." />
         <text name="cb_treeTransportMissionReward_short" text="Tree Transport Contract Reward" />

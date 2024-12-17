@@ -8,7 +8,7 @@
         <fr>Contrat Amélioré</fr>
     </title>
     <description>
-        <en><![CDATA[
+        <en>
 Boost your contracts by making more money, and allowing collection of the spoils!
 
 Features:
@@ -44,8 +44,13 @@ Changelog 1.1.0.0
 - All settings previously in the configuration file can be set in the General Settings panel in-game.
 - Configuration file in modSettings folder has been depreciated
 - New configuration file in savegame folder can only be manually edited while game is not running.
-]]></en>
-        <de><![CDATA[
+
+### Changelog 1.0.3.1
+- Fixed baleMission setting to be perHa instead of perBale
+- Added cultivator to seeding missions, just in case you mess up
+- Fixed minor bug while debug mode is off.
+</en>
+        <de>
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
 
 Features:
@@ -66,8 +71,8 @@ GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2
 - Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
-]]></de>
-        <fr><![CDATA[
+</de>
+        <fr>
         Augmentez vos revenus grâce à vos contrats et récupérez les ressources collectées !
 
 Fonctionnalités :
@@ -87,7 +92,7 @@ Lien GitHub : https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2 :
 - Ajout d'une vérification de sécurité pour les cartes personnalisées ne contenant pas tous les types de contrats
-]]></fr>
+</fr>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="true"/>
