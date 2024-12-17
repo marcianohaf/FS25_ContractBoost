@@ -68,26 +68,43 @@ Changelog 1.0.0.2
 - Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
 ]]></de>
         <fr><![CDATA[
-        Augmentez vos revenus grâce à vos contrats et récupérez les ressources collectées !
+Augmentez vos revenus grâce à vos contrats et récupérez les ressources collectées !
 
 Fonctionnalités :
 - 50 % de profit supplémentaire pour chaque contrat
 - Jusqu'à 10 contrats actifs
-- Jusqu'à 5 contrats actifs par type
+- Jusqu'à 5 contrats actifs par type (par défaut)
+- Possibilité de définir un nombre personnalisé pour chaque type de contrat
 - Jusqu'à 50 contrats disponibles au total
 - Les équipements loués pour les contrats incluent gratuitement des consommables pour remplir vos outils
-- Permet d'utiliser la coupe en andains lors des missions de récolte
-- Permet de collecter la paille lors des missions de récolte
-- Permet de collecter l'herbe lors des missions de fauchage
-- Permet de collecter les pierres lors des missions de labour, de culture et de semis
+- Permet d'utiliser la coupe en andains lors des contrats de récolte
+- Permet de collecter la paille lors des contrats de récolte
+- Permet de collecter l'herbe lors des contrats de fauchage
+- Permet de collecter les pierres lors des contrats de labour, de culture et d'ensemencement
+- Permet de collecter le foin lors des contrats de fanage
+- Permet de collecter des bottes de paille lors des contrats de pressage
+- Permet de collecter des bottes d'ensilage lors des contrats d'enrubannage
 
-Tous ces paramètres peuvent être modifiés via un fichier XML dans FarmingSimulator2025/modSettings/ContractBoost.xml
+Tous les paramètres ci-dessus peuvent être modifiés directement dans le panneau Paramètres généraux en jeu.
+
+NOTE : Les modifications des paramètres qui influencent les récompenses ou le nombre de missions *n'affecteront pas* les contrats déjà générés.
 
 Lien GitHub : https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2 :
 - Ajout d'une vérification de sécurité pour les cartes personnalisées ne contenant pas tous les types de contrats
+
+Changelog 1.1.0.0 :
+- Traductions ajoutées par la communauté : fr, cz, it
+- Permet de collecter le foin lors des contrats de fanage
+- Permet de collecter des bottes de paille lors des contrats de pressage
+- Permet de collecter des bottes d'ensilage lors des contrats d'enrubannage
+- Support de la personnalisation du nombre de contrats pour chaque type individuellement, avec la possibilité de "désactiver" les types de contrats non souhaités
+- Tous les paramètres précédemment dans le fichier de configuration sont désormais accessibles via le panneau Paramètres généraux en jeu
+- Le fichier de configuration dans le dossier modSettings est obsolète
+- Nouveau fichier de configuration dans le dossier savegame, éditable uniquement hors jeu
 ]]></fr>
+
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="true"/>
