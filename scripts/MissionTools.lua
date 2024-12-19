@@ -133,16 +133,14 @@ function MissionTools:getIsMissionWorkAllowed(superFunc, farmId, x, z, workAreaT
 end
 
 -- replace the BaleMission.addBale function with our own function that updates the owner of the bale to the player.
-function MissionTools:addBale(superFunc, bale)
+function MissionTools.addBale(self, superFunc, bale)
     -- call the overwritten function
-    superFunc(bale)
+    superFunc(self, bale)
 
     -- exit if not enabled
     if not ContractBoost.config.enableCollectingBalesFromMissions then
         return
     end
-
-    Logging.warning('ContractBoost:::: change owner')
 
     -- one last check that we have a bale, and change the owner.
     if bale ~= nil then
