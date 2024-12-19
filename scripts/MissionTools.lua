@@ -139,8 +139,10 @@ function MissionTools:addBale(superFunc, bale)
 
     -- exit if not enabled
     if not ContractBoost.config.enableCollectingBalesFromMissions then
-        superFunc(bale)
+        return
     end
+
+    Logging.warning('ContractBoost:::: change owner')
 
     -- one last check that we have a bale, and change the owner.
     if bale ~= nil then
@@ -149,13 +151,30 @@ function MissionTools:addBale(superFunc, bale)
     end
  end
 
--- replace the BaleWrapMission.finishField and BaleMission.finishField functions with our own function that doesn't delete the bales.
-function MissionTools.finishField(superFunc, ...)
-    -- exit if not enabled
+-- replace the BaleMission.finishField function with our own function that doesn't remove the bales.
+function MissionTools.finishBaleField(self, superFunc)
+    -- call the original method if collecting bales is not enabled
     if not ContractBoost.config.enableCollectingBalesFromMissions then
-        superFunc(...)
+        superFunc(self)
+        return
     end
 
+
+    -- otherwise call the parent finishField fn bypassing the bale removal
+    local parentClass = BaleMission:superClass()
+    parentClass.finishField(self)
+ end
+
+ -- replace the BaleWrapMission.finishField function with our own function that doesn't remove the bales.
+ function MissionTools.finishBaleWrapField(self, superFunc)
+    -- call the original method if collecting bales is not enabled
+    if not ContractBoost.config.enableCollectingBalesFromMissions then
+        superFunc(self)
+        return
+    end
+
+
+    -- otherwise call the parent finishField fn bypassing the bale removal
     local parentClass = BaleWrapMission:superClass()
-    parentClass.finishField(parentClass)
+    parentClass.finishField(self)
  end

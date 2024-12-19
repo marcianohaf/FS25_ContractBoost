@@ -24,7 +24,7 @@ local XmlConfigManager_mt = Class(XmlConfigManager)
 ---@return XmlConfigManager @The new object
 function XmlConfigManager.new()
     local self = setmetatable({}, XmlConfigManager_mt)
-    self.loadDebug = true
+    self.loadDebug = false
 
     -- configuration files and loading states
     self.loadComplete = false
@@ -79,14 +79,14 @@ end
 --- Load the user's configuration file from either the savegame or modSettingsFile
 ---@return table
 function XmlConfigManager:initializeConfig()
-    if self.loadDebug then print("---- ContractBoost:XmlConfigManager: read user configurations") end
+    if self.loadDebug then Logging.info("ContractBoost:LOAD :: read user configurations") end
 
     -- setup the xml schema
     self:initXmlSchema()
 
     -- don't load it twice if the config is already loaded.
     if self.loadComplete then
-        if self.loadDebug then print("---- ContractBoost:XmlConfigManager: exit early!") end
+        if self.loadDebug then Logging.info("ContractBoost:LOAD :: exit early!") end
         return self.loadedConfig
     end
 
@@ -101,23 +101,42 @@ function XmlConfigManager:initializeConfig()
     if savegameSettingsFile and fileExists(savegameSettingsFile) then
         
         userConfig = self:importConfig(savegameSettingsFile)
-        printf("---- ContractBoost:XmlConfigManager: SAVEGAME configuration from: %s | debug: %s", savegameSettingsFile, userConfig.debugMode and "true" or "false")
+        Logging.info("ContractBoost:LOAD :: SAVEGAME configuration from: %s | debug: %s", savegameSettingsFile, userConfig.debugMode and "true" or "false")
     
     -- If they loaded a previous version, they may have modSettings file
     elseif modSettingsFile and fileExists(modSettingsFile) then
 
         userConfig = self:importConfig(modSettingsFile)
-        printf("---- ContractBoost:XmlConfigManager: MODSETTINGS configuration from: %s | debug: %s", modSettingsFile, userConfig.debugMode and "true" or "false")
+        Logging.info("ContractBoost:LOAD :: MODSETTINGS configuration from: %s | debug: %s", modSettingsFile, userConfig.debugMode and "true" or "false")
 
     else
         userConfig = self.defaultConfig
-        printf("---- ContractBoost:XmlConfigManager: DEFAULT configuration used. | debug: %s", userConfig.debugMode and "true" or "false")
+        Logging.info("ContractBoost:LOAD: DEFAULT configuration used. | debug: %s", userConfig.debugMode and "true" or "false")
     end
 
-    if self.loadDebug then
-        print('-- ContractBoost:XmlConfigManager :: returned config')
-        DebugUtil.printTableRecursively(userConfig)
+    function logBoostSettings(t, indent)
+        -- sort the table
+        local tkeys = {}
+        for k in pairs(t) do table.insert(tkeys, k) end
+        table.sort(tkeys)
+
+        -- print the table out
+        local v = ""
+        local key = ""
+        for _, k in ipairs(tkeys) do
+            v = t[k]
+            key = string.rep("   ", indent) .. tostring(k)
+            if type(v) == "table" then
+                Logging.info(key .. ": ")
+                logBoostSettings(v, indent + 1)
+            else
+                Logging.info(key .. " :: " .. tostring(v))
+            end
+        end
     end
+
+    Logging.info('ContractBoost:LOAD :: config loaded')
+    logBoostSettings(userConfig, 1)
 
     -- make sure we don't load it twice
     self.userConfigLoaded = true
@@ -129,7 +148,7 @@ end
 
 --- Initiaze the XML file configuration
 function XmlConfigManager:initXmlSchema()
-    if self.loadDebug then print("---- ContractBoost:XmlConfigManager: init xml schema") end
+    if self.loadDebug then Logging.info("ContractBoost:LOAD ::  init xml schema") end
 
     self.xmlSchema = XMLSchema.new(XMLTAG)
 
@@ -157,7 +176,7 @@ function XmlConfigManager:initXmlSchema()
         self.xmlSchema:register(XMLValueType.INT, XMLTAG..".customMaxPerType."..missionType, "custom maxPerType for "..missionType, nil)
     end
 
-    if self.loadDebug then print("---- ContractBoost:XmlConfigManager: xml complete") end
+    if self.loadDebug then Logging.info("ContractBoost:LOAD :: xml complete") end
 end
 
 --- Initiaze the a specified xmlFilename as a config
@@ -168,7 +187,7 @@ function XmlConfigManager:importConfig(xmlFilename)
     local xmlFile = XMLFile.load("xmlFile", xmlFilename, self.xmlSchema)
 
     if XmlConfigManager.loadDebug then
-        printf('-- ContractBoost:XmlConfigManager :: loaded file: %s', xmlFilename)
+        Logging.info("ContractBoost:LOAD :: loaded file: %s", xmlFilename)
     end
 
     if xmlFile ~= 0 then
@@ -203,22 +222,22 @@ function XmlConfigManager:importConfig(xmlFilename)
 
         -- ensure that values are within limits for numerical values
         if loadedConfig.rewardFactor < 0.1 or loadedConfig.rewardFactor > 5.0 then
-            printf('-- ContractBoost:XmlConfigManager :: user configured rewardFactor (%s) outside of limits, reset to default.', loadedConfig.rewardFactor)
+            Logging.info('ContractBoost:LOAD :: user configured rewardFactor (%s) outside of limits, reset to default.', loadedConfig.rewardFactor)
             loadedConfig.rewardFactor = self.defaultConfig.rewardFactor
         end
 
         if loadedConfig.maxContractsPerFarm < 1 or loadedConfig.maxContractsPerFarm > 100 then
-            printf('-- ContractBoost:XmlConfigManager :: user configured maxContractsPerFarm (%s) outside of limits, reset to default.', loadedConfig.maxContractsPerFarm)
+            Logging.info('ContractBoost:LOAD :: user configured maxContractsPerFarm (%s) outside of limits, reset to default.', loadedConfig.maxContractsPerFarm)
             loadedConfig.maxContractsPerFarm = self.defaultConfig.maxContractsPerFarm
         end
 
         if loadedConfig.maxContractsPerType < 1 or loadedConfig.maxContractsPerType > 20 then
-            printf('-- ContractBoost:XmlConfigManager :: user configured maxContractsPerType (%s) outside of limits, reset to default.', loadedConfig.maxContractsPerType)
+            Logging.info('ContractBoost:LOAD :: user configured maxContractsPerType (%s) outside of limits, reset to default.', loadedConfig.maxContractsPerType)
             loadedConfig.maxContractsPerType = self.defaultConfig.maxContractsPerType
         end
 
         if loadedConfig.maxContractsOverall < 1 or loadedConfig.maxContractsOverall > 100 then
-            printf('-- ContractBoost:XmlConfigManager :: user configured maxContractsOverall (%d) outside of limits, reset to default.', loadedConfig.maxContractsOverall)
+            Logging.info('ContractBoost:LOAD :: user configured maxContractsOverall (%d) outside of limits, reset to default.', loadedConfig.maxContractsOverall)
             loadedConfig.maxContractsOverall = self.defaultConfig.maxContractsOverall
             
         end
@@ -236,11 +255,11 @@ function XmlConfigManager:importConfig(xmlFilename)
             if value ~= nil and value % 50 ~= 0 and missionTypesCalculatedPerItem[propName] then
                 -- Round to steps of 50
                 loadedConfig.customRewards[propName] = math.ceil(value / 50) * 50
-                printf('-- ContractBoost:XmlConfigManager :: Rounded property customRewards.%s from %d to %d', propName, value, loadedConfig.customRewards[propName])
+                Logging.info('ContractBoost:LOAD :: Rounded property customRewards.%s from %d to %d', propName, value, loadedConfig.customRewards[propName])
             elseif value ~= nil and value % 100 ~= 0 then
                 -- Round to steps of 100
                 loadedConfig.customRewards[propName] = math.ceil(value / 100) * 100
-                printf('-- ContractBoost:XmlConfigManager :: Rounded property customRewards.%s from %d to %d', propName, value, loadedConfig.customRewards[propName])
+                Logging.info('ContractBoost:LOAD :: Rounded property customRewards.%s from %d to %d', propName, value, loadedConfig.customRewards[propName])
             end
         end
         
@@ -248,10 +267,10 @@ function XmlConfigManager:importConfig(xmlFilename)
 
     xmlFile:delete()
 
-    if self.loadDebug then
-        print('-- ContractBoost:XmlConfigManager :: loadedConfig')
-        DebugUtil.printTableRecursively(loadedConfig)
-    end
+    -- if self.loadDebug then
+    --     print('-- ContractBoost:XmlConfigManager :: loadedConfig')
+    --     DebugUtil.printTableRecursively(loadedConfig)
+    -- end
 
     return loadedConfig
 end
@@ -261,7 +280,7 @@ end
 function XmlConfigManager:saveConfig()
     local xmlPath = self:getSavegameXmlFilePath()
     if xmlPath == nil then
-        Logging.warning(MOD_NAME .. ": Could not store settings.") -- another warning has been logged before this
+        Logging.warning('ContractBoost:SAVE :: Could not save config.') -- another warning has been logged before this
         return
     end
 
@@ -304,7 +323,7 @@ function XmlConfigManager:saveConfig()
     -- Write the XML file to disk
     saveXMLFile(xmlFileId)
 
-    printf('-- ContractBoost:XmlConfigManager :: saved config to savegame: %s', xmlPath)
+    Logging.info('ContractBoost:SAVE :: saved config to savegame: %s', xmlPath)
 end
 
 

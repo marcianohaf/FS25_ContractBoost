@@ -43,17 +43,17 @@ function ContractBoost:init()
 
     -- Enable collecting of bales from baling contracts.
     BaleMission.addBale = Utils.overwrittenFunction(BaleMission.addBale, MissionTools.addBale)
-    BaleMission.finishField = Utils.overwrittenFunction(BaleMission.finishField, MissionTools.finishField)
-    BaleWrapMission.finishField = Utils.overwrittenFunction(BaleWrapMission.finishField, MissionTools.finishField)
+    BaleMission.finishField = Utils.overwrittenFunction(BaleMission.finishField, MissionTools.finishBaleField)
+    BaleWrapMission.finishField = Utils.overwrittenFunction(BaleWrapMission.finishField, MissionTools.finishBaleWrapField)
 
     -- Make sure to show the details when someone looks at a mission
     AbstractMission.getDetails = Utils.overwrittenFunction(AbstractMission.getDetails, MissionBalance.getDetails)
 
-    Logging.info('-- ContractBoost :: loaded. debug: %s', ContractBoost.debug and "on" or "off")
+    Logging.info('ContractBoost :: loaded. debug: %s', ContractBoost.debug and "on" or "off")
 end
 
 function ContractBoost:activateSettings()
-    if ContractBoost.debug then print('-- ContractBoost :: activateSettings') end
+    if ContractBoost.debug then Logging.info('ContractBoost :: activateSettings') end
 
     -- MissionBalance: on map load apply new mission settings
     if ContractBoost.config.enableContractValueOverrides then
@@ -69,7 +69,7 @@ function ContractBoost:activateSettings()
     -- MissionTools: setup to allow more tools based on settings.
     MissionTools:setupAdditionalAllowedVehicles()
 
-    if ContractBoost.debug then print('-- ContractBoost :: activateSettings complete.') end
+    if ContractBoost.debug then Logging.info('ContractBoost :: activateSettings complete.') end
 end
 
 -- Initialize ContractBoost when the map has finished loading
