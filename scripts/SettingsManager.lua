@@ -50,7 +50,7 @@ function SettingsManager.new()
     }
 
     -- xmlConfigFiles
-    self.modSettingsConfigFile = "modSettings/ContractBoost.xml"
+    self.modSettingsConfigFile = "modSettings/`xml"
     self.savegameConfigFile = MOD_NAME..".xml"
 
     -- supported missionTypes.
@@ -284,7 +284,7 @@ function SettingsManager:saveSettings()
         return
     end
 
-    local config = ContractBoost.config
+    local config = g_currentMission.contractBoostSettings
     local missionTypes = self.missionTypes
 
     -- Create an empty XML file in memory

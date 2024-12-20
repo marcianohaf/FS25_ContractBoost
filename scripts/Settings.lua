@@ -1,5 +1,6 @@
 ---@class Settings
 ---This class stores settings for the ContractBoost mod
+Settings = {}
 local Settings_mt = Class(Settings)
 
 ---Creates a new settings instance
@@ -17,7 +18,7 @@ end
 function Settings:onSettingChanged(settingName, newState, settingParent)
     if settingParent then
         self.settings[settingParent][settingName] = newState
-    else 
+    else
         self.settings[settingName] = newState
     end
     self:publishNewSettings()

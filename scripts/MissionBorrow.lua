@@ -15,7 +15,7 @@ MissionBorrow.fillItemsAdded = false
 
 -- 
 function MissionBorrow:onSpawnedVehicle(superFunc, vehicle, ...)
-    if not ContractBoost.config.enableFieldworkToolFillItems then
+    if not g_currentMission.contractBoostSettings.enableFieldworkToolFillItems then
         superFunc(self, vehicle, ...)
     end
 

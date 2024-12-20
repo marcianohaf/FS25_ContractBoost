@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="93">
     <author>GMNGjoy</author>
-    <version>1.0.3.4</version>
+    <version>1.0.3.14</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
         <fr>Contrat Amélioré</fr>
     </title>
     <description>
-        <en><![CDATA[
+        <en>
 Boost your contracts by making more money, and allowing collection of the spoils!
 
 Features:
@@ -49,8 +49,8 @@ Changelog 1.1.0.0
 - Fixed baleMission setting to be perHa instead of perBale
 - Added cultivator to seeding missions, just in case you mess up
 - Fixed minor bug while debug mode is off.
-]]></en>
-        <de><![CDATA[
+</en>
+        <de>
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
 
 Features:
@@ -71,8 +71,8 @@ GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2
 - Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
-]]></de>
-        <fr><![CDATA[
+</de>
+        <fr>
 Augmentez vos revenus grâce à vos contrats et récupérez les ressources collectées !
 
 Fonctionnalités :
@@ -113,7 +113,7 @@ Changelog 1.1.0.0 :
 - Correction du paramètre des missions de balles pour qu'il soit défini par hectare au lieu de par balle.
 - Ajout d'un cultivateur aux missions d'ensemencement, au cas où vous feriez une erreur.
 - Correction d'un bug mineur lorsque le mode débogage est désactivé.
-]]></fr>
+</fr>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="true"/>
@@ -126,6 +126,7 @@ Changelog 1.1.0.0 :
         <sourceFile filename="scripts/SettingsChangeEvent.lua"/>
         <sourceFile filename="scripts/SettingsManager.lua"/>
         <sourceFile filename="scripts/SettingsUI.lua"/>
+        <sourceFile filename="scripts/lib/UIHelper.lua"/>
     </extraSourceFiles>
     <l10n filenamePrefix="languages/l10n"/>
 </modDesc>

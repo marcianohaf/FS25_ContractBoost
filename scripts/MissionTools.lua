@@ -38,7 +38,7 @@ MissionTools.additionalAllowedVehicles = {}
 -- Determine which additional allowed vehicles will be allowed based on user settings.
 function MissionTools:setupAdditionalAllowedVehicles()
 
-    if ContractBoost.config.enableStrawFromHarvestMissions then
+    if g_currentMission.contractBoostSettings.enableStrawFromHarvestMissions then
         MissionTools.additionalAllowedVehicles.harvestMission = {
             [WorkAreaTypes.FORAGEWAGON] = true,
             [WorkAreaTypes.BALER] = true,
@@ -47,14 +47,14 @@ function MissionTools:setupAdditionalAllowedVehicles()
         }
     end
 
-    if ContractBoost.config.enableSwathingForHarvestMissions then
+    if g_currentMission.contractBoostSettings.enableSwathingForHarvestMissions then
         if not MissionTools.additionalAllowedVehicles.harvestMission then
             MissionTools.additionalAllowedVehicles.harvestMission = {}
         end
         MissionTools.additionalAllowedVehicles.harvestMission[WorkAreaTypes.MOWER] = true
     end
 
-    if ContractBoost.config.enableGrassFromMowingMissions then
+    if g_currentMission.contractBoostSettings.enableGrassFromMowingMissions then
         MissionTools.additionalAllowedVehicles.mowMission = {
             [WorkAreaTypes.COMBINECHOPPER] = true,
             [WorkAreaTypes.CUTTER] = true,
@@ -64,7 +64,7 @@ function MissionTools:setupAdditionalAllowedVehicles()
         }
     end
 
-    if ContractBoost.config.enableStonePickingFromMissions then
+    if g_currentMission.contractBoostSettings.enableStonePickingFromMissions then
         MissionTools.additionalAllowedVehicles.plowMission = {
             [WorkAreaTypes.STONEPICKER] = true,
         }
@@ -76,7 +76,7 @@ function MissionTools:setupAdditionalAllowedVehicles()
         }
     end
 
-    if ContractBoost.config.enableHayFromTedderMissions then
+    if g_currentMission.contractBoostSettings.enableHayFromTedderMissions then
         MissionTools.additionalAllowedVehicles.tedderMission = {
             [WorkAreaTypes.FORAGEWAGON] = true,
             [WorkAreaTypes.BALER] = true,
@@ -138,7 +138,7 @@ function MissionTools.addBale(self, superFunc, bale)
     superFunc(self, bale)
 
     -- exit if not enabled
-    if not ContractBoost.config.enableCollectingBalesFromMissions then
+    if not g_currentMission.contractBoostSettings.enableCollectingBalesFromMissions then
         return
     end
 
@@ -152,7 +152,7 @@ function MissionTools.addBale(self, superFunc, bale)
 -- replace the BaleMission.finishField function with our own function that doesn't remove the bales.
 function MissionTools.finishBaleField(self, superFunc)
     -- call the original method if collecting bales is not enabled
-    if not ContractBoost.config.enableCollectingBalesFromMissions then
+    if not g_currentMission.contractBoostSettings.enableCollectingBalesFromMissions then
         superFunc(self)
         return
     end
@@ -166,7 +166,7 @@ function MissionTools.finishBaleField(self, superFunc)
  -- replace the BaleWrapMission.finishField function with our own function that doesn't remove the bales.
  function MissionTools.finishBaleWrapField(self, superFunc)
     -- call the original method if collecting bales is not enabled
-    if not ContractBoost.config.enableCollectingBalesFromMissions then
+    if not g_currentMission.contractBoostSettings.enableCollectingBalesFromMissions then
         superFunc(self)
         return
     end

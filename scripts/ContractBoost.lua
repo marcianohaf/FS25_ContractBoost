@@ -5,7 +5,6 @@
 -- @license CC0 1.0 Universal
 
 ContractBoost = {}
-ContractBoost.config = {}
 ContractBoost.listeners = {}
 ContractBoost.debug = false
 ContractBoost.modDirectory = g_currentModDirectory or ""
@@ -30,19 +29,18 @@ function ContractBoost:init()
 end
 
 
----Creates a settings object which can be accessed from the UI and the rest of the code
----@param   mission     table   @The object which is later available as g_currentMission
+---Activates individual settings across the mod.
 function ContractBoost:activateSettings()
     if ContractBoost.debug then Logging.info('ContractBoost :: activateSettings') end
 
     -- MissionBalance: on map load apply new mission settings
-    if ContractBoost.config.enableContractValueOverrides then
+    if g_currentMission.contractBoostSettings.enableContractValueOverrides then
         MissionBalance:setMissionSettings()
         MissionBalance:scaleMissionReward()
     end
 
     -- MissionBorrow: on map load add items for fieldwork tools
-    if ContractBoost.config.enableFieldworkToolFillItems then
+    if g_currentMission.contractBoostSettings.enableFieldworkToolFillItems then
         MissionBorrow:addFillItemsToMissionTools()
     end
 
