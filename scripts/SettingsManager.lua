@@ -51,7 +51,7 @@ function SettingsManager.new()
 
     -- xmlConfigFiles
     self.modSettingsConfigFile = "modSettings/ContractBoost.xml"
-    self.savegameConfigFile = "FS22_ContractBoost.xml"
+    self.savegameConfigFile = MOD_NAME..".xml"
 
     -- supported missionTypes.
     self.missionTypes = {

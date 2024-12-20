@@ -56,7 +56,7 @@ end
 ---@param streamId any @The ID of the stream to read from
 ---@param connection any @Unused
 function Settings:onReadStream(streamId, connection)
-    Logging.info(MOD_NAME .. ": Receiving new settings")
+    Logging.info(MOD_NAME .. ": Receiving new settings", streamId)
     --self.settings = streamReadInt8(streamId)
 end
 
@@ -64,6 +64,6 @@ end
 ---@param streamId any @The ID of the stream to write to
 ---@param connection any @Unused
 function Settings:onWriteStream(streamId, connection)
-    Logging.info(MOD_NAME .. ": Sending new settings")
+    Logging.info(MOD_NAME .. ": Sending new settings", streamId)
     --streamWriteInt8(streamId, self.settings)
 end
