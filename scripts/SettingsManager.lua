@@ -79,14 +79,14 @@ end
 --- Load the user's configuration file from either the savegame or modSettingsFile
 ---@return table
 function SettingsManager:initializeSettings()
-    if self.loadDebug then Logging.info("ContractBoost:LOAD :: read user configurations") end
+    if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: read user configurations") end
 
     -- setup the xml schema
     self:initXmlSchema()
 
     -- don't load it twice if the config is already loaded.
     if self.loadComplete then
-        if self.loadDebug then Logging.info("ContractBoost:LOAD :: exit early!") end
+        if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: exit early!") end
         return self.loadedConfig
     end
 
@@ -101,17 +101,17 @@ function SettingsManager:initializeSettings()
     if savegameSettingsFile and fileExists(savegameSettingsFile) then
         
         userConfig = self:importConfig(savegameSettingsFile)
-        Logging.info("ContractBoost:LOAD :: SAVEGAME configuration from: %s | debug: %s", savegameSettingsFile, userConfig.debugMode and "true" or "false")
+        Logging.info(MOD_NAME..":LOAD :: SAVEGAME configuration from: %s | debug: %s", savegameSettingsFile, userConfig.debugMode and "true" or "false")
     
     -- If they loaded a previous version, they may have modSettings file
     elseif modSettingsFile and fileExists(modSettingsFile) then
 
         userConfig = self:importConfig(modSettingsFile)
-        Logging.info("ContractBoost:LOAD :: MODSETTINGS configuration from: %s | debug: %s", modSettingsFile, userConfig.debugMode and "true" or "false")
+        Logging.info(MOD_NAME..":LOAD :: MODSETTINGS configuration from: %s | debug: %s", modSettingsFile, userConfig.debugMode and "true" or "false")
 
     else
         userConfig = self.defaultConfig
-        Logging.info("ContractBoost:LOAD: DEFAULT configuration used. | debug: %s", userConfig.debugMode and "true" or "false")
+        Logging.info(MOD_NAME..":LOAD: DEFAULT configuration used. | debug: %s", userConfig.debugMode and "true" or "false")
     end
 
     function logBoostSettings(t, indent)
@@ -148,7 +148,7 @@ end
 
 --- Initiaze the XML file configuration
 function SettingsManager:initXmlSchema()
-    if self.loadDebug then Logging.info("ContractBoost:LOAD ::  init xml schema") end
+    if self.loadDebug then Logging.info(MOD_NAME..":LOAD ::  init xml schema") end
 
     self.xmlSchema = XMLSchema.new(XMLTAG)
 
@@ -176,7 +176,7 @@ function SettingsManager:initXmlSchema()
         self.xmlSchema:register(XMLValueType.INT, XMLTAG..".customMaxPerType."..missionType, "custom maxPerType for "..missionType, nil)
     end
 
-    if self.loadDebug then Logging.info("ContractBoost:LOAD :: xml complete") end
+    if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: xml complete") end
 end
 
 --- Initiaze the a specified xmlFilename as a config
@@ -187,7 +187,7 @@ function SettingsManager:importConfig(xmlFilename)
     local xmlFile = XMLFile.load("xmlFile", xmlFilename, self.xmlSchema)
 
     if SettingsManager.loadDebug then
-        Logging.info("ContractBoost:LOAD :: loaded file: %s", xmlFilename)
+        Logging.info(MOD_NAME..":LOAD :: loaded file: %s", xmlFilename)
     end
 
     if xmlFile ~= 0 then
