@@ -4,7 +4,7 @@
 -- @contact https://github.com/GMNGjoy/FS25_ContractBoost
 -- @license CC0 1.0 Universal
 ---This class is responsible for loading User Settings
----@class XmlConfigManager
+---@class SettingsManager
 ---@field loadComplete boolean @Have we loaded the configuration?
 ---@field loadDebug boolean @Is debugging turned on for this class
 ---@field defaultConfig table @default values for all settings
@@ -14,16 +14,16 @@
 ---@field xmlTag string @the root xml tag
 ---@field xmlSchema table @the configured xml schema
 ---@field missionTypes table @re-used set of mission types
-XmlConfigManager = {}
+SettingsManager = {}
 local XMLTAG = "contractBoost"
 
 -- Create a meta table to get basic Class-like behavior
-local XmlConfigManager_mt = Class(XmlConfigManager)
+local SettingsManager_mt = Class(SettingsManager)
 
 ---Creates the xml configuration manager object
----@return XmlConfigManager @The new object
-function XmlConfigManager.new()
-    local self = setmetatable({}, XmlConfigManager_mt)
+---@return SettingsManager @The new object
+function SettingsManager.new()
+    local self = setmetatable({}, SettingsManager_mt)
     self.loadDebug = false
 
     -- configuration files and loading states
@@ -78,7 +78,7 @@ end
 
 --- Load the user's configuration file from either the savegame or modSettingsFile
 ---@return table
-function XmlConfigManager:initializeConfig()
+function SettingsManager:initializeSettings()
     if self.loadDebug then Logging.info("ContractBoost:LOAD :: read user configurations") end
 
     -- setup the xml schema
@@ -147,7 +147,7 @@ function XmlConfigManager:initializeConfig()
 end
 
 --- Initiaze the XML file configuration
-function XmlConfigManager:initXmlSchema()
+function SettingsManager:initXmlSchema()
     if self.loadDebug then Logging.info("ContractBoost:LOAD ::  init xml schema") end
 
     self.xmlSchema = XMLSchema.new(XMLTAG)
@@ -182,11 +182,11 @@ end
 --- Initiaze the a specified xmlFilename as a config
 ---@param xmlFilename string
 ---@return table
-function XmlConfigManager:importConfig(xmlFilename)
+function SettingsManager:importConfig(xmlFilename)
     local loadedConfig = {}
     local xmlFile = XMLFile.load("xmlFile", xmlFilename, self.xmlSchema)
 
-    if XmlConfigManager.loadDebug then
+    if SettingsManager.loadDebug then
         Logging.info("ContractBoost:LOAD :: loaded file: %s", xmlFilename)
     end
 
@@ -268,7 +268,7 @@ function XmlConfigManager:importConfig(xmlFilename)
     xmlFile:delete()
 
     -- if self.loadDebug then
-    --     print('-- ContractBoost:XmlConfigManager :: loadedConfig')
+    --     print('-- ContractBoost:SettingsManager :: loadedConfig')
     --     DebugUtil.printTableRecursively(loadedConfig)
     -- end
 
@@ -277,7 +277,7 @@ end
 
 
 ---Writes the settings to our own XML file
-function XmlConfigManager:saveConfig()
+function SettingsManager:saveSettings()
     local xmlPath = self:getSavegameXmlFilePath()
     if xmlPath == nil then
         Logging.warning('ContractBoost:SAVE :: Could not save config.') -- another warning has been logged before this
@@ -329,14 +329,14 @@ end
 
 ---Builds a path to the XML file.
 ---@return string|nil @The path to the XML file
-function XmlConfigManager:getModSettingsXmlFilePath()
+function SettingsManager:getModSettingsXmlFilePath()
     return Utils.getFilename(self.modSettingsConfigFile, getUserProfileAppPath())
 end
 
 
 ---Builds a path to the XML file.
 ---@return string|nil @The path to the XML file
-function XmlConfigManager.getSavegameXmlFilePath()
+function SettingsManager.getSavegameXmlFilePath()
     if g_currentMission and g_currentMission.missionInfo then
         local savegameDirectory = g_currentMission.missionInfo.savegameDirectory
         if savegameDirectory ~= nil then

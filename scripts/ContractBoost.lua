@@ -11,47 +11,27 @@ ContractBoost.debug = false
 ContractBoost.modDirectory = g_currentModDirectory or ""
 MOD_NAME = g_currentModName or "unknown"
 
--- include the XMLConfigManager globally
-source(ContractBoost.modDirectory.."scripts/XmlConfigManager.lua")
-
 ---Initializes Contract Boost!
 function ContractBoost:init()
     if ContractBoost.debug then Logging.info('-- ContractBoost:ContractBoost :: init.') end
 
     -- Load the config from xml
-    ContractBoost.xmlManager = XmlConfigManager.new()
-    ContractBoost.config = ContractBoost.xmlManager:initializeConfig()
-    ContractBoost.debug = ContractBoost.config.debugMode
+    ContractBoost.settings = SettingsManager.new()
+    g_currentMission.contractBoostSettings = ContractBoost.settings:initializeSettings()
+    ContractBoost.debug = g_currentMission.contractBoostSettings.debugMode
 
     -- Setup the UIHelper & settings
-    source(ContractBoost.modDirectory.."scripts/lib/UIHelper.lua")
-    source(ContractBoost.modDirectory.."scripts/SettingsUI.lua")
     ContractBoost.uiSettings = SettingsUI.new()
-    ContractBoost.uiSettings:injectUiSettings(ContractBoost.config)
+    ContractBoost.uiSettings:injectUiSettings(g_currentMission.contractBoostSettings)
 
-    -- Include the related Mission files.
-    source(ContractBoost.modDirectory.."scripts/MissionBalance.lua")
-    source(ContractBoost.modDirectory.."scripts/MissionBorrow.lua")
-    source(ContractBoost.modDirectory.."scripts/MissionTools.lua")
-
-    -- Setup function overrides
-    MissionManager.loadMapData = Utils.appendedFunction(MissionManager.loadMapData, ContractBoost.activateSettings)
-    MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed, MissionTools.getIsMissionWorkAllowed)
-
-    -- Enable extra fieldwork fill items to be added to contract items
-    AbstractMission.onSpawnedVehicle = Utils.overwrittenFunction(AbstractMission.onSpawnedVehicle, MissionBorrow.onSpawnedVehicle)
-
-    -- Enable collecting of bales from baling contracts.
-    BaleMission.addBale = Utils.overwrittenFunction(BaleMission.addBale, MissionTools.addBale)
-    BaleMission.finishField = Utils.overwrittenFunction(BaleMission.finishField, MissionTools.finishBaleField)
-    BaleWrapMission.finishField = Utils.overwrittenFunction(BaleWrapMission.finishField, MissionTools.finishBaleWrapField)
-
-    -- Make sure to show the details when someone looks at a mission
-    AbstractMission.getDetails = Utils.overwrittenFunction(AbstractMission.getDetails, MissionBalance.getDetails)
+    ContractBoost.initializeListeners()
 
     Logging.info('ContractBoost :: loaded. debug: %s', ContractBoost.debug and "on" or "off")
 end
 
+
+---Creates a settings object which can be accessed from the UI and the rest of the code
+---@param   mission     table   @The object which is later available as g_currentMission
 function ContractBoost:activateSettings()
     if ContractBoost.debug then Logging.info('ContractBoost :: activateSettings') end
 
@@ -72,12 +52,51 @@ function ContractBoost:activateSettings()
     if ContractBoost.debug then Logging.info('ContractBoost :: activateSettings complete.') end
 end
 
--- Initialize ContractBoost when the map has finished loading
+
+---Initializes all the listeners that will be used to integrate the settings with gameplay
+function ContractBoost.initializeListeners()
+
+    -- Setup function overrides
+    MissionManager.loadMapData = Utils.appendedFunction(MissionManager.loadMapData, ContractBoost.activateSettings)
+    MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed, MissionTools.getIsMissionWorkAllowed)
+
+    -- Enable extra fieldwork fill items to be added to contract items
+    AbstractMission.onSpawnedVehicle = Utils.overwrittenFunction(AbstractMission.onSpawnedVehicle, MissionBorrow.onSpawnedVehicle)
+
+    -- Enable collecting of bales from baling contracts.
+    BaleMission.addBale = Utils.overwrittenFunction(BaleMission.addBale, MissionTools.addBale)
+    BaleMission.finishField = Utils.overwrittenFunction(BaleMission.finishField, MissionTools.finishBaleField)
+    BaleWrapMission.finishField = Utils.overwrittenFunction(BaleWrapMission.finishField, MissionTools.finishBaleWrapField)
+
+    -- Make sure to show the details when someone looks at a mission
+    AbstractMission.getDetails = Utils.overwrittenFunction(AbstractMission.getDetails, MissionBalance.getDetails)
+
+end
+
+---Creates a settings object which can be accessed from the UI and the rest of the code
+---@param   mission     table   @The object which is later available as g_currentMission
+local function createModSettings(mission)
+    -- Register the settings object globally so we can access it from the event class and others later
+    mission.contractBoostSettings = Settings.new()
+    addModEventListener(mission.contractBoostSettings)
+end
+Mission00.load = Utils.prependedFunction(Mission00.load, createModSettings)
+
+---Destroys the settings object when it is no longer needed.
+local function destroyModSettings()
+    if g_currentMission ~= nil and g_currentMission.contractBoostSettings ~= nil then
+        removeModEventListener(g_currentMission.contractBoostSettings)
+        g_currentMission.contractBoostSettings = nil
+    end
+end
+FSBaseMission.delete = Utils.appendedFunction(FSBaseMission.delete, destroyModSettings)
+
+---Initialize ContractBoost when the map has finished loading
 BaseMission.loadMapFinished = Utils.prependedFunction(BaseMission.loadMapFinished, function(...)
-	ContractBoost:init()
+    ContractBoost:init()
 end)
 
--- Save the config when the savegame is being saved
+---Save the config when the savegame is being saved
 FSBaseMission.saveSavegame = Utils.appendedFunction(FSBaseMission.saveSavegame,  function(...)
-	ContractBoost.xmlManager:saveConfig()
+    ContractBoost.settings:saveSettings()
 end)

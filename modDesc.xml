@@ -119,6 +119,13 @@ Changelog 1.1.0.0 :
     <multiplayer supported="true"/>
     <extraSourceFiles>
         <sourceFile filename="scripts/ContractBoost.lua"/>
+        <sourceFile filename="scripts/MissionBalance.lua"/>
+        <sourceFile filename="scripts/MissionBorrow.lua"/>
+        <sourceFile filename="scripts/MissionTools.lua"/>
+        <sourceFile filename="scripts/Settings.lua"/>
+        <sourceFile filename="scripts/SettingsChangeEvent.lua"/>
+        <sourceFile filename="scripts/SettingsManager.lua"/>
+        <sourceFile filename="scripts/SettingsUI.lua"/>
     </extraSourceFiles>
     <l10n filenamePrefix="languages/l10n"/>
 </modDesc>
