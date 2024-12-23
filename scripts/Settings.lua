@@ -17,9 +17,9 @@ end
 ---@param settingName string @The name of the setting, in dot notation for nested settings
 function Settings:onSettingChanged(settingName, newState, settingParent)
     if settingParent then
-        self.settings[settingParent][settingName] = newState
+        self[settingParent][settingName] = newState
     else
-        self.settings[settingName] = newState
+        self[settingName] = newState
     end
     self:publishNewSettings()
 end
@@ -30,16 +30,16 @@ end
 ---@return string|boolean @The current index
 function Settings:getSetting(settingName, settingParent)
     if settingParent then
-        return self.settings[settingParent][settingName]
+        return self[settingParent][settingName]
     else
-        return self.settings[settingName]
+        return self[settingName]
     end
 end
 
 ---Retrieves the all settings at once
 ---@return table @The current index
 function Settings:getSettings()
-    return self.settings
+    return self
 end
 
 ---Publishes new settings in case of multiplayer

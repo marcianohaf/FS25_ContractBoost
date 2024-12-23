@@ -35,8 +35,10 @@ SettingsManager.missionTypes = {
     "destructibleRockMission"
 }
 
+
 -- Create a meta table to get basic Class-like behavior
 local SettingsManager_mt = Class(SettingsManager)
+
 
 ---Creates the xml configuration manager object
 ---@return SettingsManager @The new object
@@ -73,6 +75,7 @@ function SettingsManager.new()
 
     return self
 end
+
 
 --- Load the user's configuration file from either the savegame or modSettingsFile
 ---@return table
@@ -147,6 +150,7 @@ function SettingsManager:restoreSettings()
     self.loadedConfig = settings
 end
 
+
 --- Initiaze the XML file configuration
 function SettingsManager:initXmlSchema()
     if self.loadDebug then Logging.info(MOD_NAME..":LOAD ::  init xml schema") end
@@ -180,6 +184,7 @@ function SettingsManager:initXmlSchema()
     if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: xml complete") end
 end
 
+
 --- Initiaze the a specified xmlFilename as a config
 ---@param xmlFilename string
 ---@param settingsObject table
@@ -191,7 +196,6 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
     end
 
     if xmlFile ~= 0 then
-
         settingsObject.debugMode = xmlFile:getValue(XMLTAG..".settings.debugMode", self.defaultConfig.debugMode)
 
         settingsObject.enableContractValueOverrides = xmlFile:getValue(XMLTAG..".settings.enableContractValueOverrides", self.defaultConfig.enableContractValueOverrides)
@@ -202,7 +206,7 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
         settingsObject.enableStonePickingFromMissions = xmlFile:getValue(XMLTAG..".settings.enableStonePickingFromMissions", self.defaultConfig.enableStonePickingFromMissions)
         settingsObject.enableFieldworkToolFillItems = xmlFile:getValue(XMLTAG..".settings.enableFieldworkToolFillItems", self.defaultConfig.enableFieldworkToolFillItems)
         settingsObject.enableCollectingBalesFromMissions = xmlFile:getValue(XMLTAG..".settings.enableCollectingBalesFromMissions", self.defaultConfig.enableCollectingBalesFromMissions)
-        
+
         settingsObject.rewardFactor = xmlFile:getValue(XMLTAG..".settings.rewardFactor", self.defaultConfig.rewardFactor)
         settingsObject.maxContractsPerFarm = xmlFile:getValue(XMLTAG..".settings.maxContractsPerFarm", self.defaultConfig.maxContractsPerFarm)
         settingsObject.maxContractsPerType = xmlFile:getValue(XMLTAG..".settings.maxContractsPerType", self.defaultConfig.maxContractsPerType)
@@ -239,7 +243,6 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
         if settingsObject.maxContractsOverall < 1 or settingsObject.maxContractsOverall > 100 then
             Logging.info('ContractBoost:LOAD :: user configured maxContractsOverall (%d) outside of limits, reset to default.', settingsObject.maxContractsOverall)
             settingsObject.maxContractsOverall = self.defaultConfig.maxContractsOverall
-            
         end
 
         local missionTypesCalculatedPerItem = {
@@ -262,7 +265,6 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
                 Logging.info('ContractBoost:LOAD :: Rounded property customRewards.%s from %d to %d', propName, value, settingsObject.customRewards[propName])
             end
         end
-        
     end
 
     xmlFile:delete()
@@ -288,7 +290,7 @@ function SettingsManager:saveSettings()
     local xmlFileId = createXMLFile("ContractBoost", xmlPath, XMLTAG)
 
     setXMLBool(xmlFileId, XMLTAG..".settings.debugMode", currentSettings.debugMode)
-    
+
     setXMLBool(xmlFileId, XMLTAG..".settings.enableContractValueOverrides", currentSettings.enableContractValueOverrides)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableStrawFromHarvestMissions", currentSettings.enableStrawFromHarvestMissions)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableSwathingForHarvestMissions", currentSettings.enableSwathingForHarvestMissions)
@@ -297,7 +299,7 @@ function SettingsManager:saveSettings()
     setXMLBool(xmlFileId, XMLTAG..".settings.enableStonePickingFromMissions", currentSettings.enableStonePickingFromMissions)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableFieldworkToolFillItems", currentSettings.enableFieldworkToolFillItems)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableCollectingBalesFromMissions", currentSettings.enableCollectingBalesFromMissions)
-    
+
     setXMLFloat(xmlFileId, XMLTAG..".settings.rewardFactor", currentSettings.rewardFactor)
     setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsPerFarm", currentSettings.maxContractsPerFarm)
     setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsPerType", currentSettings.maxContractsPerType)

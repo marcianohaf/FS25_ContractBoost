@@ -7,6 +7,7 @@
 MissionBalance = {}
 MissionBalance.boosted = {}
 
+
 --- Initialize the mission setting overrides based on user configuration
 function MissionBalance:setMissionSettings()
     MissionManager.MAX_MISSIONS = g_currentMission.contractBoostSettings.maxContractsOverall
@@ -15,6 +16,7 @@ function MissionBalance:setMissionSettings()
 
     if ContractBoost.debug then print('-- ContractBoost:MissionBalance :: settings updated.') end
 end
+
 
 -- AbstractMission.getDetails(self, details)
 function MissionBalance:getDetails(superFunc)
@@ -38,6 +40,7 @@ function MissionBalance:getDetails(superFunc)
 
     return details
 end
+
 
 --- Scale the mission rewards based on user configuration
 function MissionBalance:scaleMissionReward()
@@ -83,9 +86,9 @@ function MissionBalance:scaleMissionReward()
                 missionType.data.rewardPerHa = newValue
             end
 
-            -- update the maximum number of each type to it's custom value if it exists else use       missionType.data.maxNumInstances = math.min(ContractBoost.config.customMaxPerType[typeName] or ContractBoost.config.maxContractsPerType, 50)
-            
-            
+            -- update the maximum number of each type to it's custom value if it exists else use
+            missionType.data.maxNumInstances = math.min(ContractBoost.config.customMaxPerType[typeName] or ContractBoost.config.maxContractsPerType, 50)
+
             if newValue == prevValue and newValue == nil then
                 if ContractBoost.debug then 
                     printf('---- ContractBoost:MissionBalance :: Mission %s: %s | skipped, not found on map', missionType.typeId, missionType.name)

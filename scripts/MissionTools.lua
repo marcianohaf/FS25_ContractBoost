@@ -30,6 +30,7 @@ WorkAreaTypes = {
     WINDROWER = 23,
     DEFAULT = 24,
     AUXILIARY = 25,
+    BALEWRAPPER = 26,
 }
 
 MissionTools = {}
@@ -61,6 +62,8 @@ function MissionTools:setupAdditionalAllowedVehicles()
             [WorkAreaTypes.FORAGEWAGON] = true,
             [WorkAreaTypes.BALER] = true,
             [WorkAreaTypes.WINDROWER] = true,
+            [WorkAreaTypes.TEDDER] = true,
+            [WorkAreaTypes.BALEWRAPPER] = true,
         }
     end
 
@@ -110,7 +113,7 @@ function MissionTools:getIsMissionWorkAllowed(superFunc, farmId, x, z, workAreaT
         local missionType = mission.type.name
     
         -- if ContractBoost.debug then 
-        -- printf('-- ContractBoost:MissionTools :: missionType: %s | workAreaType: %s', missionType, workAreaType)
+        --     printf('-- ContractBoost:MissionTools :: missionType: %s | workAreaType: %s', missionType, workAreaType)
         -- end
 
         local additionalWorkAreaTypes = MissionTools.additionalAllowedVehicles[missionType] or {}

@@ -10,6 +10,7 @@ ContractBoost.debug = false
 ContractBoost.modDirectory = g_currentModDirectory or ""
 MOD_NAME = g_currentModName or "unknown"
 
+
 ---Initializes Contract Boost!
 function ContractBoost:init()
     if ContractBoost.debug then Logging.info('-- ContractBoost:ContractBoost :: init.') end
@@ -54,7 +55,6 @@ end
 
 ---Initializes all the listeners that will be used to integrate the settings with gameplay
 function ContractBoost.initializeListeners()
-
     -- Setup function overrides
     MissionManager.loadMapData = Utils.appendedFunction(MissionManager.loadMapData, ContractBoost.activateSettings)
     MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed, MissionTools.getIsMissionWorkAllowed)
@@ -69,8 +69,8 @@ function ContractBoost.initializeListeners()
 
     -- Make sure to show the details when someone looks at a mission
     AbstractMission.getDetails = Utils.overwrittenFunction(AbstractMission.getDetails, MissionBalance.getDetails)
-
 end
+
 
 ---Creates a settings object which can be accessed from the UI and the rest of the code
 ---@param   mission     table   @The object which is later available as g_currentMission
@@ -81,6 +81,7 @@ local function createModSettings(mission)
 end
 Mission00.load = Utils.prependedFunction(Mission00.load, createModSettings)
 
+
 ---Destroys the settings object when it is no longer needed.
 local function destroyModSettings()
     if g_currentMission ~= nil and g_currentMission.contractBoostSettings ~= nil then
@@ -90,10 +91,12 @@ local function destroyModSettings()
 end
 FSBaseMission.delete = Utils.appendedFunction(FSBaseMission.delete, destroyModSettings)
 
+
 ---Initialize ContractBoost when the map has finished loading
 BaseMission.loadMapFinished = Utils.prependedFunction(BaseMission.loadMapFinished, function(...)
     ContractBoost:init()
 end)
+
 
 ---Save the config when the savegame is being saved
 FSBaseMission.saveSavegame = Utils.appendedFunction(FSBaseMission.saveSavegame,  function(...)
