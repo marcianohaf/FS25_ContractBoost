@@ -15,8 +15,9 @@ function ContractBoost:init()
     if ContractBoost.debug then Logging.info('-- ContractBoost:ContractBoost :: init.') end
 
     -- Load the config from xml
-    ContractBoost.settings = SettingsManager.new()
-    g_currentMission.contractBoostSettings = ContractBoost.settings:initializeSettings()
+    -- ContractBoost.settings = SettingsManager.new()
+    -- g_currentMission.contractBoostSettings = ContractBoost.settings:initializeSettings()
+    SettingsManager:restoreSettings()
     ContractBoost.debug = g_currentMission.contractBoostSettings.debugMode
 
     -- Setup the UIHelper & settings
