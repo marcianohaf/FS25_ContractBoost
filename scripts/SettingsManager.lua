@@ -34,6 +34,23 @@ SettingsManager.missionTypes = {
     "treeTransportMission",
     "destructibleRockMission"
 }
+SettingsManager.defaultConfig = {
+    debugMode = true,
+    rewardFactor = 1.5,
+    maxContractsPerFarm = 10,
+    maxContractsPerType = 5,
+    maxContractsOverall = 50,
+    enableContractValueOverrides = true,
+    enableStrawFromHarvestMissions = true,
+    enableSwathingForHarvestMissions = true,
+    enableGrassFromMowingMissions = true,
+    enableHayFromTedderMissions = true,
+    enableStonePickingFromMissions = true,
+    enableFieldworkToolFillItems = true,
+    enableCollectingBalesFromMissions = false,
+    customRewards = {},
+    customMaxPerType = {},
+}
 
 
 -- Create a meta table to get basic Class-like behavior
@@ -50,35 +67,17 @@ function SettingsManager.new()
     self.loadComplete = false
     self.loadedConfig = {}
 
-    -- defaultConfig for existing settings
-    self.defaultConfig = {
-        debugMode = true,
-        rewardFactor = 1.5,
-        maxContractsPerFarm = 10,
-        maxContractsPerType = 5,
-        maxContractsOverall = 50,
-        enableContractValueOverrides = true,
-        enableStrawFromHarvestMissions = true,
-        enableSwathingForHarvestMissions = true,
-        enableGrassFromMowingMissions = true,
-        enableHayFromTedderMissions = true,
-        enableStonePickingFromMissions = true,
-        enableFieldworkToolFillItems = true,
-        enableCollectingBalesFromMissions = false,
-        customRewards = {},
-        customMaxPerType = {},
-    }
-
     -- xmlConfigFiles
     self.modSettingsConfigFile = "modSettings/`xml"
     self.savegameConfigFile = MOD_NAME..".xml"
+
+    if self.loadDebug then Logging.info(MOD_NAME..":Manager initialized") end
 
     return self
 end
 
 
 --- Load the user's configuration file from either the savegame or modSettingsFile
----@return table
 function SettingsManager:restoreSettings()
     if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: read user configurations") end
 
@@ -106,18 +105,20 @@ function SettingsManager:restoreSettings()
     if savegameSettingsFile and fileExists(savegameSettingsFile) then
         
         self:importConfig(savegameSettingsFile, settings)
-        Logging.info(MOD_NAME..":LOAD :: SAVEGAME configuration from: %s | debug: %s", savegameSettingsFile, userConfig.debugMode and "true" or "false")
+        Logging.info(MOD_NAME..":LOAD :: SAVEGAME configuration from: %s", savegameSettingsFile)
     
     -- If they loaded a previous version, they may have modSettings file
     elseif modSettingsFile and fileExists(modSettingsFile) then
 
         self:importConfig(modSettingsFile, settings)
-        Logging.info(MOD_NAME..":LOAD :: MODSETTINGS configuration from: %s | debug: %s", modSettingsFile, userConfig.debugMode and "true" or "false")
+        Logging.info(MOD_NAME..":LOAD :: MODSETTINGS configuration from: %s", modSettingsFile)
 
     else
-        settings = self.defaultConfig
-        Logging.info(MOD_NAME..":LOAD: DEFAULT configuration used. | debug: %s", userConfig.debugMode and "true" or "false")
+        settings = SettingsManager.defaultConfig
+        Logging.info(MOD_NAME..":LOAD: DEFAULT configuration used")
     end
+
+    Logging.info(MOD_NAME..":LOAD: debug mode: %s", g_currentMission.contractBoostSettings.debugMode and "true" or "false")
 
     function logBoostSettings(t, indent)
         -- sort the table
@@ -140,7 +141,7 @@ function SettingsManager:restoreSettings()
         end
     end
 
-    Logging.info('ContractBoost:LOAD :: config loaded')
+    Logging.info(MOD_NAME..'LOAD :: config loaded')
     logBoostSettings(settings, 1)
 
     -- make sure we don't load it twice
@@ -157,19 +158,19 @@ function SettingsManager:initXmlSchema()
 
     self.xmlSchema = XMLSchema.new(XMLTAG)
 
-    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.debugMode", "Turn debugMode on for additional log output", self.defaultConfig.debugMode)
-    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableContractValueOverrides", "enables overriding contract system default setting values", self.defaultConfig.enableContractValueOverrides)
-    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableStrawFromHarvestMissions", "should straw be collectible from during harvest missions?", self.defaultConfig.enableStrawFromHarvestMissions)
-    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableSwathingForHarvestMissions", "should you be able to use a Swather for harvest missions?", self.defaultConfig.enableSwathingForHarvestMissions)
-    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableGrassFromMowingMissions", "should grass be collectible from during mowing missions?", self.defaultConfig.enableGrassFromMowingMissions)
-    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableHayFromTedderMissions", "should hay be collectible from during tedder missions?", self.defaultConfig.enableHayFromTedderMissions)
-    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableStonePickingFromMissions", "should stones be collectible from during tilling & sowing missions?", self.defaultConfig.enableStonePickingFromMissions)
-    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableFieldworkToolFillItems", "should borrowed equipment come with free fieldwork items to fill your tools", self.defaultConfig.enableFieldworkToolFillItems)
-    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableCollectingBalesFromMissions", "should you be able to collect bales from baling and baleWrapping contracts?", self.defaultConfig.enableCollectingBalesFromMissions)
-    self.xmlSchema:register(XMLValueType.FLOAT, XMLTAG..".settings.rewardFactor", "applies a multiplier to the base game rewardPer value", self.defaultConfig.rewardFactor)
-    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerFarm", "how many contracts can be active at once", self.defaultConfig.maxContractsPerFarm)
-    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerType", "how many contracts per contract type can be available", self.defaultConfig.maxContractsPerType)
-    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsOverall", "how many contracts overall can be available", self.defaultConfig.maxContractsOverall)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.debugMode", "Turn debugMode on for additional log output", SettingsManager.defaultConfig.debugMode)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableContractValueOverrides", "enables overriding contract system default setting values", SettingsManager.defaultConfig.enableContractValueOverrides)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableStrawFromHarvestMissions", "should straw be collectible from during harvest missions?", SettingsManager.defaultConfig.enableStrawFromHarvestMissions)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableSwathingForHarvestMissions", "should you be able to use a Swather for harvest missions?", SettingsManager.defaultConfig.enableSwathingForHarvestMissions)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableGrassFromMowingMissions", "should grass be collectible from during mowing missions?", SettingsManager.defaultConfig.enableGrassFromMowingMissions)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableHayFromTedderMissions", "should hay be collectible from during tedder missions?", SettingsManager.defaultConfig.enableHayFromTedderMissions)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableStonePickingFromMissions", "should stones be collectible from during tilling & sowing missions?", SettingsManager.defaultConfig.enableStonePickingFromMissions)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableFieldworkToolFillItems", "should borrowed equipment come with free fieldwork items to fill your tools", SettingsManager.defaultConfig.enableFieldworkToolFillItems)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableCollectingBalesFromMissions", "should you be able to collect bales from baling and baleWrapping contracts?", SettingsManager.defaultConfig.enableCollectingBalesFromMissions)
+    self.xmlSchema:register(XMLValueType.FLOAT, XMLTAG..".settings.rewardFactor", "applies a multiplier to the base game rewardPer value", SettingsManager.defaultConfig.rewardFactor)
+    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerFarm", "how many contracts can be active at once", SettingsManager.defaultConfig.maxContractsPerFarm)
+    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerType", "how many contracts per contract type can be available", SettingsManager.defaultConfig.maxContractsPerType)
+    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsOverall", "how many contracts overall can be available", SettingsManager.defaultConfig.maxContractsOverall)
 
     -- loop through the mission types to setup the customRewards
     for _, missionType in SettingsManager.missionTypes do
@@ -196,21 +197,21 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
     end
 
     if xmlFile ~= 0 then
-        settingsObject.debugMode = xmlFile:getValue(XMLTAG..".settings.debugMode", self.defaultConfig.debugMode)
+        settingsObject.debugMode = xmlFile:getValue(XMLTAG..".settings.debugMode", SettingsManager.defaultConfig.debugMode)
 
-        settingsObject.enableContractValueOverrides = xmlFile:getValue(XMLTAG..".settings.enableContractValueOverrides", self.defaultConfig.enableContractValueOverrides)
-        settingsObject.enableStrawFromHarvestMissions = xmlFile:getValue(XMLTAG..".settings.enableStrawFromHarvestMissions", self.defaultConfig.enableStrawFromHarvestMissions)
-        settingsObject.enableSwathingForHarvestMissions = xmlFile:getValue(XMLTAG..".settings.enableSwathingForHarvestMissions", self.defaultConfig.enableSwathingForHarvestMissions)
-        settingsObject.enableGrassFromMowingMissions = xmlFile:getValue(XMLTAG..".settings.enableGrassFromMowingMissions", self.defaultConfig.enableGrassFromMowingMissions)
-        settingsObject.enableHayFromTedderMissions = xmlFile:getValue(XMLTAG..".settings.enableHayFromTedderMissions", self.defaultConfig.enableHayFromTedderMissions)
-        settingsObject.enableStonePickingFromMissions = xmlFile:getValue(XMLTAG..".settings.enableStonePickingFromMissions", self.defaultConfig.enableStonePickingFromMissions)
-        settingsObject.enableFieldworkToolFillItems = xmlFile:getValue(XMLTAG..".settings.enableFieldworkToolFillItems", self.defaultConfig.enableFieldworkToolFillItems)
-        settingsObject.enableCollectingBalesFromMissions = xmlFile:getValue(XMLTAG..".settings.enableCollectingBalesFromMissions", self.defaultConfig.enableCollectingBalesFromMissions)
+        settingsObject.enableContractValueOverrides = xmlFile:getValue(XMLTAG..".settings.enableContractValueOverrides", SettingsManager.defaultConfig.enableContractValueOverrides)
+        settingsObject.enableStrawFromHarvestMissions = xmlFile:getValue(XMLTAG..".settings.enableStrawFromHarvestMissions", SettingsManager.defaultConfig.enableStrawFromHarvestMissions)
+        settingsObject.enableSwathingForHarvestMissions = xmlFile:getValue(XMLTAG..".settings.enableSwathingForHarvestMissions", SettingsManager.defaultConfig.enableSwathingForHarvestMissions)
+        settingsObject.enableGrassFromMowingMissions = xmlFile:getValue(XMLTAG..".settings.enableGrassFromMowingMissions", SettingsManager.defaultConfig.enableGrassFromMowingMissions)
+        settingsObject.enableHayFromTedderMissions = xmlFile:getValue(XMLTAG..".settings.enableHayFromTedderMissions", SettingsManager.defaultConfig.enableHayFromTedderMissions)
+        settingsObject.enableStonePickingFromMissions = xmlFile:getValue(XMLTAG..".settings.enableStonePickingFromMissions", SettingsManager.defaultConfig.enableStonePickingFromMissions)
+        settingsObject.enableFieldworkToolFillItems = xmlFile:getValue(XMLTAG..".settings.enableFieldworkToolFillItems", SettingsManager.defaultConfig.enableFieldworkToolFillItems)
+        settingsObject.enableCollectingBalesFromMissions = xmlFile:getValue(XMLTAG..".settings.enableCollectingBalesFromMissions", SettingsManager.defaultConfig.enableCollectingBalesFromMissions)
 
-        settingsObject.rewardFactor = xmlFile:getValue(XMLTAG..".settings.rewardFactor", self.defaultConfig.rewardFactor)
-        settingsObject.maxContractsPerFarm = xmlFile:getValue(XMLTAG..".settings.maxContractsPerFarm", self.defaultConfig.maxContractsPerFarm)
-        settingsObject.maxContractsPerType = xmlFile:getValue(XMLTAG..".settings.maxContractsPerType", self.defaultConfig.maxContractsPerType)
-        settingsObject.maxContractsOverall = xmlFile:getValue(XMLTAG..".settings.maxContractsOverall", self.defaultConfig.maxContractsOverall)
+        settingsObject.rewardFactor = xmlFile:getValue(XMLTAG..".settings.rewardFactor", SettingsManager.defaultConfig.rewardFactor)
+        settingsObject.maxContractsPerFarm = xmlFile:getValue(XMLTAG..".settings.maxContractsPerFarm", SettingsManager.defaultConfig.maxContractsPerFarm)
+        settingsObject.maxContractsPerType = xmlFile:getValue(XMLTAG..".settings.maxContractsPerType", SettingsManager.defaultConfig.maxContractsPerType)
+        settingsObject.maxContractsOverall = xmlFile:getValue(XMLTAG..".settings.maxContractsOverall", SettingsManager.defaultConfig.maxContractsOverall)
 
         -- loop through the mission types to pull the customRewards
         settingsObject.customRewards = {}
@@ -226,23 +227,23 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
 
         -- ensure that values are within limits for numerical values
         if settingsObject.rewardFactor < 0.1 or settingsObject.rewardFactor > 5.0 then
-            Logging.info('ContractBoost:LOAD :: user configured rewardFactor (%s) outside of limits, reset to default.', settingsObject.rewardFactor)
-            settingsObject.rewardFactor = self.defaultConfig.rewardFactor
+            Logging.info(MOD_NAME..'LOAD :: user configured rewardFactor (%s) outside of limits, reset to default.', settingsObject.rewardFactor)
+            settingsObject.rewardFactor = SettingsManager.defaultConfig.rewardFactor
         end
 
         if settingsObject.maxContractsPerFarm < 1 or settingsObject.maxContractsPerFarm > 100 then
-            Logging.info('ContractBoost:LOAD :: user configured maxContractsPerFarm (%s) outside of limits, reset to default.', settingsObject.maxContractsPerFarm)
-            settingsObject.maxContractsPerFarm = self.defaultConfig.maxContractsPerFarm
+            Logging.info(MOD_NAME..'LOAD :: user configured maxContractsPerFarm (%s) outside of limits, reset to default.', settingsObject.maxContractsPerFarm)
+            settingsObject.maxContractsPerFarm = SettingsManager.defaultConfig.maxContractsPerFarm
         end
 
         if settingsObject.maxContractsPerType < 1 or settingsObject.maxContractsPerType > 20 then
-            Logging.info('ContractBoost:LOAD :: user configured maxContractsPerType (%s) outside of limits, reset to default.', settingsObject.maxContractsPerType)
-            settingsObject.maxContractsPerType = self.defaultConfig.maxContractsPerType
+            Logging.info(MOD_NAME..'LOAD :: user configured maxContractsPerType (%s) outside of limits, reset to default.', settingsObject.maxContractsPerType)
+            settingsObject.maxContractsPerType = SettingsManager.defaultConfig.maxContractsPerType
         end
 
         if settingsObject.maxContractsOverall < 1 or settingsObject.maxContractsOverall > 100 then
-            Logging.info('ContractBoost:LOAD :: user configured maxContractsOverall (%d) outside of limits, reset to default.', settingsObject.maxContractsOverall)
-            settingsObject.maxContractsOverall = self.defaultConfig.maxContractsOverall
+            Logging.info(MOD_NAME..'LOAD :: user configured maxContractsOverall (%d) outside of limits, reset to default.', settingsObject.maxContractsOverall)
+            settingsObject.maxContractsOverall = SettingsManager.defaultConfig.maxContractsOverall
         end
 
         local missionTypesCalculatedPerItem = {
@@ -257,12 +258,12 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
         for propName, value in settingsObject.customRewards do
             if value ~= nil and value % 50 ~= 0 and missionTypesCalculatedPerItem[propName] then
                 -- Round to steps of 50
-                settingsObject.customRewards[propName] = math.ceil(value / 50) * 50
-                Logging.info('ContractBoost:LOAD :: Rounded property customRewards.%s from %d to %d', propName, value, settingsObject.customRewards[propName])
-            elseif value ~= nil and value % 100 ~= 0 then
+                settingsObject.customRewards[propName] = math.round(value / 50) * 50
+                Logging.info(MOD_NAME..'LOAD :: Rounded property customRewards.%s from %d to %d (nearest 50)', propName, value, settingsObject.customRewards[propName])
+            elseif value ~= nil and value % 100 ~= 0 and not missionTypesCalculatedPerItem[propName] then
                 -- Round to steps of 100
-                settingsObject.customRewards[propName] = math.ceil(value / 100) * 100
-                Logging.info('ContractBoost:LOAD :: Rounded property customRewards.%s from %d to %d', propName, value, settingsObject.customRewards[propName])
+                settingsObject.customRewards[propName] = math.round(value / 100) * 100
+                Logging.info(MOD_NAME..'LOAD :: Rounded property customRewards.%s from %d to %d (nearest 100)', propName, value, settingsObject.customRewards[propName])
             end
         end
     end
@@ -280,49 +281,49 @@ end
 function SettingsManager:saveSettings()
     local xmlPath = self:getSavegameXmlFilePath()
     if xmlPath == nil then
-        Logging.warning('ContractBoost:SAVE :: Could not save current settings.') -- another warning has been logged before this
+        Logging.warning(MOD_NAME..'SAVE :: Could not save current settings.') -- another warning has been logged before this
         return
     end
 
-    local currentSettings = g_currentMission.contractBoostSettings
+    local boostSettings = g_currentMission.contractBoostSettings
 
     -- Create an empty XML file in memory
     local xmlFileId = createXMLFile("ContractBoost", xmlPath, XMLTAG)
 
-    setXMLBool(xmlFileId, XMLTAG..".settings.debugMode", currentSettings.debugMode)
+    setXMLBool(xmlFileId, XMLTAG..".settings.debugMode", boostSettings.debugMode)
 
-    setXMLBool(xmlFileId, XMLTAG..".settings.enableContractValueOverrides", currentSettings.enableContractValueOverrides)
-    setXMLBool(xmlFileId, XMLTAG..".settings.enableStrawFromHarvestMissions", currentSettings.enableStrawFromHarvestMissions)
-    setXMLBool(xmlFileId, XMLTAG..".settings.enableSwathingForHarvestMissions", currentSettings.enableSwathingForHarvestMissions)
-    setXMLBool(xmlFileId, XMLTAG..".settings.enableGrassFromMowingMissions", currentSettings.enableGrassFromMowingMissions)
-    setXMLBool(xmlFileId, XMLTAG..".settings.enableHayFromTedderMissions", currentSettings.enableHayFromTedderMissions)
-    setXMLBool(xmlFileId, XMLTAG..".settings.enableStonePickingFromMissions", currentSettings.enableStonePickingFromMissions)
-    setXMLBool(xmlFileId, XMLTAG..".settings.enableFieldworkToolFillItems", currentSettings.enableFieldworkToolFillItems)
-    setXMLBool(xmlFileId, XMLTAG..".settings.enableCollectingBalesFromMissions", currentSettings.enableCollectingBalesFromMissions)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableContractValueOverrides", boostSettings.enableContractValueOverrides)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableStrawFromHarvestMissions", boostSettings.enableStrawFromHarvestMissions)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableSwathingForHarvestMissions", boostSettings.enableSwathingForHarvestMissions)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableGrassFromMowingMissions", boostSettings.enableGrassFromMowingMissions)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableHayFromTedderMissions", boostSettings.enableHayFromTedderMissions)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableStonePickingFromMissions", boostSettings.enableStonePickingFromMissions)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableFieldworkToolFillItems", boostSettings.enableFieldworkToolFillItems)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableCollectingBalesFromMissions", boostSettings.enableCollectingBalesFromMissions)
 
-    setXMLFloat(xmlFileId, XMLTAG..".settings.rewardFactor", currentSettings.rewardFactor)
-    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsPerFarm", currentSettings.maxContractsPerFarm)
-    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsPerType", currentSettings.maxContractsPerType)
-    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsOverall", currentSettings.maxContractsOverall)
+    setXMLFloat(xmlFileId, XMLTAG..".settings.rewardFactor", boostSettings.rewardFactor)
+    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsPerFarm", boostSettings.maxContractsPerFarm)
+    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsPerType", boostSettings.maxContractsPerType)
+    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsOverall", boostSettings.maxContractsOverall)
 
     -- loop through the mission types to pull the customRewards
     for _, missionType in SettingsManager.missionTypes do
-        if currentSettings.customRewards[missionType] ~= nil then
-            setXMLInt(xmlFileId, XMLTAG..".customRewards."..missionType, currentSettings.customRewards[missionType])
+        if boostSettings.customRewards[missionType] ~= nil then
+            setXMLInt(xmlFileId, XMLTAG..".customRewards."..missionType, boostSettings.customRewards[missionType])
         end
     end
 
     -- loop through the mission types to pull the customMaxPerType
     for _, missionType in SettingsManager.missionTypes do
-        if currentSettings.customMaxPerType[missionType] ~= nil then
-            setXMLInt(xmlFileId, XMLTAG..".customMaxPerType."..missionType, currentSettings.customMaxPerType[missionType])
+        if boostSettings.customMaxPerType[missionType] ~= nil then
+            setXMLInt(xmlFileId, XMLTAG..".customMaxPerType."..missionType, boostSettings.customMaxPerType[missionType])
         end
     end
 
     -- Write the XML file to disk
     saveXMLFile(xmlFileId)
 
-    Logging.info('ContractBoost:SAVE :: saved config to savegame: %s', xmlPath)
+    Logging.info(MOD_NAME..'SAVE :: saved config to savegame: %s', xmlPath)
 end
 
 

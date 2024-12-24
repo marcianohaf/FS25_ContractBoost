@@ -7,14 +7,13 @@ local Settings_mt = Class(Settings)
 ---@return table @The new instance
 function Settings.new()
     local self = setmetatable({}, Settings_mt)
-    self.settings = {}
     return self
 end
 
 ---Stores the setting into the local opbject
 ---@param settingName string @The name of the setting, in dot notation for nested settings
 ---@param newState string|number|boolean @The new value
----@param settingName string @The name of the setting, in dot notation for nested settings
+---@param settingParent string @The name of the setting, in dot notation for nested settings
 function Settings:onSettingChanged(settingName, newState, settingParent)
     if settingParent then
         self[settingParent][settingName] = newState

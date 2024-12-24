@@ -113,13 +113,13 @@ function MissionTools:getIsMissionWorkAllowed(superFunc, farmId, x, z, workAreaT
         local missionType = mission.type.name
     
         -- if ContractBoost.debug then 
-        --     printf('-- ContractBoost:MissionTools :: missionType: %s | workAreaType: %s', missionType, workAreaType)
+        --     printf(MOD_NAME..':MissionTools :: missionType: %s | workAreaType: %s', missionType, workAreaType)
         -- end
 
         local additionalWorkAreaTypes = MissionTools.additionalAllowedVehicles[missionType] or {}
         
         -- if ContractBoost.debug then
-        --     print('-- ContractBoost:MissionTools :: additionalAllowedVehicles')
+        --     print(MOD_NAME..':MissionTools :: additionalAllowedVehicles')
         --     DebugUtil.printTableRecursively(additionalWorkAreaTypes)
         -- end
 
@@ -147,7 +147,7 @@ function MissionTools.addBale(self, superFunc, bale)
 
     -- one last check that we have a bale, and change the owner.
     if bale ~= nil then
-        if ContractBoost.debug then printf('-- ContractBoost:MissionTools :: addBale changeOwner %s', g_localPlayer.farmId) end
+        if ContractBoost.debug then printf(MOD_NAME..':MissionTools :: addBale changeOwner %s', g_localPlayer.farmId) end
         bale:setOwnerFarmId(g_localPlayer.farmId)
     end
  end

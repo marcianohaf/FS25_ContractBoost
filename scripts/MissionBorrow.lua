@@ -23,7 +23,7 @@ function MissionBorrow:onSpawnedVehicle(superFunc, vehicle, ...)
         local configNameClean = vehicle[1].configFileNameClean
 
         if ContractBoost.debug then
-            printf('-- ContractBoost:MissionBorrow :: onSpawnedVehicle %s | isPallet %s', vehicle[1].configFileNameClean, MissionBorrow.pallets[configNameClean] and "yes" or "no")
+            printf(MOD_NAME..':MissionBorrow :: onSpawnedVehicle %s | isPallet %s', vehicle[1].configFileNameClean, MissionBorrow.pallets[configNameClean] and "yes" or "no")
         end
 
         if MissionBorrow.pallets[configNameClean] then
@@ -38,7 +38,7 @@ end
 
 -- Adds fill items to the mission tools for each type of mission where needed.
 function MissionBorrow:addFillItemsToMissionTools()
-    if ContractBoost.debug then print('-- ContractBoost:MissionBorrow :: fillMissionTools') end
+    if ContractBoost.debug then print(MOD_NAME..':MissionBorrow :: fillMissionTools') end
 
     if MissionBorrow.fillItemsAdded then
         return
@@ -111,5 +111,5 @@ function MissionBorrow:addFillItemsToMissionTools()
     -- prevent from being added again
     MissionBorrow.fillItemsAdded = true
 
-    if ContractBoost.debug then print('-- ContractBoost:MissionBorrow :: fillMissionTools complete') end
+    if ContractBoost.debug then print(MOD_NAME..':MissionBorrow :: fillMissionTools complete') end
 end

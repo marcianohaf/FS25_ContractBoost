@@ -13,12 +13,11 @@ MOD_NAME = g_currentModName or "unknown"
 
 ---Initializes Contract Boost!
 function ContractBoost:init()
-    if ContractBoost.debug then Logging.info('-- ContractBoost:ContractBoost :: init.') end
+    if ContractBoost.debug then Logging.info(MOD_NAME..' :: INIT.') end
 
     -- Load the config from xml
-    -- ContractBoost.settings = SettingsManager.new()
-    -- g_currentMission.contractBoostSettings = ContractBoost.settings:initializeSettings()
-    SettingsManager:restoreSettings()
+    ContractBoost.settings = SettingsManager.new()
+    ContractBoost.settings:restoreSettings()
     ContractBoost.debug = g_currentMission.contractBoostSettings.debugMode
 
     -- Setup the UIHelper & settings
@@ -27,13 +26,13 @@ function ContractBoost:init()
 
     ContractBoost.initializeListeners()
 
-    Logging.info('ContractBoost :: loaded. debug: %s', ContractBoost.debug and "on" or "off")
+    Logging.info(MOD_NAME..' :: LOADED. debug: %s', ContractBoost.debug and "on" or "off")
 end
 
 
 ---Activates individual settings across the mod.
 function ContractBoost:activateSettings()
-    if ContractBoost.debug then Logging.info('ContractBoost :: activateSettings') end
+    if ContractBoost.debug then Logging.info(MOD_NAME..' :: activateSettings') end
 
     -- MissionBalance: on map load apply new mission settings
     if g_currentMission.contractBoostSettings.enableContractValueOverrides then
@@ -49,7 +48,7 @@ function ContractBoost:activateSettings()
     -- MissionTools: setup to allow more tools based on settings.
     MissionTools:setupAdditionalAllowedVehicles()
 
-    if ContractBoost.debug then Logging.info('ContractBoost :: activateSettings complete.') end
+    if ContractBoost.debug then Logging.info(MOD_NAME..' :: activateSettings complete.') end
 end
 
 
