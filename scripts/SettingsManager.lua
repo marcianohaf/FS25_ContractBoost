@@ -97,8 +97,8 @@ function SettingsManager:restoreSettings()
     -- pull the settings from memory if needed
     local settings = g_currentMission.contractBoostSettings
     if settings == nil or savegameSettingsFile == nil then
-        Logging.warning(MOD_NAME .. ": Could not read settings since g_currentMission.unloadBalesEarlySettings is nil")
-        return
+        Logging.warning(MOD_NAME .. ": Could not read settings since g_currentMission.contractBoostSettings or savegameSettingsFile")
+        -- return
     end
 
     -- Default is to load from the savegameSettingsFile
