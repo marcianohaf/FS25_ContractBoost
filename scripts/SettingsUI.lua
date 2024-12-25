@@ -160,6 +160,9 @@ function SettingsUI:onSettingsChange(control)
     -- Grab the setting and new value from the UI element
     local setting = control.elements[1]
     local subTable = setting.parent.subTable or nil
+    local newValue = setting.texts[setting.state]
+
+    Settings:onSettingChanged(setting, newValue, subTable)
 
     local settingsRequiringActivation = {
         enableStrawFromHarvestMissions = true,
@@ -210,6 +213,11 @@ function SettingsUI:updateUiElements(skipAutoBindControls)
             control:setDisabled(not self.loadedConfig.enableContractValueOverrides)
         end
     end
+
+    local isAdmin = g_currentMission:getIsServer() or g_currentMission.isMasterUser
+	for _, control in ipairs(self.controls) do
+		control:setDisabled(not isAdmin)
+	end
 
     -- Update the focus manager
     local settingsPage = g_gui.screenControllers[InGameMenu].pageSettings

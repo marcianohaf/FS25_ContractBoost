@@ -71,7 +71,7 @@ function SettingsManager.new()
     self.modSettingsConfigFile = "modSettings/`xml"
     self.savegameConfigFile = MOD_NAME..".xml"
 
-    if self.loadDebug then Logging.info(MOD_NAME..":Manager initialized") end
+    if self.loadDebug then Logging.info(MOD_NAME..":MANAGER initialized") end
 
     return self
 end
@@ -79,10 +79,10 @@ end
 
 --- Load the user's configuration file from either the savegame or modSettingsFile
 function SettingsManager:restoreSettings()
-    if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: read user configurations") end
-
     -- setup the xml schema
     self:initXmlSchema()
+
+    if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: read user configurations") end
 
     -- don't load it twice if the config is already loaded.
     if self.loadComplete then
@@ -98,63 +98,42 @@ function SettingsManager:restoreSettings()
     local settings = g_currentMission.contractBoostSettings
     if settings == nil or savegameSettingsFile == nil then
         Logging.warning(MOD_NAME .. ": Could not read settings since g_currentMission.contractBoostSettings or savegameSettingsFile")
-        -- return
+    end
+
+    -- if we're a client and the settings have already been loaded, don't load again.
+    if not g_currentMission:getIsServer() then
+        Logging.warning(MOD_NAME .. ": isCLIENT, using server settings")
+        settings:publishNewSettings()
+        SettingsManager.logBoostSettings(settings, 1)
+        return
     end
 
     -- Default is to load from the savegameSettingsFile
     if savegameSettingsFile and fileExists(savegameSettingsFile) then
-        
         self:importConfig(savegameSettingsFile, settings)
         Logging.info(MOD_NAME..":LOAD :: SAVEGAME configuration from: %s", savegameSettingsFile)
-    
+
     -- If they loaded a previous version, they may have modSettings file
     elseif modSettingsFile and fileExists(modSettingsFile) then
-
         self:importConfig(modSettingsFile, settings)
         Logging.info(MOD_NAME..":LOAD :: MODSETTINGS configuration from: %s", modSettingsFile)
 
-    else
-        settings = SettingsManager.defaultConfig
-        Logging.info(MOD_NAME..":LOAD: DEFAULT configuration used")
     end
 
-    Logging.info(MOD_NAME..":LOAD: debug mode: %s", g_currentMission.contractBoostSettings.debugMode and "true" or "false")
-
-    function logBoostSettings(t, indent)
-        -- sort the table
-        local tkeys = {}
-        for k in pairs(t) do table.insert(tkeys, k) end
-        table.sort(tkeys)
-
-        -- print the table out
-        local v = ""
-        local key = ""
-        for _, k in ipairs(tkeys) do
-            v = t[k]
-            key = string.rep("   ", indent) .. tostring(k)
-            if type(v) == "table" then
-                Logging.info(key .. ": ")
-                logBoostSettings(v, indent + 1)
-            else
-                Logging.info(key .. " :: " .. tostring(v))
-            end
-        end
-    end
-
-    Logging.info(MOD_NAME..'LOAD :: config loaded')
-    logBoostSettings(settings, 1)
+    Logging.info(MOD_NAME..":LOAD :: debug mode: %s", settings.debugMode and "true" or "false")
+    Logging.info(MOD_NAME..':LOAD :: loaded configuration:')
+    SettingsManager.logBoostSettings(settings, 1)
 
     -- make sure we don't load it twice
-    self.userConfigLoaded = true
-    
-    -- store the config just in case.
-    self.loadedConfig = settings
+    self.loadComplete = true
+    g_currentMission.contractBoostSettings = settings  -- is this needed?
+    Logging.info(MOD_NAME..':LOAD complete.')
 end
 
 
 --- Initiaze the XML file configuration
 function SettingsManager:initXmlSchema()
-    if self.loadDebug then Logging.info(MOD_NAME..":LOAD ::  init xml schema") end
+    if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: init xml schema") end
 
     self.xmlSchema = XMLSchema.new(XMLTAG)
 
@@ -182,7 +161,7 @@ function SettingsManager:initXmlSchema()
         self.xmlSchema:register(XMLValueType.INT, XMLTAG..".customMaxPerType."..missionType, "custom maxPerType for "..missionType, nil)
     end
 
-    if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: xml complete") end
+    if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: init xml complete") end
 end
 
 
@@ -195,6 +174,11 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
     if SettingsManager.loadDebug then
         Logging.info(MOD_NAME..":LOAD :: loaded file: %s", xmlFilename)
     end
+
+    -- if self.loadDebug then
+    --     print('-- ContractBoost:SettingsManager :: settingsObject')
+    --     DebugUtil.printTableRecursively(settingsObject)
+    -- end
 
     if xmlFile ~= 0 then
         settingsObject.debugMode = xmlFile:getValue(XMLTAG..".settings.debugMode", SettingsManager.defaultConfig.debugMode)
@@ -270,10 +254,30 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
 
     xmlFile:delete()
 
-    -- if self.loadDebug then
-    --     print('-- ContractBoost:SettingsManager :: settingsObject')
-    --     DebugUtil.printTableRecursively(settingsObject)
-    -- end
+    
+end
+
+--- Initiaze the a specified xmlFilename as a config
+---@param settingsObject table
+function SettingsManager:useDefaultConfig(settingsObject)
+    settingsObject.debugMode = SettingsManager.defaultConfig.debugMode
+
+    settingsObject.enableContractValueOverrides = SettingsManager.defaultConfig.enableContractValueOverrides
+    settingsObject.enableStrawFromHarvestMissions = SettingsManager.defaultConfig.enableStrawFromHarvestMissions
+    settingsObject.enableSwathingForHarvestMissions = SettingsManager.defaultConfig.enableSwathingForHarvestMissions
+    settingsObject.enableGrassFromMowingMissions = SettingsManager.defaultConfig.enableGrassFromMowingMissions
+    settingsObject.enableHayFromTedderMissions = SettingsManager.defaultConfig.enableHayFromTedderMissions
+    settingsObject.enableStonePickingFromMissions = SettingsManager.defaultConfig.enableStonePickingFromMissions
+    settingsObject.enableFieldworkToolFillItems = SettingsManager.defaultConfig.enableFieldworkToolFillItems
+    settingsObject.enableCollectingBalesFromMissions = SettingsManager.defaultConfig.enableCollectingBalesFromMissions
+
+    settingsObject.rewardFactor = SettingsManager.defaultConfig.rewardFactor
+    settingsObject.maxContractsPerFarm = SettingsManager.defaultConfig.maxContractsPerFarm
+    settingsObject.maxContractsPerType = SettingsManager.defaultConfig.maxContractsPerType
+    settingsObject.maxContractsOverall = SettingsManager.defaultConfig.maxContractsOverall
+
+    settingsObject.customRewards = {}
+    settingsObject.customMaxPerType = {}
 end
 
 
@@ -347,4 +351,27 @@ function SettingsManager.getSavegameXmlFilePath()
         Logging.warning(MOD_NAME .. ": Could not get path to Contract Boost xml settings file since g_currentMission.missionInfo is nil.")
     end
     return nil
+end
+
+
+---Sorts and prints out the current settings to the log.
+function SettingsManager.logBoostSettings(t, indent)
+    -- sort the table
+    local tkeys = {}
+    for k in pairs(t) do table.insert(tkeys, k) end
+    table.sort(tkeys)
+
+    -- print the table out
+    local v = ""
+    local key = ""
+    for _, k in ipairs(tkeys) do
+        v = t[k]
+        key = string.rep("   ", indent) .. tostring(k)
+        if type(v) == "table" then
+            Logging.info(key .. ": ")
+            SettingsManager.logBoostSettings(v, indent + 1)
+        else
+            Logging.info(key .. " :: " .. tostring(v))
+        end
+    end
 end

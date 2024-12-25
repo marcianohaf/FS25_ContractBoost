@@ -30,7 +30,6 @@ WorkAreaTypes = {
     WINDROWER = 23,
     DEFAULT = 24,
     AUXILIARY = 25,
-    BALEWRAPPER = 26,
 }
 
 MissionTools = {}
@@ -44,7 +43,7 @@ function MissionTools:setupAdditionalAllowedVehicles()
             [WorkAreaTypes.FORAGEWAGON] = true,
             [WorkAreaTypes.BALER] = true,
             [WorkAreaTypes.WINDROWER] = true,
-            [WorkAreaTypes.WEEDER] = true,
+            [WorkAreaTypes.WEEDER] = true
         }
     end
 
@@ -62,20 +61,19 @@ function MissionTools:setupAdditionalAllowedVehicles()
             [WorkAreaTypes.FORAGEWAGON] = true,
             [WorkAreaTypes.BALER] = true,
             [WorkAreaTypes.WINDROWER] = true,
-            [WorkAreaTypes.TEDDER] = true,
-            [WorkAreaTypes.BALEWRAPPER] = true,
+            [WorkAreaTypes.TEDDER] = true
         }
     end
 
     if g_currentMission.contractBoostSettings.enableStonePickingFromMissions then
         MissionTools.additionalAllowedVehicles.plowMission = {
-            [WorkAreaTypes.STONEPICKER] = true,
+            [WorkAreaTypes.STONEPICKER] = true
         }
         MissionTools.additionalAllowedVehicles.cultivateMission = {
-            [WorkAreaTypes.STONEPICKER] = true,
+            [WorkAreaTypes.STONEPICKER] = true
         }
         MissionTools.additionalAllowedVehicles.sowMission = {
-            [WorkAreaTypes.STONEPICKER] = true,
+            [WorkAreaTypes.STONEPICKER] = true
         }
     end
 
@@ -83,7 +81,7 @@ function MissionTools:setupAdditionalAllowedVehicles()
         MissionTools.additionalAllowedVehicles.tedderMission = {
             [WorkAreaTypes.FORAGEWAGON] = true,
             [WorkAreaTypes.BALER] = true,
-            [WorkAreaTypes.WINDROWER] = true,
+            [WorkAreaTypes.WINDROWER] = true
         }
     end
 
@@ -117,11 +115,6 @@ function MissionTools:getIsMissionWorkAllowed(superFunc, farmId, x, z, workAreaT
         -- end
 
         local additionalWorkAreaTypes = MissionTools.additionalAllowedVehicles[missionType] or {}
-        
-        -- if ContractBoost.debug then
-        --     print(MOD_NAME..':MissionTools :: additionalAllowedVehicles')
-        --     DebugUtil.printTableRecursively(additionalWorkAreaTypes)
-        -- end
 
         if (
             workAreaType == nil
@@ -147,7 +140,7 @@ function MissionTools.addBale(self, superFunc, bale)
 
     -- one last check that we have a bale, and change the owner.
     if bale ~= nil then
-        if ContractBoost.debug then printf(MOD_NAME..':MissionTools :: addBale changeOwner %s', g_localPlayer.farmId) end
+        if ContractBoost.debug then Logging.info(MOD_NAME..':TOOLS :: addBale changeOwner %s', g_localPlayer.farmId) end
         bale:setOwnerFarmId(g_localPlayer.farmId)
     end
  end

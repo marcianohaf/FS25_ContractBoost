@@ -7,14 +7,31 @@ local Settings_mt = Class(Settings)
 ---@return table @The new instance
 function Settings.new()
     local self = setmetatable({}, Settings_mt)
+    self.debugMode = SettingsManager.defaultConfig.debugMode
+    self.rewardFactor = SettingsManager.defaultConfig.rewardFactor
+    self.maxContractsPerFarm = SettingsManager.defaultConfig.maxContractsPerFarm
+    self.maxContractsPerType = SettingsManager.defaultConfig.maxContractsPerType
+    self.maxContractsOverall = SettingsManager.defaultConfig.maxContractsOverall
+    self.enableContractValueOverrides = SettingsManager.defaultConfig.enableContractValueOverrides
+    self.enableStrawFromHarvestMissions = SettingsManager.defaultConfig.enableStrawFromHarvestMissions
+    self.enableSwathingForHarvestMissions = SettingsManager.defaultConfig.enableSwathingForHarvestMissions
+    self.enableGrassFromMowingMissions = SettingsManager.defaultConfig.enableGrassFromMowingMissions
+    self.enableHayFromTedderMissions = SettingsManager.defaultConfig.enableHayFromTedderMissions
+    self.enableStonePickingFromMissions = SettingsManager.defaultConfig.enableStonePickingFromMissions
+    self.enableFieldworkToolFillItems = SettingsManager.defaultConfig.enableFieldworkToolFillItems
+    self.enableCollectingBalesFromMissions = SettingsManager.defaultConfig.enableCollectingBalesFromMissions
+    self.customRewards = SettingsManager.defaultConfig.customRewards
+    self.customMaxPerType = SettingsManager.defaultConfig.customMaxPerType
+    Logging.info(MOD_NAME .. ":SETTINGS :: initialized")
     return self
 end
 
 ---Stores the setting into the local opbject
 ---@param settingName string @The name of the setting, in dot notation for nested settings
 ---@param newState string|number|boolean @The new value
----@param settingParent string @The name of the setting, in dot notation for nested settings
+---@param settingParent string|nil @The name of the setting, in dot notation for nested settings
 function Settings:onSettingChanged(settingName, newState, settingParent)
+    Logging.info(MOD_NAME .. ":SETTINGS :: settingChanged %s %s %s", settingName, newState, settingParent)
     if settingParent then
         self[settingParent][settingName] = newState
     else
@@ -44,9 +61,11 @@ end
 ---Publishes new settings in case of multiplayer
 function Settings:publishNewSettings()
     if g_server ~= nil then
+        Logging.info(MOD_NAME .. ":SETTINGS.publishNewSettings SERVER")
         -- Broadcast to other clients, if any are connected
         g_server:broadcastEvent(SettingsChangeEvent.new())
     else
+        Logging.info(MOD_NAME .. ":SETTINGS.publishNewSettings CLIENT")
         -- Ask the server to broadcast the event
         g_client:getServerConnection():sendEvent(SettingsChangeEvent.new())
     end
@@ -56,7 +75,7 @@ end
 ---@param streamId any @The ID of the stream to read from
 ---@param connection any @Unused
 function Settings:onReadStream(streamId, connection)
-    Logging.info(MOD_NAME .. ": Receiving new settings", streamId)
+    Logging.info(MOD_NAME .. ":SETTINGS :: Receiving new settings", streamId)
 
     self.debugMode = streamReadBool(streamId)
     self.enableContractValueOverrides = streamReadBool(streamId)
@@ -91,7 +110,7 @@ function Settings:onReadStream(streamId, connection)
         end
     end
 
-    Logging.info(MOD_NAME .. ": Completed recieving new settings", streamId)
+    Logging.info(MOD_NAME .. ":SETTINGS :: Completed recieving new settings", streamId)
     DebugUtil.printTableRecursively(self)
 end
 
@@ -99,7 +118,7 @@ end
 ---@param streamId any @The ID of the stream to write to
 ---@param connection any @Unused
 function Settings:onWriteStream(streamId, connection)
-    Logging.info(MOD_NAME .. ": Sending new settings", streamId)
+    Logging.info(MOD_NAME .. ":SETTINGS :: Sending new settings", streamId)
     --streamWriteInt8(streamId, self.settings)
 
     streamWriteBool(streamId, self.debugMode)
@@ -129,5 +148,5 @@ function Settings:onWriteStream(streamId, connection)
         end
     end
 
-    Logging.info(MOD_NAME .. ": Completed sending new settings", streamId)
+    Logging.info(MOD_NAME .. ":SETTINGS :: Completed sending new settings", streamId)
 end

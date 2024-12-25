@@ -20,13 +20,18 @@ function ContractBoost:init()
     ContractBoost.settings:restoreSettings()
     ContractBoost.debug = g_currentMission.contractBoostSettings.debugMode
 
+    -- print('---- ContractBoost:SettingsManager :: g_currentMission.contractBoostSettings')
+    -- DebugUtil.printTableRecursively(g_currentMission.contractBoostSettings)
+
+    Logging.info(MOD_NAME..' :: LOADED. debug: %s', ContractBoost.debug and "on" or "off")
+
     -- Setup the UIHelper & settings
     ContractBoost.uiSettings = SettingsUI.new()
     ContractBoost.uiSettings:injectUiSettings(g_currentMission.contractBoostSettings)
-
+    
     ContractBoost.initializeListeners()
 
-    Logging.info(MOD_NAME..' :: LOADED. debug: %s', ContractBoost.debug and "on" or "off")
+    Logging.info(MOD_NAME..' :: INIT complete')
 end
 
 

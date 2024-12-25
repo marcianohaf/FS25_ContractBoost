@@ -1,4 +1,4 @@
--- ContractBoost:MissionBalance
+-- ContractBoost:BALANCE
 -- @author GMNGjoy
 -- @copyright 12/16/2024
 -- @contact https://github.com/GMNGjoy/FS25_ContractBoost
@@ -14,13 +14,13 @@ function MissionBalance:setMissionSettings()
     MissionManager.MAX_MISSIONS_PER_FARM = g_currentMission.contractBoostSettings.maxContractsPerFarm
     MissionManager.MISSION_GENERATION_INTERVAL = 180000 --360000
 
-    if ContractBoost.debug then print(MOD_NAME..':MissionBalance :: settings updated.') end
+    if ContractBoost.debug then print(MOD_NAME..':BALANCE :: settings updated.') end
 end
 
 
 -- AbstractMission.getDetails(self, details)
 function MissionBalance:getDetails(superFunc)
-    -- if ContractBoost.debug then print(MOD_NAME..':MissionBalance :: getDetails') end
+    -- if ContractBoost.debug then print(MOD_NAME..':BALANCE :: getDetails') end
     
     -- Load the default details from AbstractMission
     local details = superFunc(self)
@@ -49,7 +49,7 @@ function MissionBalance:scaleMissionReward()
 
     -- assume giants can't store floating point numbers.
     rewardFactor = math.ceil(rewardFactor * 10) / 10
-    if ContractBoost.debug then printf(MOD_NAME..':MissionBalance :: scaleMissionReward:%s', rewardFactor) end
+    if ContractBoost.debug then printf(MOD_NAME..':BALANCE :: scaleMissionReward:%s', rewardFactor) end
 
     if #g_missionManager.missionTypes ~= 0 then
         for _, missionType in ipairs(g_missionManager.missionTypes) do
@@ -59,7 +59,7 @@ function MissionBalance:scaleMissionReward()
             local newValue = nil
 
             -- if ContractBoost.debug then
-            --     printf(MOD_NAME..':MissionBalance :: %s data', typeName)
+            --     printf(MOD_NAME..':BALANCE :: %s data', typeName)
             --     DebugUtil.printTableRecursively(missionType.data)
             -- end
 
@@ -91,16 +91,16 @@ function MissionBalance:scaleMissionReward()
 
             if newValue == prevValue and newValue == nil then
                 if ContractBoost.debug then 
-                    printf(MOD_NAME..':MissionBalance :: Mission %s: %s | skipped, not found on map', missionType.typeId, missionType.name)
+                    printf(MOD_NAME..':BALANCE :: Mission %s: %s | skipped, not found on map', missionType.typeId, missionType.name)
                 end
             else
                 MissionBalance.boosted[missionType.typeId] = ((newValue / prevValue) * 100) - 100
                 if ContractBoost.debug then 
-                    printf(MOD_NAME..':MissionBalance :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue)
+                    printf(MOD_NAME..':BALANCE :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue)
                 end
             end
         end
 
-        if ContractBoost.debug then print(MOD_NAME..':MissionBalance :: scaleMissionReward complete.') end
+        if ContractBoost.debug then print(MOD_NAME..':BALANCE :: scaleMissionReward complete.') end
     end
 end
