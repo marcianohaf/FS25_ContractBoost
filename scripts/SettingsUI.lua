@@ -155,40 +155,16 @@ end
 
 function SettingsUI:onSettingsChange(control)
     self:updateUiElements()
-    -- TODO: Multiplayer synchronization
 
     -- Grab the setting and new value from the UI element
     local setting = control.elements[1]
     local subTable = setting.parent.subTable or nil
-    local newValue = setting.texts[setting.state]
+    -- local newValue = setting.texts[setting.state]
 
-    Settings:onSettingChanged(setting, newValue, subTable)
+    Logging.info(MOD_NAME .. ':SETTINGSUI  %s', control.subTable or nil)
 
-    local settingsRequiringActivation = {
-        enableStrawFromHarvestMissions = true,
-        enableSwathingForHarvestMissions = true,
-        enableGrassFromMowingMissions = true,
-        enableStonePickingFromMissions = true,
-        enableHayFromTedderMissions = true,
-        enableFieldworkToolFillItems = true,
-    }
-    local settingsRequiringScaleReward = {
-        maxContractsOverall = true,
-        maxContractsPerFarm = true,
-        maxContractsPerType = true,
-        rewardFactor = true,
-    }
-    if settingsRequiringActivation[control.name] then
-        if ContractBoost.debug then
-            printf('-- ContractBoost:SettingsUI :: calling activateSettings with setting: %s', control.name)
-        end
-        ContractBoost:activateSettings()
-    elseif subTable ~= nil or settingsRequiringScaleReward[control.name] then
-        if ContractBoost.debug then
-            printf('-- ContractBoost:SettingsUI :: calling scaleMissionReward with setting: %s', control.name)
-        end
-        MissionBalance:scaleMissionReward()
-    end
+    -- publish the settings change to the object, which publishes to the server.
+    g_currentMission.contractBoostSettings:onSettingsChange(control.name, subTable)
 end
 
 ---Updates the UI elements to reflect the current settings

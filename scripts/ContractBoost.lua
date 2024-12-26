@@ -36,8 +36,8 @@ end
 
 
 ---Activates individual settings across the mod.
-function ContractBoost:activateSettings()
-    if ContractBoost.debug then Logging.info(MOD_NAME..' :: activateSettings') end
+function ContractBoost:syncSettings()
+    if ContractBoost.debug then Logging.info(MOD_NAME..' :: syncSettings') end
 
     -- MissionBalance: on map load apply new mission settings
     if g_currentMission.contractBoostSettings.enableContractValueOverrides then
@@ -53,14 +53,14 @@ function ContractBoost:activateSettings()
     -- MissionTools: setup to allow more tools based on settings.
     MissionTools:setupAdditionalAllowedVehicles()
 
-    if ContractBoost.debug then Logging.info(MOD_NAME..' :: activateSettings complete.') end
+    if ContractBoost.debug then Logging.info(MOD_NAME..' :: syncSettings complete.') end
 end
 
 
 ---Initializes all the listeners that will be used to integrate the settings with gameplay
 function ContractBoost.initializeListeners()
     -- Setup function overrides
-    MissionManager.loadMapData = Utils.appendedFunction(MissionManager.loadMapData, ContractBoost.activateSettings)
+    MissionManager.loadMapData = Utils.appendedFunction(MissionManager.loadMapData, ContractBoost.syncSettings)
     MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed, MissionTools.getIsMissionWorkAllowed)
 
     -- Enable extra fieldwork fill items to be added to contract items

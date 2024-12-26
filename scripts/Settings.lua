@@ -22,33 +22,34 @@ function Settings.new()
     self.enableCollectingBalesFromMissions = SettingsManager.defaultConfig.enableCollectingBalesFromMissions
     self.customRewards = SettingsManager.defaultConfig.customRewards
     self.customMaxPerType = SettingsManager.defaultConfig.customMaxPerType
+
+    self:initializeListeners()
+
     Logging.info(MOD_NAME .. ":SETTINGS :: initialized")
     return self
 end
 
 ---Stores the setting into the local opbject
 ---@param settingName string @The name of the setting, in dot notation for nested settings
----@param newState string|number|boolean @The new value
 ---@param settingParent string|nil @The name of the setting, in dot notation for nested settings
-function Settings:onSettingChanged(settingName, newState, settingParent)
-    Logging.info(MOD_NAME .. ":SETTINGS :: settingChanged %s %s %s", settingName, newState, settingParent)
-    if settingParent then
-        self[settingParent][settingName] = newState
-    else
-        self[settingName] = newState
-    end
+function Settings:onSettingsChange(settingName,settingParent)
+    local name = self:cleanSettingName(settingName, settingParent)
+    if self.debugMode then Logging.info(MOD_NAME .. ":SETTINGS :: settingChanged %s%s", settingParent and settingParent..".", name) end
     self:publishNewSettings()
+    ContractBoost:syncSettings()
 end
 
 ---Retrieves the stored setting by name
 ---@param settingName string @The name of the setting
----@param settingParent string @The name of the parent of the setting
----@return string|boolean @The current index
+---@param settingParent string|nil @The name of the parent of the setting
+---@return string|boolean @The current value of the requested setting
 function Settings:getSetting(settingName, settingParent)
+    local name = self:cleanSettingName(settingName, settingParent)
+    if self.debugMode then Logging.info(MOD_NAME .. ":SETTINGS :: settingChanged %s%s", settingParent and settingParent..".", name) end
     if settingParent then
-        return self[settingParent][settingName]
+        return self[settingParent][name]
     else
-        return self[settingName]
+        return self[name]
     end
 end
 
@@ -58,24 +59,38 @@ function Settings:getSettings()
     return self
 end
 
+---Retrieves the all settings at once
+---@return table @The current index
+function Settings:cleanSettingName(settingName, settingParent)
+    local name = settingName
+    if settingParent == 'customRewards' then
+        name = name:gsub('%Reward', '')
+    elseif settingParent == 'customMaxPerType' then
+        name = name:gsub('%MaxPerType', '')
+    end
+
+    return name
+end
+
 ---Publishes new settings in case of multiplayer
 function Settings:publishNewSettings()
     if g_server ~= nil then
-        Logging.info(MOD_NAME .. ":SETTINGS.publishNewSettings SERVER")
+        if self.debugMode then Logging.info(MOD_NAME .. ":SETTINGS.publishNewSettings SERVER") end
         -- Broadcast to other clients, if any are connected
         g_server:broadcastEvent(SettingsChangeEvent.new())
     else
-        Logging.info(MOD_NAME .. ":SETTINGS.publishNewSettings CLIENT")
+        if self.debugMode then Logging.info(MOD_NAME .. ":SETTINGS.publishNewSettings CLIENT") end
         -- Ask the server to broadcast the event
         g_client:getServerConnection():sendEvent(SettingsChangeEvent.new())
     end
 end
 
+
 ---Recevies the initial settings from the server when joining a multiplayer game
 ---@param streamId any @The ID of the stream to read from
 ---@param connection any @Unused
 function Settings:onReadStream(streamId, connection)
-    Logging.info(MOD_NAME .. ":SETTINGS :: Receiving new settings", streamId)
+    if self.debugMode then Logging.info(MOD_NAME .. ":SETTINGS :: Receiving new settings", streamId) end
 
     self.debugMode = streamReadBool(streamId)
     self.enableContractValueOverrides = streamReadBool(streamId)
@@ -111,15 +126,17 @@ function Settings:onReadStream(streamId, connection)
     end
 
     Logging.info(MOD_NAME .. ":SETTINGS :: Completed recieving new settings", streamId)
-    DebugUtil.printTableRecursively(self)
+
+    -- ensure that we keep the visual settings up to date
+    ContractBoost:syncSettings()
+
 end
 
 ---Sends the current settings to a client which is connecting to a multiplayer game
 ---@param streamId any @The ID of the stream to write to
 ---@param connection any @Unused
 function Settings:onWriteStream(streamId, connection)
-    Logging.info(MOD_NAME .. ":SETTINGS :: Sending new settings", streamId)
-    --streamWriteInt8(streamId, self.settings)
+    if self.debugMode then Logging.info(MOD_NAME .. ":SETTINGS :: Sending new settings", streamId) end
 
     streamWriteBool(streamId, self.debugMode)
     streamWriteBool(streamId, self.enableContractValueOverrides)
@@ -149,4 +166,18 @@ function Settings:onWriteStream(streamId, connection)
     end
 
     Logging.info(MOD_NAME .. ":SETTINGS :: Completed sending new settings", streamId)
+end
+
+
+function Settings:initializeListeners()
+    if self.debugMode then Logging.info(MOD_NAME .. ":SETTINGS :: initialize read/write listeners") end
+    local settings = self
+
+    Player.readStream = Utils.appendedFunction(Player.readStream, function(player, streamId, connection)
+        settings:onReadStream(streamId, connection)
+    end)
+
+    Player.writeStream = Utils.appendedFunction(Player.writeStream, function(player, streamId, connection)
+        settings:onWriteStream(streamId, connection)
+    end)
 end

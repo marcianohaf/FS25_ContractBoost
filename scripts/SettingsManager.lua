@@ -103,8 +103,6 @@ function SettingsManager:restoreSettings()
     -- if we're a client and the settings have already been loaded, don't load again.
     if not g_currentMission:getIsServer() then
         Logging.warning(MOD_NAME .. ": isCLIENT, using server settings")
-        settings:publishNewSettings()
-        SettingsManager.logBoostSettings(settings, 1)
         return
     end
 
@@ -126,7 +124,7 @@ function SettingsManager:restoreSettings()
 
     -- make sure we don't load it twice
     self.loadComplete = true
-    g_currentMission.contractBoostSettings = settings  -- is this needed?
+    --g_currentMission.contractBoostSettings = settings  -- is this needed?
     Logging.info(MOD_NAME..':LOAD complete.')
 end
 

@@ -153,10 +153,8 @@ function MissionTools.finishBaleField(self, superFunc)
         return
     end
 
-
     -- otherwise call the parent finishField fn bypassing the bale removal
-    local parentClass = BaleMission:superClass()
-    parentClass.finishField(self)
+    BaleMission:superClass().finishField(self)
  end
 
  -- replace the BaleWrapMission.finishField function with our own function that doesn't remove the bales.
@@ -167,8 +165,6 @@ function MissionTools.finishBaleField(self, superFunc)
         return
     end
 
-
     -- otherwise call the parent finishField fn bypassing the bale removal
-    local parentClass = BaleWrapMission:superClass()
-    parentClass.finishField(self)
+    BaleWrapMission:superClass().finishField(self)
  end
