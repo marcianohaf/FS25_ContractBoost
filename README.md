@@ -57,7 +57,7 @@ _Enjoy!_
 ### Changelog 1.0.0.2
 - Added safety check for custom maps that don't contain every type of contract
 
-### Changelog 1.0.3.0
+### Changelog 1.1.0.0 (still in development)
 - User contributed translations: fr, cz, it
 - Allow collecting hay from tedding contracts
 - Allow collecting straw bales from baling contracts
@@ -66,13 +66,14 @@ _Enjoy!_
 - All settings previously in the configuration file can be set in the General Settings panel in-game, and will be updated when saving your game.
 - Configuration file in modSettings folder has been depreciated
 - New configuration file in savegame folder can only be manually edited while game is not running.
-
-### Changelog 1.0.3.1
 - Fixed baleMission setting to be perHa instead of perBale
 - Added cultivator to seeding missions, just in case you mess up
 - Fixed minor bug while debug mode is off.
+- **Rebuilt Settings to work with MP Syncronization** :: Dedicated Server is the source of truth for settings, clients recieve settings on connect.
+- Added feature to remove already added fill items when setting is switched off
 
-## Configuration Instructions (1.0.3.0)
+
+## Configuration Instructions (1.1.0.0)
 
 All settings are now configurable within the UI. Note: most setting changes _**will not**_ affect existing contracts, only new contracts.
 

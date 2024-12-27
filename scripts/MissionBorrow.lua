@@ -89,7 +89,7 @@ function MissionBorrow:addFillItemsToMissionTools()
                                 filename = self.palletFilenames[fillMissionType]
                             })
                         end
-                    
+                
                     elseif fillMissionType == 'sowMission' then
 
                         table.insert(vehicle.vehicles, {

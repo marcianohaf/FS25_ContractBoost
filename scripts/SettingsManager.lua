@@ -97,12 +97,12 @@ function SettingsManager:restoreSettings()
     -- pull the settings from memory if needed
     local settings = g_currentMission.contractBoostSettings
     if settings == nil or savegameSettingsFile == nil then
-        Logging.warning(MOD_NAME .. ": Could not read settings since g_currentMission.contractBoostSettings or savegameSettingsFile")
+        Logging.warning(MOD_NAME .. ":LOAD Could not read ContractBoost settings from either g_currentMission or savegameSettingsFile")
     end
 
     -- if we're a client and the settings have already been loaded, don't load again.
     if not g_currentMission:getIsServer() then
-        Logging.warning(MOD_NAME .. ": isCLIENT, using server settings")
+        Logging.warning(MOD_NAME .. ":LOAD isCLIENT, using server settings")
         return
     end
 
@@ -209,22 +209,22 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
 
         -- ensure that values are within limits for numerical values
         if settingsObject.rewardFactor < 0.1 or settingsObject.rewardFactor > 5.0 then
-            Logging.info(MOD_NAME..'LOAD :: user configured rewardFactor (%s) outside of limits, reset to default.', settingsObject.rewardFactor)
+            Logging.info(MOD_NAME..':LOAD :: user configured rewardFactor (%s) outside of limits, reset to default.', settingsObject.rewardFactor)
             settingsObject.rewardFactor = SettingsManager.defaultConfig.rewardFactor
         end
 
         if settingsObject.maxContractsPerFarm < 1 or settingsObject.maxContractsPerFarm > 100 then
-            Logging.info(MOD_NAME..'LOAD :: user configured maxContractsPerFarm (%s) outside of limits, reset to default.', settingsObject.maxContractsPerFarm)
+            Logging.info(MOD_NAME..':LOAD :: user configured maxContractsPerFarm (%s) outside of limits, reset to default.', settingsObject.maxContractsPerFarm)
             settingsObject.maxContractsPerFarm = SettingsManager.defaultConfig.maxContractsPerFarm
         end
 
         if settingsObject.maxContractsPerType < 1 or settingsObject.maxContractsPerType > 20 then
-            Logging.info(MOD_NAME..'LOAD :: user configured maxContractsPerType (%s) outside of limits, reset to default.', settingsObject.maxContractsPerType)
+            Logging.info(MOD_NAME..':LOAD :: user configured maxContractsPerType (%s) outside of limits, reset to default.', settingsObject.maxContractsPerType)
             settingsObject.maxContractsPerType = SettingsManager.defaultConfig.maxContractsPerType
         end
 
         if settingsObject.maxContractsOverall < 1 or settingsObject.maxContractsOverall > 100 then
-            Logging.info(MOD_NAME..'LOAD :: user configured maxContractsOverall (%d) outside of limits, reset to default.', settingsObject.maxContractsOverall)
+            Logging.info(MOD_NAME..':LOAD :: user configured maxContractsOverall (%d) outside of limits, reset to default.', settingsObject.maxContractsOverall)
             settingsObject.maxContractsOverall = SettingsManager.defaultConfig.maxContractsOverall
         end
 
@@ -241,11 +241,11 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
             if value ~= nil and value % 50 ~= 0 and missionTypesCalculatedPerItem[propName] then
                 -- Round to steps of 50
                 settingsObject.customRewards[propName] = math.round(value / 50) * 50
-                Logging.info(MOD_NAME..'LOAD :: Rounded property customRewards.%s from %d to %d (nearest 50)', propName, value, settingsObject.customRewards[propName])
+                Logging.info(MOD_NAME..':LOAD :: Rounded property customRewards.%s from %d to %d (nearest 50)', propName, value, settingsObject.customRewards[propName])
             elseif value ~= nil and value % 100 ~= 0 and not missionTypesCalculatedPerItem[propName] then
                 -- Round to steps of 100
                 settingsObject.customRewards[propName] = math.round(value / 100) * 100
-                Logging.info(MOD_NAME..'LOAD :: Rounded property customRewards.%s from %d to %d (nearest 100)', propName, value, settingsObject.customRewards[propName])
+                Logging.info(MOD_NAME..':LOAD :: Rounded property customRewards.%s from %d to %d (nearest 100)', propName, value, settingsObject.customRewards[propName])
             end
         end
     end
@@ -346,7 +346,7 @@ function SettingsManager.getSavegameXmlFilePath()
         -- else: Save game directory is nil if this is a brand new save
         end
     else
-        Logging.warning(MOD_NAME .. ": Could not get path to Contract Boost xml settings file since g_currentMission.missionInfo is nil.")
+        Logging.warning(MOD_NAME .. ":LOAD :: Could not get path to Contract Boost xml settings file since g_currentMission.missionInfo is nil.")
     end
     return nil
 end
