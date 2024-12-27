@@ -55,6 +55,10 @@ end
 ---Injects the UI controls into the general settings menu
 ---@param loadedConfig table @The loaded config
 function SettingsUI:injectUiSettings(loadedConfig)
+    if g_dedicatedServer then
+        return
+    end
+
     -- Remember the settings object
     self.loadedConfig = loadedConfig
 
