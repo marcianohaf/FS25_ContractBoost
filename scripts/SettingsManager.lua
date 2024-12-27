@@ -94,15 +94,16 @@ function SettingsManager:restoreSettings()
     local modSettingsFile = self:getModSettingsXmlFilePath()
     local savegameSettingsFile = self.getSavegameXmlFilePath()
 
+    -- if we're a client and the settings have already been loaded, don't load again.
+    if not g_currentMission:getIsServer() then
+        Logging.info(MOD_NAME .. ":LOAD isCLIENT, using server settings")
+        return
+    end
+
     -- pull the settings from memory if needed
     local settings = g_currentMission.contractBoostSettings
     if settings == nil or savegameSettingsFile == nil then
         Logging.warning(MOD_NAME .. ":LOAD Could not read ContractBoost settings from either g_currentMission or savegameSettingsFile")
-    end
-
-    -- if we're a client and the settings have already been loaded, don't load again.
-    if not g_currentMission:getIsServer() then
-        Logging.warning(MOD_NAME .. ":LOAD isCLIENT, using server settings")
         return
     end
 
