@@ -91,12 +91,12 @@ function MissionBalance:scaleMissionReward()
 
             if newValue == prevValue and newValue == nil then
                 if ContractBoost.debug then 
-                    Logging.info(MOD_NAME..':BALANCE :: Mission %s: %s | skipped, not found on map', missionType.typeId, missionType.name)
+                    if ContractBoost.debug then Logging.info(MOD_NAME..':BALANCE :: Mission %s: %s | skipped, not found on map', missionType.typeId, missionType.name) end
                 end
             else
                 MissionBalance.boosted[missionType.typeId] = ((newValue / prevValue) * 100) - 100
                 if ContractBoost.debug then 
-                    Logging.info(MOD_NAME..':BALANCE :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue)
+                    if ContractBoost.debug then Logging.info(MOD_NAME..':BALANCE :: Mission %s: %s | updated %s => %s', missionType.typeId, missionType.name, prevValue, newValue) end
                 end
             end
         end

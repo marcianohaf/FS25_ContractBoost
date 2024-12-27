@@ -283,7 +283,7 @@ end
 function SettingsManager:saveSettings()
     local xmlPath = self:getSavegameXmlFilePath()
     if xmlPath == nil then
-        Logging.warning(MOD_NAME..'SAVE :: Could not save current settings.') -- another warning has been logged before this
+        Logging.warning(MOD_NAME..':SAVE :: Could not save current settings.') -- another warning has been logged before this
         return
     end
 
@@ -325,7 +325,7 @@ function SettingsManager:saveSettings()
     -- Write the XML file to disk
     saveXMLFile(xmlFileId)
 
-    Logging.info(MOD_NAME..'SAVE :: saved config to savegame: %s', xmlPath)
+    Logging.info(MOD_NAME..':SAVE :: saved config to savegame: %s', xmlPath)
 end
 
 

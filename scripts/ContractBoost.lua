@@ -48,6 +48,8 @@ function ContractBoost:syncSettings()
     -- MissionBorrow: on map load add items for fieldwork tools
     if g_currentMission.contractBoostSettings.enableFieldworkToolFillItems then
         MissionBorrow:addFillItemsToMissionTools()
+    else
+        MissionBorrow:removeFillItemsToMissionTools()
     end
 
     -- MissionTools: setup to allow more tools based on settings.
