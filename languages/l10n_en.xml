@@ -87,8 +87,8 @@
         <text name="cb_mowMissionMaxPerType_long" text="The maximum number of generated Mowing contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_tedderMissionMaxPerType_short" text="Maximum Tedding Contracts" />
         <text name="cb_tedderMissionMaxPerType_long" text="The maximum number of generated Tedding contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
-        <text name="cb_stonePickMissionMaxPerType_short" text="Maximum Stone Collection Contracts" />
-        <text name="cb_stonePickMissionMaxPerType_long" text="The maximum number of generated stone collection contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
+        <text name="cb_stonePickMissionMaxPerType_short" text="Maximum Stone Picking Contracts" />
+        <text name="cb_stonePickMissionMaxPerType_long" text="The maximum number of generated stone picking contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_deadwoodMissionMaxPerType_short" text="Maximum Deadwood Contracts" />
         <text name="cb_deadwoodMissionMaxPerType_long" text="The maximum number of generated deadwood contracts. If set to '-', the 'Maximum Contracts Per Type' value will be applied. To disable this type of contract, set to 0." />
         <text name="cb_treeTransportMissionMaxPerType_short" text="Maximum Wood Transport Contracts" />

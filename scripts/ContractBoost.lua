@@ -45,6 +45,9 @@ function ContractBoost:syncSettings()
         MissionBalance:scaleMissionReward()
     end
 
+    -- apply the max per type settings to remove any overflow based on new settings.
+    -- MissionBalance:applyMaxPerType()
+
     -- MissionBorrow: on map load add items for fieldwork tools
     if g_currentMission.contractBoostSettings.enableFieldworkToolFillItems then
         MissionBorrow:addFillItemsToMissionTools()
@@ -61,6 +64,7 @@ end
 
 ---Initializes all the listeners that will be used to integrate the settings with gameplay
 function ContractBoost.initializeListeners()
+
     -- Setup function overrides
     MissionManager.loadMapData = Utils.appendedFunction(MissionManager.loadMapData, ContractBoost.syncSettings)
     MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed, MissionTools.getIsMissionWorkAllowed)
@@ -75,8 +79,22 @@ function ContractBoost.initializeListeners()
 
     -- Make sure to show the details when someone looks at a mission
     AbstractMission.getDetails = Utils.overwrittenFunction(AbstractMission.getDetails, MissionBalance.getDetails)
+
+    -- once the player is loaded, parse through the generated missions
+    if g_currentMission:getIsServer() then
+        Player.onStartMission = Utils.appendedFunction(Player.onStartMission, MissionBalance.applyMaxPerType)
+    end
+
+    -- add a console command to toggle debug mode.
+    addConsoleCommand("cbDebugToggle", "Toggles the debug mode within the Contract Boost mod", "consoleCommandToggleDebugMode", ContractBoost)
 end
 
+
+function ContractBoost.consoleCommandToggleDebugMode()
+    g_currentMission.contractBoostSettings.debugMode = not g_currentMission.contractBoostSettings.debugMode
+    ContractBoost.debug = g_currentMission.contractBoostSettings.debugMode
+    Logging.info(MOD_NAME..' :: debugMode set %s', g_currentMission.contractBoostSettings.debugMode and "On" or "Off")
+end
 
 ---Creates a settings object which can be accessed from the UI and the rest of the code
 ---@param   mission     table   @The object which is later available as g_currentMission
@@ -107,4 +125,5 @@ end)
 ---Save the config when the savegame is being saved
 FSBaseMission.saveSavegame = Utils.appendedFunction(FSBaseMission.saveSavegame,  function(...)
     ContractBoost.settings:saveSettings()
+    MissionBalance:applyMaxPerType()
 end)
