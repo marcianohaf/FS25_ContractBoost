@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+    <translationContributors>
+        <translationContributor>Lisek</translationContributor>
+    </translationContributors>
+    <texts>
+        <text name="contract_boosted" text="Contract Boost"/>
+
+        <text name="cb_enableStrawFromHarvestMissions_short" text="Zezwalaj na zbieranie słomy"/>
+        <text name="cb_enableStrawFromHarvestMissions_long" text="Pozwala na zbieranie słomy z kontraktów na zbiór plonów."/>
+        <text name="cb_enableSwathingForHarvestMissions_short" text="Zezwalaj na koszenie pokosowe upraw"/>
+        <text name="cb_enableSwathingForHarvestMissions_long" text="Pozwala na używanie pokosówki w kontraktach na zbiory plonów."/>
+        <text name="cb_enableGrassFromMowingMissions_short" text="Zezwalaj na zbieranie trawy"/>
+        <text name="cb_enableGrassFromMowingMissions_long" text="Pozwala na zbieranie trawy z kontraktów na sianokosy."/>
+        <text name="cb_enableHayFromTedderMissions_short" text="Zezwalaj na zbieranie siana"/>
+        <text name="cb_enableHayFromTedderMissions_long" text="Pozwala na zbieranie siana z kontraktów na sianokosy."/>
+        <text name="cb_enableStonePickingFromMissions_short" text="Zezwalaj na zbieranie kamieni"/>
+        <text name="cb_enableStonePickingFromMissions_long" text="Pozwala na zbieranie kamieni z kontraktów na uprawę i siew."/>
+        <text name="cb_enableFieldworkToolFillItems_short" text="Dodaj przedmioty do wypełnienia prac polowych"/>
+        <text name="cb_enableFieldworkToolFillItems_long" text="Dodaje darmowe przedmioty do uzupełnienia narzędzi podczas wypożyczania sprzętu do kontraktu. Uwaga: po zakończeniu kontraktu darmowe przedmioty zostaną usunięte, jeśli nie zostaną użyte."/>
+        <text name="cb_enableCollectingBalesFromMissions_short" text="Zezwalaj na zbieranie bel"/>
+        <text name="cb_enableCollectingBalesFromMissions_long" text="Pozwala na zbieranie bel z kontraktów na belowanie i owijanie bel. Uwaga: po włączeniu wszystkie bale z kontraktu będą musiały zostać zebrane i pozostaną, jeśli nie zostaną zebrane."/>
+
+        <text name="cb_enableContractValueOverrides_short" text="Włącz nadpisywanie wartości kontraktu"/>
+        <text name="cb_enableContractValueOverrides_long" text="Włącza nadpisywanie domyślnych ustawień systemu kontraktów. Wyłącza cztery kolejne ustawienia, jeśli ustawione na nie."/>
+        <text name="cb_rewardFactor_short" text="Współczynnik nagrody"/>
+        <text name="cb_rewardFactor_long" text="Pomnaża wszystkie nagrody z kontraktów przez podany współczynnik."/>
+        <text name="cb_maxContractsPerFarm_short" text="Maksymalna liczba kontraktów na gospodarstwo"/>
+        <text name="cb_maxContractsPerFarm_long" text="Określa maksymalną liczbę kontraktów, które każde gospodarstwo może mieć aktywne w danym momencie"/>
+        <text name="cb_maxContractsOverall_short" text="Maksymalna liczba dostępnych kontraktów"/>
+        <text name="cb_maxContractsOverall_long" text="Określa maksymalną liczbę kontraktów, które mogą zostać ci zaproponowane."/>
+        <text name="cb_maxContractsPerType_short" text="Maksymalna ilość kontraktów na typ"/>
+        <text name="cb_maxContractsPerType_long" text="Określa maksymalną liczbę kontraktów tego samego typu, które mogą zostać ci zaproponowane."/>
+        
+        <text name="cb_baleMissionReward_short" text="Nagroda za kontrakt na belowanie"/>
+        <text name="cb_baleMissionReward_long" text="Nagroda za hektar w kontraktach na belowanie. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_baleWrapMissionReward_short" text="Nagroda za kontrakt na owijanie bel"/>
+        <text name="cb_baleWrapMissionReward_long" text="Nagroda za belę w kontraktach na owijanie bel. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_plowMissionReward_short" text="Nagroda za kontrakt na orkę"/>
+        <text name="cb_plowMissionReward_long" text="Nagroda za hektar w kontraktach na orkę. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_cultivateMissionReward_short" text="&quot;Nagroda za kontrakt na kultywowanie"/>
+        <text name="cb_cultivateMissionReward_long" text="Nagroda za hektar w kontraktach na kultywowanie. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_sowMissionReward_short" text="Nagroda za kontrakt na zasiew"/>
+        <text name="cb_sowMissionReward_long" text="Nagroda za hektar w kontraktach na zasiew. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_harvestMissionReward_short" text="Nagroda za kontrakt na zbiór plonów"/>
+        <text name="cb_harvestMissionReward_long" text="Nagroda za hektar w kontraktach na zbiór plonów. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_hoeMissionReward_short" text="Nagroda za kontrakt na pielenie"/>
+        <text name="cb_hoeMissionReward_long" text="Nagroda za hektar w kontraktach na pielenie. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_weedMissionReward_short" text="Nagroda za kontrakt na odchwaszczanie"/>
+        <text name="cb_weedMissionReward_long" text="Nagroda za hektar w kontraktach na odchwaszczanie. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_herbicideMissionReward_short" text="Nagroda za kontrakt na oprysk"/>
+        <text name="cb_herbicideMissionReward_long" text="Nagroda za hektar w kontraktach na opryski. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_fertilizeMissionReward_short" text="Nagroda za kontrakt na nawożenie"/>
+        <text name="cb_fertilizeMissionReward_long" text="Nagroda za hektar w kontraktach na nawożenie. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_mowMissionReward_short" text="Nagroda za kontrakt na sianokosy"/>
+        <text name="cb_mowMissionReward_long" text="Nagroda za hektar w kontraktach na sianokosy. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_tedderMissionReward_short" text="Nagroda za kontrakt na przetrząsanie"/>
+        <text name="cb_tedderMissionReward_long" text="Nagroda za hektar w kontraktach na przetrząsanie. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_stonePickMissionReward_short" text="Nagroda za kontrakt na zbieranie kamieni"/>
+        <text name="cb_stonePickMissionReward_long" text="Nagroda za hektar w kontraktach na zbieranie kamieni. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_deadwoodMissionReward_short" text="Nagroda za kontrakt na wycinkę suchych drzew"/>
+        <text name="cb_deadwoodMissionReward_long" text="Nagroda za drzewo w kontraktach na wycinkę suchych drzew. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_treeTransportMissionReward_short" text="Nagroda za kontrakt na transport drzew"/>
+        <text name="cb_treeTransportMissionReward_long" text="Nagroda za drzewo w kontraktach na transport drzew. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+        <text name="cb_destructibleRockMissionReward_short" text="Nagroda za kontrakt na usuwanie skał"/>
+        <text name="cb_destructibleRockMissionReward_long" text="Nagroda za skałę w kontraktach na usuwanie skał. Jeśli ustawione na '-', zastosowane zostaną nagrody z gry podstawowej."/>
+
+        <text name="cb_baleMissionMaxPerType_short" text="Maksymalna liczba kontraktów na belowanie"/>
+        <text name="cb_baleMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na belowanie. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_baleWrapMissionMaxPerType_short" text="Maksymalna liczba kontraktów na owijanie bel"/>
+        <text name="cb_baleWrapMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na owijanie bel. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_plowMissionMaxPerType_short" text="Maksymalna liczba kontraktów na orkę"/>
+        <text name="cb_plowMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na orkę. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_cultivateMissionMaxPerType_short" text="Maksymalna liczba kontraktów na kultywowanie"/>
+        <text name="cb_cultivateMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na kultywowanie. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_sowMissionMaxPerType_short" text="Maksymalna liczba kontraktów na zasiew"/>
+        <text name="cb_sowMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na zasiew. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_harvestMissionMaxPerType_short" text="Maksymalna liczba kontraktów na zbiór plonów"/>
+        <text name="cb_harvestMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na zbiór plonów. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_hoeMissionMaxPerType_short" text="Maksymalna liczba kontraktów na pielenie"/>
+        <text name="cb_hoeMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na pielenie. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_weedMissionMaxPerType_short" text="Maksymalna liczba kontraktów na odchwaszczanie"/>
+        <text name="cb_weedMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na odchwaszczanie. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_herbicideMissionMaxPerType_short" text="Maksymalna liczba kontraktów na opryski"/>
+        <text name="cb_herbicideMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na opryski. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_fertilizeMissionMaxPerType_short" text="Maksymalna liczba kontraktów na nawożenie"/>
+        <text name="cb_fertilizeMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na nawożenie. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_mowMissionMaxPerType_short" text="Maksymalna liczba kontraktów na sianokosy"/>
+        <text name="cb_mowMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na sianokosy. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_tedderMissionMaxPerType_short" text="Maksymalna liczba kontraktów na przetrząsanie"/>
+        <text name="cb_tedderMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na przetrząsanie. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_stonePickMissionMaxPerType_short" text="Maksymalna liczba kontraktów na zbieranie kamieni"/>
+        <text name="cb_stonePickMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na zbieranie kamieni. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_deadwoodMissionMaxPerType_short" text="Maksymalna liczba kontraktów na wycinkę suchych drzew"/>
+        <text name="cb_deadwoodMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na wycinkę suchych drzew. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_treeTransportMissionMaxPerType_short" text="Maksymalna liczba kontraktów na transport drzew"/>
+        <text name="cb_treeTransportMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na transport drzew. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+        <text name="cb_destructibleRockMissionMaxPerType_short" text="Maksymalna liczba kontraktów na usuwanie skał"/>
+        <text name="cb_destructibleRockMissionMaxPerType_long" text="Maksymalna liczba generowanych kontraktów na usuwanie skał. Jeśli ustawione na '-', zastosowana zostanie wartość 'Maksymalna liczba kontraktów na typ'. Aby wyłączyć ten typ kontraktu, ustaw na 0."/>
+    </texts>
+</l10n>
