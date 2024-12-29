@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="94">
     <author>GMNGjoy</author>
-    <version>1.0.5.1</version>
+    <version>1.0.5.22</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
@@ -12,7 +12,7 @@
 Boost your contracts by making more money, and allowing collection of the spoils!
 
 Features:
-- 50% more profit from every contrac
+- 50% more profit from every contract
 - 10 max contracts
 - 5 max contracts per type by default
 - Allow setting a custom amount per type of contract

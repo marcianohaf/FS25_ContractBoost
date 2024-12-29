@@ -25,24 +25,27 @@ MissionBorrow.palletFilenames = {
 MissionBorrow.fillItemsAdded = false
 
 -- When a "vehicle" is spawned if it's a pallet, ignore the wear and operating time functions.
-function MissionBorrow:onSpawnedVehicle(superFunc, vehicle, ...)
+function MissionBorrow.onSpawnedVehicle(self, superFunc, vehicles, ...)
     if not g_currentMission.contractBoostSettings.enableFieldworkToolFillItems then
-        superFunc(self, vehicle, ...)
+        superFunc(self, vehicles, ...)
+        return
     end
 
-    if vehicle ~= nil then
-        local configNameClean = vehicle[1].configFileNameClean
+    if vehicles ~= nil then
+        for _, vehicle in ipairs(vehicles) do
+            local configNameClean = vehicle.configFileNameClean
 
-        if ContractBoost.debug then
-            Logging.info(MOD_NAME..':BORROW :: onSpawnedVehicle %s | isPallet %s', vehicle[1].configFileNameClean, MissionBorrow.pallets[configNameClean] and "yes" or "no")
+            if ContractBoost.debug then
+                Logging.info(MOD_NAME..':BORROW :: onSpawnedVehicle: %s | isPallet: %s', configNameClean, MissionBorrow.pallets[configNameClean] and "yes" or "no")
+            end
+
+            if MissionBorrow.pallets[configNameClean] then
+                vehicle.addWearAmount = function() return true end
+                vehicle.setOperatingTime = function() return true end
+            end
         end
 
-        if MissionBorrow.pallets[configNameClean] then
-            vehicle[1].addWearAmount = function() return true end
-            vehicle[1].setOperatingTime = function() return true end
-        end
-
-        superFunc(self, vehicle, ...)
+        superFunc(self, vehicles, ...)
     end
 end
 
