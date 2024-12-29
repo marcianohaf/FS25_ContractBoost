@@ -84,6 +84,22 @@ All settings are now configurable within the UI. Note: most setting changes _**w
 The previous configuration file is now _depreciated_, but will be used if it exists as the "defaults" until the settings are customized in-game.
 
 
+### `enableInGameSettingsMenu` (default: `true`) manual setting
+This setting can _ONLY_ be changed by manually editing your **Contract Boost** settings file.
+1. Load into game with **Contract Boost** `1.0.5.3` or greater
+2. Save your game once, exit out
+3. Find your `FS25_ContractBoost.xml` settings file in your savegame folder.
+4. Update this line to have a `false` value. 
+```xml
+<enableInGameSettingsMenu>false</enableInGameSettingsMenu>
+```
+5. Load back into game, and your settings menu will be gone.
+
+> *NOTE*: this means that you won't be able to edit **ContractBoost** settings in-game without either 
+> (a) re-enabling the `enableInGameSettingsMenu` by following the steps above but setting the value to true, or 
+> (b) editing the settings file directly when you're outside of the game for any settings changes that are needed.
+
+
 ## Detailed Configuration Instructions (pre 1.0.3.0)
 
 **Contract Boost** is entirely controlled by a named configuration file (`ContractBoost.xml`) that is copied into your `modSettings/` folder on first usage. The file is located in the same folder that your `savegame##` folder is located, roughly here:
