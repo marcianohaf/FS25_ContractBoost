@@ -20,6 +20,7 @@ function Settings.new()
     self.enableStonePickingFromMissions = SettingsManager.defaultConfig.enableStonePickingFromMissions
     self.enableFieldworkToolFillItems = SettingsManager.defaultConfig.enableFieldworkToolFillItems
     self.enableCollectingBalesFromMissions = SettingsManager.defaultConfig.enableCollectingBalesFromMissions
+    self.enableInGameSettingsMenu = SettingsManager.defaultConfig.enableInGameSettingsMenu
     self.customRewards = SettingsManager.defaultConfig.customRewards
     self.customMaxPerType = SettingsManager.defaultConfig.customMaxPerType
 
@@ -101,6 +102,7 @@ function Settings:onReadStream(streamId, connection)
     self.enableStonePickingFromMissions = streamReadBool(streamId)
     self.enableCollectingBalesFromMissions = streamReadBool(streamId)
     self.enableFieldworkToolFillItems = streamReadBool(streamId)
+    self.enableInGameSettingsMenu = streamReadBool(streamId)
 
     self.rewardFactor = streamReadFloat32(streamId)
     self.maxContractsPerFarm = streamReadInt16(streamId)
@@ -147,6 +149,7 @@ function Settings:onWriteStream(streamId, connection)
     streamWriteBool(streamId, self.enableStonePickingFromMissions)
     streamWriteBool(streamId, self.enableCollectingBalesFromMissions)
     streamWriteBool(streamId, self.enableFieldworkToolFillItems)
+    streamWriteBool(streamId, self.enableInGameSettingsMenu)
 
     streamWriteFloat32(streamId, self.rewardFactor)
     streamWriteInt16(streamId, self.maxContractsPerFarm)

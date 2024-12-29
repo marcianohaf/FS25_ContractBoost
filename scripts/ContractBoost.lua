@@ -26,9 +26,11 @@ function ContractBoost:init()
     Logging.info(MOD_NAME..' :: LOADED. debug: %s', ContractBoost.debug and "on" or "off")
 
     -- Setup the UIHelper & settings
-    ContractBoost.uiSettings = SettingsUI.new()
-    ContractBoost.uiSettings:injectUiSettings(g_currentMission.contractBoostSettings)
-    
+    if g_currentMission.contractBoostSettings.enableInGameSettingsMenu then
+        ContractBoost.uiSettings = SettingsUI.new()
+        ContractBoost.uiSettings:injectUiSettings(g_currentMission.contractBoostSettings)
+    end
+
     ContractBoost.initializeListeners()
 
     Logging.info(MOD_NAME..' :: INIT complete')

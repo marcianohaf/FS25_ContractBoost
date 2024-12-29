@@ -48,6 +48,7 @@ SettingsManager.defaultConfig = {
     enableStonePickingFromMissions = true,
     enableFieldworkToolFillItems = true,
     enableCollectingBalesFromMissions = false,
+    enableInGameSettingsMenu = true,
     customRewards = {},
     customMaxPerType = {},
 }
@@ -145,6 +146,7 @@ function SettingsManager:initXmlSchema()
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableStonePickingFromMissions", "should stones be collectible from during tilling & sowing missions?", SettingsManager.defaultConfig.enableStonePickingFromMissions)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableFieldworkToolFillItems", "should borrowed equipment come with free fieldwork items to fill your tools", SettingsManager.defaultConfig.enableFieldworkToolFillItems)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableCollectingBalesFromMissions", "should you be able to collect bales from baling and baleWrapping contracts?", SettingsManager.defaultConfig.enableCollectingBalesFromMissions)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableInGameSettingsMenu", "enable or disable the in-game settings menu?", SettingsManager.defaultConfig.enableInGameSettingsMenu)
     self.xmlSchema:register(XMLValueType.FLOAT, XMLTAG..".settings.rewardFactor", "applies a multiplier to the base game rewardPer value", SettingsManager.defaultConfig.rewardFactor)
     self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerFarm", "how many contracts can be active at once", SettingsManager.defaultConfig.maxContractsPerFarm)
     self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerType", "how many contracts per contract type can be available", SettingsManager.defaultConfig.maxContractsPerType)
@@ -190,6 +192,7 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
         settingsObject.enableStonePickingFromMissions = xmlFile:getValue(XMLTAG..".settings.enableStonePickingFromMissions", SettingsManager.defaultConfig.enableStonePickingFromMissions)
         settingsObject.enableFieldworkToolFillItems = xmlFile:getValue(XMLTAG..".settings.enableFieldworkToolFillItems", SettingsManager.defaultConfig.enableFieldworkToolFillItems)
         settingsObject.enableCollectingBalesFromMissions = xmlFile:getValue(XMLTAG..".settings.enableCollectingBalesFromMissions", SettingsManager.defaultConfig.enableCollectingBalesFromMissions)
+        settingsObject.enableInGameSettingsMenu = xmlFile:getValue(XMLTAG..".settings.enableInGameSettingsMenu", SettingsManager.defaultConfig.enableInGameSettingsMenu)
 
         settingsObject.rewardFactor = xmlFile:getValue(XMLTAG..".settings.rewardFactor", SettingsManager.defaultConfig.rewardFactor)
         settingsObject.maxContractsPerFarm = xmlFile:getValue(XMLTAG..".settings.maxContractsPerFarm", SettingsManager.defaultConfig.maxContractsPerFarm)
@@ -269,6 +272,7 @@ function SettingsManager:useDefaultConfig(settingsObject)
     settingsObject.enableStonePickingFromMissions = SettingsManager.defaultConfig.enableStonePickingFromMissions
     settingsObject.enableFieldworkToolFillItems = SettingsManager.defaultConfig.enableFieldworkToolFillItems
     settingsObject.enableCollectingBalesFromMissions = SettingsManager.defaultConfig.enableCollectingBalesFromMissions
+    settingsObject.enableInGameSettingsMenu = SettingsManager.defaultConfig.enableInGameSettingsMenu
 
     settingsObject.rewardFactor = SettingsManager.defaultConfig.rewardFactor
     settingsObject.maxContractsPerFarm = SettingsManager.defaultConfig.maxContractsPerFarm
@@ -303,6 +307,7 @@ function SettingsManager:saveSettings()
     setXMLBool(xmlFileId, XMLTAG..".settings.enableStonePickingFromMissions", boostSettings.enableStonePickingFromMissions)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableFieldworkToolFillItems", boostSettings.enableFieldworkToolFillItems)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableCollectingBalesFromMissions", boostSettings.enableCollectingBalesFromMissions)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableInGameSettingsMenu", boostSettings.enableInGameSettingsMenu)
 
     setXMLFloat(xmlFileId, XMLTAG..".settings.rewardFactor", boostSettings.rewardFactor)
     setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsPerFarm", boostSettings.maxContractsPerFarm)
