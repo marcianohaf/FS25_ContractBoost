@@ -140,10 +140,10 @@ function MissionTools.addBale(self, superFunc, bale)
 
     -- one last check that we have a bale, and change the owner.
     if bale ~= nil then
-        if ContractBoost.debug then Logging.info(MOD_NAME..':TOOLS :: addBale changeOwner %s', g_localPlayer.farmId) end
+        if ContractBoost.debug then Logging.info(MOD_NAME..':TOOLS :: BaleMission changeOwner %s: %s', bale.uniqueId, g_localPlayer.farmId) end
         bale:setOwnerFarmId(g_localPlayer.farmId)
     end
- end
+end
 
 -- replace the BaleMission.finishField function with our own function that doesn't remove the bales.
 function MissionTools.finishBaleField(self, superFunc)
@@ -155,10 +155,33 @@ function MissionTools.finishBaleField(self, superFunc)
 
     -- otherwise call the parent finishField fn bypassing the bale removal
     BaleMission:superClass().finishField(self)
- end
+end
 
- -- replace the BaleWrapMission.finishField function with our own function that doesn't remove the bales.
- function MissionTools.finishBaleWrapField(self, superFunc)
+-- replace the BaleWrapMission.getIsPrepared function with our own function that updates the owner of the spawned bales to the player.
+function MissionTools.getIsPrepared(self, superFunc)
+    -- call the original method if collecting bales is not enabled
+    if not g_currentMission.contractBoostSettings.enableCollectingBalesFromMissions then
+        return superFunc(self)
+    end
+
+    -- if the field isn't ready yet, just return the same value.
+    if not superFunc(self) then
+        return false
+    end
+
+    -- ensure that we're in the right setting, and reset the owner to the player
+    if self.isServer then
+		for _, bale in ipairs(self.bales) do
+            if ContractBoost.debug then Logging.info(MOD_NAME..':TOOLS :: BaleWrapMission changeOwner %s: %s', bale.uniqueId, g_localPlayer.farmId) end
+			bale:setOwnerFarmId(g_localPlayer.farmId)
+		end
+	end
+
+    return true
+end
+
+-- replace the BaleWrapMission.finishField function with our own function that doesn't remove the bales.
+function MissionTools.finishBaleWrapField(self, superFunc)
     -- call the original method if collecting bales is not enabled
     if not g_currentMission.contractBoostSettings.enableCollectingBalesFromMissions then
         superFunc(self)
@@ -167,4 +190,7 @@ function MissionTools.finishBaleField(self, superFunc)
 
     -- otherwise call the parent finishField fn bypassing the bale removal
     BaleWrapMission:superClass().finishField(self)
- end
+end
+
+
+

@@ -13,8 +13,6 @@ MOD_NAME = g_currentModName or "unknown"
 
 ---Initializes Contract Boost!
 function ContractBoost:init()
-    if ContractBoost.debug then Logging.info(MOD_NAME..' :: INIT.') end
-
     -- Load the config from xml
     ContractBoost.settings = SettingsManager.new()
     ContractBoost.settings:restoreSettings()
@@ -78,6 +76,9 @@ function ContractBoost.initializeListeners()
     BaleMission.addBale = Utils.overwrittenFunction(BaleMission.addBale, MissionTools.addBale)
     BaleMission.finishField = Utils.overwrittenFunction(BaleMission.finishField, MissionTools.finishBaleField)
     BaleWrapMission.finishField = Utils.overwrittenFunction(BaleWrapMission.finishField, MissionTools.finishBaleWrapField)
+
+    -- TEMP listener to the baleWrap event
+    BaleWrapMission.getIsPrepared = Utils.overwrittenFunction(BaleWrapMission.getIsPrepared, MissionTools.getIsPrepared)
 
     -- Make sure to show the details when someone looks at a mission
     AbstractMission.getDetails = Utils.overwrittenFunction(AbstractMission.getDetails, MissionBalance.getDetails)
