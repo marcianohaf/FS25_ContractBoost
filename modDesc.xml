@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="94">
     <author>GMNGjoy</author>
-    <version>1.0.6.8</version>
+    <version>1.0.7.0</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
         <fr>Contrat Amélioré</fr>
     </title>
     <description>
-        <en>
+        <en><![CDATA[
 Boost your contracts by making more money, and allowing collection of the spoils!
 
 Features:
@@ -52,8 +52,8 @@ Changelog 1.1.0.0 (in development)
 - Added console command: cbDebugToggle to toggle debugMode.
 - Added override to settings file only: enableInGameSettingsMenu, default: true
 - Fixed collecting bales from bale wrapping contracts.
-</en>
-        <de>
+]]></en>
+        <de><![CDATA[
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
 
 Features:
@@ -74,8 +74,8 @@ GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2
 - Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
-</de>
-        <fr>
+]]></de>
+        <fr><![CDATA[
 Augmentez vos revenus grâce à vos contrats et récupérez les ressources collectées !
 
 Fonctionnalités :
@@ -114,8 +114,8 @@ Changelog 1.1.0.0 :
 - Correction du paramètre des missions de balles pour qu'il soit défini par hectare au lieu de par balle.
 - Ajout d'un cultivateur aux missions d'ensemencement, au cas où vous feriez une erreur.
 - Correction d'un bug mineur lorsque le mode débogage est désactivé.
-</fr>
-        <it>
+]]></fr>
+        <it><![CDATA[
 Aumenta i tuoi contratti guadagnando più soldi e raccogliendo i bottini!
 
 Caratteristiche:
@@ -154,7 +154,7 @@ Changelog 1.1.0.0
 - Corretto il parametro della missione delle balle in modo che sia perHa anziché perBale
 - Aggiunto coltivatore alle missioni di semina, nel caso facessi un errore
 - Corretto un bug minore quando la modalità debug è disattivata.
-</it>
+]]></it>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="true"/>
