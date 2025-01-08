@@ -20,6 +20,7 @@ function Settings.new()
     self.enableStonePickingFromMissions = SettingsManager.defaultConfig.enableStonePickingFromMissions
     self.enableFieldworkToolFillItems = SettingsManager.defaultConfig.enableFieldworkToolFillItems
     self.enableCollectingBalesFromMissions = SettingsManager.defaultConfig.enableCollectingBalesFromMissions
+    self.preferStrawHarvestMissions = SettingsManager.defaultConfig.preferStrawHarvestMissions
     self.enableInGameSettingsMenu = SettingsManager.defaultConfig.enableInGameSettingsMenu
     self.customRewards = SettingsManager.defaultConfig.customRewards
     self.customMaxPerType = SettingsManager.defaultConfig.customMaxPerType
@@ -101,6 +102,7 @@ function Settings:onReadStream(streamId, connection)
     self.enableHayFromTedderMissions = streamReadBool(streamId)
     self.enableStonePickingFromMissions = streamReadBool(streamId)
     self.enableCollectingBalesFromMissions = streamReadBool(streamId)
+    self.preferStrawHarvestMissions = streamReadBool(streamId)
     self.enableFieldworkToolFillItems = streamReadBool(streamId)
     self.enableInGameSettingsMenu = streamReadBool(streamId)
 
@@ -148,6 +150,7 @@ function Settings:onWriteStream(streamId, connection)
     streamWriteBool(streamId, self.enableHayFromTedderMissions)
     streamWriteBool(streamId, self.enableStonePickingFromMissions)
     streamWriteBool(streamId, self.enableCollectingBalesFromMissions)
+    streamWriteBool(streamId, self.preferStrawHarvestMissions)
     streamWriteBool(streamId, self.enableFieldworkToolFillItems)
     streamWriteBool(streamId, self.enableInGameSettingsMenu)
 

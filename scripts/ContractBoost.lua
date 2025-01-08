@@ -75,10 +75,11 @@ function ContractBoost.initializeListeners()
     -- Enable collecting of bales from baling contracts.
     BaleMission.addBale = Utils.overwrittenFunction(BaleMission.addBale, MissionTools.addBale)
     BaleMission.finishField = Utils.overwrittenFunction(BaleMission.finishField, MissionTools.finishBaleField)
-    BaleWrapMission.finishField = Utils.overwrittenFunction(BaleWrapMission.finishField, MissionTools.finishBaleWrapField)
+    BaleMission.isAvailableForField = Utils.overwrittenFunction(BaleMission.isAvailableForField, MissionTools.isAvailableForFieldBaleMission)
 
-    -- TEMP listener to the baleWrap event
+    -- Enable collecting of wrapped bales from bale wrapping contracts.
     BaleWrapMission.getIsPrepared = Utils.overwrittenFunction(BaleWrapMission.getIsPrepared, MissionTools.getIsPrepared)
+    BaleWrapMission.finishField = Utils.overwrittenFunction(BaleWrapMission.finishField, MissionTools.finishBaleWrapField)
 
     -- Make sure to show the details when someone looks at a mission
     AbstractMission.getDetails = Utils.overwrittenFunction(AbstractMission.getDetails, MissionBalance.getDetails)

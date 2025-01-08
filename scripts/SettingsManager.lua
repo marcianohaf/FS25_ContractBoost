@@ -48,6 +48,7 @@ SettingsManager.defaultConfig = {
     enableStonePickingFromMissions = true,
     enableFieldworkToolFillItems = true,
     enableCollectingBalesFromMissions = false,
+    preferStrawHarvestMissions = true,
     enableInGameSettingsMenu = true,
     customRewards = {},
     customMaxPerType = {},
@@ -69,7 +70,7 @@ function SettingsManager.new()
     self.loadedConfig = {}
 
     -- xmlConfigFiles
-    self.modSettingsConfigFile = "modSettings/`xml"
+    self.modSettingsConfigFile = "modSettings/ContractBoost.xml"
     self.savegameConfigFile = MOD_NAME..".xml"
 
     if self.loadDebug then Logging.info(MOD_NAME..":MANAGER initialized") end
@@ -146,6 +147,7 @@ function SettingsManager:initXmlSchema()
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableStonePickingFromMissions", "should stones be collectible from during tilling & sowing missions?", SettingsManager.defaultConfig.enableStonePickingFromMissions)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableFieldworkToolFillItems", "should borrowed equipment come with free fieldwork items to fill your tools", SettingsManager.defaultConfig.enableFieldworkToolFillItems)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableCollectingBalesFromMissions", "should you be able to collect bales from baling and baleWrapping contracts?", SettingsManager.defaultConfig.enableCollectingBalesFromMissions)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.preferStrawHarvestMissions", "do you want to enable staw baling contracts (which may lower the number of harvest contracts)?", SettingsManager.defaultConfig.preferStrawHarvestMissions)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableInGameSettingsMenu", "enable or disable the in-game settings menu?", SettingsManager.defaultConfig.enableInGameSettingsMenu)
     self.xmlSchema:register(XMLValueType.FLOAT, XMLTAG..".settings.rewardFactor", "applies a multiplier to the base game rewardPer value", SettingsManager.defaultConfig.rewardFactor)
     self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerFarm", "how many contracts can be active at once", SettingsManager.defaultConfig.maxContractsPerFarm)
@@ -192,6 +194,7 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
         settingsObject.enableStonePickingFromMissions = xmlFile:getValue(XMLTAG..".settings.enableStonePickingFromMissions", SettingsManager.defaultConfig.enableStonePickingFromMissions)
         settingsObject.enableFieldworkToolFillItems = xmlFile:getValue(XMLTAG..".settings.enableFieldworkToolFillItems", SettingsManager.defaultConfig.enableFieldworkToolFillItems)
         settingsObject.enableCollectingBalesFromMissions = xmlFile:getValue(XMLTAG..".settings.enableCollectingBalesFromMissions", SettingsManager.defaultConfig.enableCollectingBalesFromMissions)
+        settingsObject.preferStrawHarvestMissions = xmlFile:getValue(XMLTAG..".settings.preferStrawHarvestMissions", SettingsManager.defaultConfig.preferStrawHarvestMissions)
         settingsObject.enableInGameSettingsMenu = xmlFile:getValue(XMLTAG..".settings.enableInGameSettingsMenu", SettingsManager.defaultConfig.enableInGameSettingsMenu)
 
         settingsObject.rewardFactor = xmlFile:getValue(XMLTAG..".settings.rewardFactor", SettingsManager.defaultConfig.rewardFactor)
@@ -272,6 +275,7 @@ function SettingsManager:useDefaultConfig(settingsObject)
     settingsObject.enableStonePickingFromMissions = SettingsManager.defaultConfig.enableStonePickingFromMissions
     settingsObject.enableFieldworkToolFillItems = SettingsManager.defaultConfig.enableFieldworkToolFillItems
     settingsObject.enableCollectingBalesFromMissions = SettingsManager.defaultConfig.enableCollectingBalesFromMissions
+    settingsObject.preferStrawHarvestMissions = SettingsManager.defaultConfig.preferStrawHarvestMissions
     settingsObject.enableInGameSettingsMenu = SettingsManager.defaultConfig.enableInGameSettingsMenu
 
     settingsObject.rewardFactor = SettingsManager.defaultConfig.rewardFactor
@@ -298,7 +302,7 @@ function SettingsManager:saveSettings()
     local xmlFileId = createXMLFile("ContractBoost", xmlPath, XMLTAG)
 
     setXMLBool(xmlFileId, XMLTAG..".settings.debugMode", boostSettings.debugMode)
-
+    
     setXMLBool(xmlFileId, XMLTAG..".settings.enableContractValueOverrides", boostSettings.enableContractValueOverrides)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableStrawFromHarvestMissions", boostSettings.enableStrawFromHarvestMissions)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableSwathingForHarvestMissions", boostSettings.enableSwathingForHarvestMissions)
@@ -307,6 +311,7 @@ function SettingsManager:saveSettings()
     setXMLBool(xmlFileId, XMLTAG..".settings.enableStonePickingFromMissions", boostSettings.enableStonePickingFromMissions)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableFieldworkToolFillItems", boostSettings.enableFieldworkToolFillItems)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableCollectingBalesFromMissions", boostSettings.enableCollectingBalesFromMissions)
+    setXMLBool(xmlFileId, XMLTAG..".settings.preferStrawHarvestMissions", boostSettings.preferStrawHarvestMissions)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableInGameSettingsMenu", boostSettings.enableInGameSettingsMenu)
 
     setXMLFloat(xmlFileId, XMLTAG..".settings.rewardFactor", boostSettings.rewardFactor)

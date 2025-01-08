@@ -192,5 +192,22 @@ function MissionTools.finishBaleWrapField(self, superFunc)
     BaleWrapMission:superClass().finishField(self)
 end
 
+-- replace the BaleWrapMission.finishField function with our own function that doesn't remove the bales.
+function MissionTools.isAvailableForFieldBaleMission(self, superFunc, notNil)
+    -- call the original method if collecting bales is not enabled
+    if g_currentMission.contractBoostSettings.preferStrawHarvestMissions then
+        return superFunc(self, notNil)
+    end
 
+    local isAvailableForField = superFunc(self, notNil)
+    if not isAvailableForField then
+        return false
+    end
 
+    local fieldState = self:getFieldState()
+    local windrowFillType = g_fruitTypeManager:getWindrowFillTypeIndexByFruitTypeIndex(fieldState.fruitTypeIndex)
+    local fruitType = g_fruitTypeManager:getFruitTypeByIndex(fieldState.fruitTypeIndex)
+    local fillType =  g_fillTypeManager:getFillTypeByIndex(windrowFillType)
+    Logging.info(MOD_NAME..':TOOLS :: isAvailableForFieldBaleMission %s: %s', fruitType.name, fillType.name)
+    return not (windrowFillType == FillType.STRAW and math.random() < 0.5)
+end

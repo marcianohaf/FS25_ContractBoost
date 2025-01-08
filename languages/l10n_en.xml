@@ -18,6 +18,8 @@
         <text name="cb_enableFieldworkToolFillItems_long" text="Adds free items to fill your tools when borrowing equipment for a contract. Note: on contract completion free items will be removed if not used." />
         <text name="cb_enableCollectingBalesFromMissions_short" text="Allow Collecting Bales" />
         <text name="cb_enableCollectingBalesFromMissions_long" text="Allows collecting bales from baling and bale wrapping contracts. Note: when enabled, all contract bales will need to be collected and will remain if not collected." />
+        <text name="cb_preferStrawHarvestMissions_short" text="Prefer Harvest Contracts over Straw Baling" />
+        <text name="cb_preferStrawHarvestMissions_long" text="Adds a preference towards harvesting contracts over straw baling contracts for the same fields. This setting works best with a MaxPerType for Harvest Missions higher than normal." />
 
         <text name="cb_enableContractValueOverrides_short" text="Enable Contract Value Overrides" />
         <text name="cb_enableContractValueOverrides_long" text="Enables overriding contract system default setting values. Disables the next four settings if set to false." />

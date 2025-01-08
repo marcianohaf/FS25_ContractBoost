@@ -14,9 +14,14 @@ This mod is intended to work alongside **BetterContracts** (once it's updated fo
 > - Allow using swathing equipment on harvest missions
 > - Allow collecting straw from harvest missionss
 > - Allow collecting grass from mowing missions
+> - Allow collecting hay from tedding missions
+> - Allow collecting stones from plow, cultivate, and sowing missions
+> - Allow collecting bales from baling and bale-wrapping missions
 > - Allow collecting stones from plow, cultivate, and sowing missions
 > 
-> All of the above settings can be modified via an XML settings file at `/FarmingSimulator2025/modSettings/ContractBoost.xml`
+> All of the above settings can be modified in-game through the General Settings panel.
+> 
+> NOTE: Setting changes that may affect the reward or number of missions may *not* affect any already generated contracts.
 >
 > For license & feedback, please visit: https://github.com/GMNGjoy/FS25_ContractBoost
 

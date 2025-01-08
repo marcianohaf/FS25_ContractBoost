@@ -87,6 +87,7 @@ function SettingsUI:injectUiSettings(loadedConfig)
         { name = "enableStonePickingFromMissions", autoBind = true },
         { name = "enableCollectingBalesFromMissions", autoBind = true },
         { name = "enableFieldworkToolFillItems", autoBind = true },
+        { name = "preferStrawHarvestMissions", autoBind = true },
     }
 
     -- Dynamically add the rest since they're all the same
