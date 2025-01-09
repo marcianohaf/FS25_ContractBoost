@@ -20,6 +20,8 @@
         <text name="cb_enableFieldworkToolFillItems_long" text="Dodaje darmowe przedmioty do uzupełnienia narzędzi podczas wypożyczania sprzętu do kontraktu. Uwaga: po zakończeniu kontraktu darmowe przedmioty zostaną usunięte, jeśli nie zostaną użyte."/>
         <text name="cb_enableCollectingBalesFromMissions_short" text="Zezwalaj na zbieranie bel"/>
         <text name="cb_enableCollectingBalesFromMissions_long" text="Pozwala na zbieranie bel z kontraktów na belowanie i owijanie bel. Uwaga: po włączeniu wszystkie bale z kontraktu będą musiały zostać zebrane i pozostaną, jeśli nie zostaną zebrane."/>
+        <text name="cb_preferStrawHarvestMissions_short" text="Preferuj kontrakty na zbiór plonów zamiast belowania słomy." />
+        <text name="cb_preferStrawHarvestMissions_long" text="Dodaje preferencję dla kontraktów na zbiór plonów nad kontraktami na belowanie słomy dla tych samych pól. To ustawienie działa najlepiej, gdy Maksymalna liczba kontraktów na zbiór plonów jest ustawiona na wartość wyższą niż normalna." />
 
         <text name="cb_enableContractValueOverrides_short" text="Włącz nadpisywanie wartości kontraktu"/>
         <text name="cb_enableContractValueOverrides_long" text="Włącza nadpisywanie domyślnych ustawień systemu kontraktów. Wyłącza cztery kolejne ustawienia, jeśli ustawione na nie."/>
