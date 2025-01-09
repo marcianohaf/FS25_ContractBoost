@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <modDesc descVersion="94">
     <author>GMNGjoy</author>
-    <version>1.0.7.1</version>
+    <version>1.0.7.2</version>
     <title>
         <en>Contract Boost</en>
         <de>Auftragssteigerung</de>
@@ -51,7 +51,7 @@ Changelog 1.1.0.0 (in development)
 - Added balancing feature to remove unwanted contracts when a maxPerType or customMaxPerType setting is SAVED. (note: contracts are not removed until game is saved).
 - Added console command: cbDebugToggle to toggle debugMode.
 - Added override to settings file only: enableInGameSettingsMenu, default: true
-- Fixed collecting bales from bale wrapping contracts.
+- Fixed collecting bales from baling & bale wrapping contracts in both SP & MP.
 ]]></en>
         <de><![CDATA[
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!

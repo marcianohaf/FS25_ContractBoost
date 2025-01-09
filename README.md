@@ -63,19 +63,21 @@ _Enjoy!_
 - Added safety check for custom maps that don't contain every type of contract
 
 ### Changelog 1.1.0.0 (still in development)
-- User contributed translations: fr, cz, it
+- User contributed translations: `fr`, `cz`, `it`, `pl`, `ru`
 - Allow collecting hay from tedding contracts
 - Allow collecting straw bales from baling contracts
 - Allow collecting wrapped silage bales from bale-wrapping contracts
 - Support customizing of the number of contracts for each type of contract individually, with the ability to "disable" contract types you don't want to see.
 - All settings previously in the configuration file can be set in the General Settings panel in-game, and will be updated when saving your game.
 - Configuration file in modSettings folder has been depreciated
-- New configuration file in savegame folder can only be manually edited while game is not running.
+- New configuration file in savegame folder should only be manually edited while game is not running.
 - Fixed baleMission setting to be perHa instead of perBale
 - Added cultivator to seeding missions, just in case you mess up
 - Fixed minor bug while debug mode is off.
-- **Rebuilt Settings to work with MP Syncronization** :: Dedicated Server is the source of truth for settings, clients recieve settings on connect.
+- **Rebuilt Settings to work with MP Syncronization** :: Dedicated Server is the source of truth for settings, clients recieve settings on connect, or when settings are changed.
 - Added feature to remove already added fill items when setting is switched off
+- Added feature to remove unwanted contracts (from the bottom, up) when you change the `customMaxPerType` setting. Example: There are `5` deadwood contracts in your list, but you're tired of seeing them... update the `maxPerType` setting for deadwood to `2` and when you save your game, _Contract Boost_ will automatically remove the extra three contracts. This setting is _checked_ and _cleaned_ both on game load and save.
+- Added feature to "prefer" harvesting missions over baling missions as cereal-crop harvesting missions are less frequent due to the new straw baling missions.
 
 
 ## Configuration Instructions (1.1.0.0)
@@ -88,8 +90,34 @@ All settings are now configurable within the UI. Note: most setting changes _**w
 
 The previous configuration file is now _depreciated_, but will be used if it exists as the "defaults" until the settings are customized in-game.
 
+### Dedicated Server settings
+On a dedicated server, the settings are saved on the server within the server's savegame directory, the same as it now is in single player. To edit those settings, you must edit those settings by one of two methods:
 
-### `enableInGameSettingsMenu` (default: `true`) manual setting
+#### In game, as admin (preferred method)
+1. Join the multiplayer session and login to the server as admin through the game interface
+2. Edit the settings as needed on the settings screen.
+3. Once settings are changed, save the game to ensure that the `FS25_ContractBoost.xml` settings file is created.
+4. Most settings changes are "pushed" to any other players on the server immediately, but it's always safest to save, exit, and restart the dedicated server, as many of those settings affect how the game is loaded, and how contracts are generated.
+
+#### Directly on the server via FTP
+1. Save the settings at least once via the first method, ensure that the `FS25_ContractBoost.xml` settings file is created.
+2. Stop the game server, and download a local copy of the settings file from the appropriate savegame folder.
+3. Edit the settings as needed with your favorite text editor
+4. Re-upload the updated settings file via FTP
+5. Start the server.
+
+This second method assumes a few things: 
+#1 you understand how to edit XML
+#2 you're at your own risk if you make a mistake
+#3 don't be dumb - there are limits on most of the values set in the settings file that are caught when the file is loaded.
+
+
+
+### Detailed explanation: `enableCollectingBalesFromMissions`
+This boolean (`true|false`) setting will allow the player to collect the bales created from / during both Baling & Bale Wrapping contracts. One major note with this setting - you _MUST_ have this setting turned on _BEFORE_ accepting one of these two types of contracts; It will cause errors if you accept the contract with the seting off, then turning it on after accepting. You _may_ be able to pick up the bales, and as long as the setting is on when you complete the contract, the bales will not be removed... but you will recieve an error in the log when trying to use or sell those bales.
+
+
+### Detailed explanation: `enableInGameSettingsMenu` (default: `true`) manual setting
 This setting can _ONLY_ be changed by manually editing your **Contract Boost** settings file.
 1. Load into game with **Contract Boost** `1.0.5.3` or greater
 2. Save your game once, exit out
@@ -257,3 +285,11 @@ You can stop specific types from showing by setting the value to `0`. Furthermor
 - `deadwoodMission:` `1`
 - `treeTransportMission:` `1`
 - `destructibleRockMission:` `1`
+
+
+
+
+## Known Issues
+- [SP|MP] Depending on the in-game month, the game will possibly grant you _Spraying_ contracts on fields that are withered. This is a bug in the base game, not the _Contract Boost_ mod - as you can't spray a withered field even if you own it. I've reported the bug to Giants.
+
+- [SP|MP] Changes to some settings may or may not reflect on contracts that are already either in the available contracts list, or in your accepted contracts list when you make contract boost settings changes; Most will take efffect right away, but depending on how you play - I'd always recommend making the changes you want, saving the game and at least exiting out to the main menu and coming back into your savegame. Especially on dedicated servers, it's always recommended to restart the server after making _Contract Boost_ settings changes.
