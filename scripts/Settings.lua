@@ -130,6 +130,7 @@ function Settings:onReadStream(streamId, connection)
     end
 
     Logging.info(MOD_NAME .. ":SETTINGS :: Completed recieving new settings", streamId)
+    SettingsManager.logBoostSettings(self, 1)
 
     -- ensure that we keep the visual settings up to date
     ContractBoost:syncSettings()

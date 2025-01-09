@@ -139,9 +139,11 @@ function MissionTools.addBale(self, superFunc, bale)
     end
 
     -- one last check that we have a bale, and change the owner.
-    if bale ~= nil then
-        if ContractBoost.debug then Logging.info(MOD_NAME..':TOOLS :: BaleMission changeOwner %s: %s', bale.uniqueId, g_localPlayer.farmId) end
-        bale:setOwnerFarmId(g_localPlayer.farmId)
+    if self.isServer then
+        if bale ~= nil then
+            if ContractBoost.debug then Logging.info(MOD_NAME..':TOOLS :: BaleMission changeOwner %s: %s', bale.uniqueId, self.farmId) end
+            bale:setOwnerFarmId(self.farmId)
+        end
     end
 end
 
@@ -172,8 +174,8 @@ function MissionTools.getIsPrepared(self, superFunc)
     -- ensure that we're in the right setting, and reset the owner to the player
     if self.isServer then
 		for _, bale in ipairs(self.bales) do
-            if ContractBoost.debug then Logging.info(MOD_NAME..':TOOLS :: BaleWrapMission changeOwner %s: %s', bale.uniqueId, g_localPlayer.farmId) end
-			bale:setOwnerFarmId(g_localPlayer.farmId)
+            if ContractBoost.debug then Logging.info(MOD_NAME..':TOOLS :: BaleWrapMission changeOwner %s: %s', bale.uniqueId, self.farmId) end
+			bale:setOwnerFarmId(self.farmId)
 		end
 	end
 
@@ -206,8 +208,6 @@ function MissionTools.isAvailableForFieldBaleMission(self, superFunc, notNil)
 
     local fieldState = self:getFieldState()
     local windrowFillType = g_fruitTypeManager:getWindrowFillTypeIndexByFruitTypeIndex(fieldState.fruitTypeIndex)
-    local fruitType = g_fruitTypeManager:getFruitTypeByIndex(fieldState.fruitTypeIndex)
-    local fillType =  g_fillTypeManager:getFillTypeByIndex(windrowFillType)
-    Logging.info(MOD_NAME..':TOOLS :: isAvailableForFieldBaleMission %s: %s', fruitType.name, fillType.name)
+
     return not (windrowFillType == FillType.STRAW and math.random() < 0.5)
 end

@@ -8,34 +8,34 @@
 ---@field sectionTitle table @The UI control which displays the section title
 ---@field controls table @A list of UI controls
 ---@field loadedConfig table @A reference to the loaded configuration object
----@field enableContractValueOverrides table @A UI control
----@field rewardFactor table @A UI control
----@field maxContractsPerFarm table @A UI control
----@field maxContractsPerType table @A UI control
----@field maxContractsOverall table @A UI control
----@field enableStrawFromHarvestMissions table @A UI control
----@field enableSwathingForHarvestMissions table @A UI control
----@field enableGrassFromMowingMissions table @A UI control
----@field enableStonePickingFromMissions table @A UI control
----@field enableFieldworkToolFillItems table @A UI control
----@field baleMissionReward table @A UI control
----@field baleWrapMissionReward table @A UI control
----@field plowMissionReward table @A UI control
----@field cultivateMissionReward table @A UI control
----@field sowMissionReward table @A UI control
----@field harvestMissionReward table @A UI control
----@field hoeMissionReward table @A UI control
----@field weedMissionReward table @A UI control
----@field herbicideMissionReward table @A UI control
----@field fertilizeMissionReward table @A UI control
----@field mowMissionReward table @A UI control
----@field tedderMissionReward table @A UI control
----@field stonePickMissionReward table @A UI control
----@field deadwoodMissionReward table @A UI control
----@field treeTransportMissionReward table @A UI control
----@field destructibleRockMissionReward table @A UI control
-SettingsUI = {
-}
+---@field enableContractValueOverrides boolean @A UI control
+---@field rewardFactor number @A UI control
+---@field maxContractsPerFarm number @A UI control
+---@field maxContractsPerType number @A UI control
+---@field maxContractsOverall number @A UI control
+---@field enableStrawFromHarvestMissions boolean @A UI control
+---@field enableSwathingForHarvestMissions boolean @A UI control
+---@field enableGrassFromMowingMissions boolean @A UI control
+---@field enableStonePickingFromMissions boolean @A UI control
+---@field enableFieldworkToolFillItems boolean @A UI control
+---@field preferStrawHarvestMissions boolean @A UI control
+---@field baleMissionReward number @A UI control
+---@field baleWrapMissionReward number @A UI control
+---@field plowMissionReward number @A UI control
+---@field cultivateMissionReward number @A UI control
+---@field sowMissionReward number @A UI control
+---@field harvestMissionReward number @A UI control
+---@field hoeMissionReward number @A UI control
+---@field weedMissionReward number @A UI control
+---@field herbicideMissionReward number @A UI control
+---@field fertilizeMissionReward number @A UI control
+---@field mowMissionReward number @A UI control
+---@field tedderMissionReward number @A UI control
+---@field stonePickMissionReward number @A UI control
+---@field deadwoodMissionReward number @A UI control
+---@field treeTransportMissionReward number @A UI control
+---@field destructibleRockMissionReward number @A UI control
+SettingsUI = {}
 
 -- Create a meta table to get basic Class-like behavior
 local SettingsUI_mt = Class(SettingsUI)

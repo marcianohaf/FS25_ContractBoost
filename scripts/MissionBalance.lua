@@ -108,7 +108,7 @@ end
 --- Scale the mission rewards based on user configuration
 function MissionBalance:applyMaxPerType()
     -- exit early if we haven't loaded missions yet.
-    if not g_missionManager.missions then
+    if not g_missionManager.missions or g_currentMission.missionInfo.missionsXMLLoad then
         return
     end
 
