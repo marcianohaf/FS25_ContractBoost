@@ -6,7 +6,7 @@
     <texts>
         <text name="contract_boosted" text="Navýšení smluv" />
 		
-		<text name="cb_enableStrawFromHarvestMissions_short" text="Povolit sběr slámy" />
+	<text name="cb_enableStrawFromHarvestMissions_short" text="Povolit sběr slámy" />
         <text name="cb_enableStrawFromHarvestMissions_long" text="Dovoluje sběr slámy v zakázkách. Pozn.: sběr musíte uskutečnit než ukončíte zakázku." />
         <text name="cb_enableSwathingForHarvestMissions_short" text="Povolit řádkovač při sklizni" />
         <text name="cb_enableSwathingForHarvestMissions_long" text="Dovoluje použití řádkovače (MacDon) při zakázkách sklizně plodin." />
@@ -20,6 +20,8 @@
         <text name="cb_enableFieldworkToolFillItems_long" text="Přidá zdarma náplně (osivo, hnojivo) pro půjčené stroje. Pozn.: po splnění zakázky budou nepoužité náplně odstraněny." />
         <text name="cb_enableCollectingBalesFromMissions_short" text="Povolit sběr balíků" />
         <text name="cb_enableCollectingBalesFromMissions_long" text="Dovoluje sběr balíků v zakázkách na balíkování a ovíjení. Pozn.: pokud povoleno, žádný balík po ukončení zakázky nezmizí a zůstane ležet na místě." />
+	<text name="cb_preferStrawHarvestMissions_short" text="Upřednostnit sklízeň před balíkováním" />
+        <text name="cb_preferStrawHarvestMissions_long" text="Dává přednost zakázkám na sklizeň plodin před zakázkami na balíkování slámy na stejných polích. Toto nastavení funguje lépe pokud máte nastaven vyšší počet zakázek na sklizeň plodin než je nastaveno standartně." />
 
         <text name="cb_enableContractValueOverrides_short" text="Povolit přepsání zakázek" />
         <text name="cb_enableContractValueOverrides_long" text="Povoluje základní přepsání hodnot u zakázek. Při nastavení VYPNUTO budou zakázána následující čtyři nastavení." />
