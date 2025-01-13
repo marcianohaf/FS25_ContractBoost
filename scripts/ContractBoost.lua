@@ -10,7 +10,6 @@ ContractBoost.debug = false
 ContractBoost.modDirectory = g_currentModDirectory or ""
 MOD_NAME = g_currentModName or "unknown"
 
-
 ---Initializes Contract Boost!
 function ContractBoost:init()
     -- Load the config from xml
@@ -58,6 +57,9 @@ function ContractBoost:syncSettings()
     -- MissionTools: setup to allow more tools based on settings.
     MissionTools:setupAdditionalAllowedVehicles()
 
+    -- Update skip harvest fruit types when settings change
+    MissionFields:setupSkipHarvestFruitTypes()
+
     if ContractBoost.debug then Logging.info(MOD_NAME..' :: syncSettings complete.') end
 end
 
@@ -84,9 +86,15 @@ function ContractBoost.initializeListeners()
     -- Make sure to show the details when someone looks at a mission
     AbstractMission.getDetails = Utils.overwrittenFunction(AbstractMission.getDetails, MissionBalance.getDetails)
 
+    -- Allow users to disable certain harvest missions
+    HarvestMission.isAvailableForField = Utils.overwrittenFunction(HarvestMission.isAvailableForField, MissionFields.isHarvestAvailableForField)
+
     -- once the player is loaded, parse through the generated missions
     if g_currentMission:getIsServer() then
-        Player.onStartMission = Utils.appendedFunction(Player.onStartMission, MissionBalance.applyMaxPerType)
+        Player.onStartMission = Utils.appendedFunction(Player.onStartMission, function(...)
+            MissionFields:scanFieldsOnMissionStart()
+            MissionBalance:applyMaxPerType()
+        end)
     end
 
     -- add a console command to toggle debug mode.

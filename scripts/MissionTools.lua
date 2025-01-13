@@ -109,16 +109,17 @@ function MissionTools:getIsMissionWorkAllowed(superFunc, farmId, x, z, workAreaT
     local mission = self:getMissionAtWorldPosition(x, z)
     if mission ~= nil and mission.type ~= nil and mission.farmId == farmId then
         local missionType = mission.type.name
-    
+
         -- if ContractBoost.debug then 
         --     printf(MOD_NAME..':MissionTools :: missionType: %s | workAreaType: %s', missionType, workAreaType)
         -- end
 
+        local missionWorkAreaTypes = mission.workAreaTypes or {}
         local additionalWorkAreaTypes = MissionTools.additionalAllowedVehicles[missionType] or {}
 
         if (
             workAreaType == nil
-            or mission.workAreaTypes[workAreaType]
+            or missionWorkAreaTypes[workAreaType]
             or additionalWorkAreaTypes[workAreaType]
         ) then
             return true

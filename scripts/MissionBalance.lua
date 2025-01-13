@@ -143,4 +143,6 @@ function MissionBalance:applyMaxPerType()
         Logging.info(MOD_NAME..':BALANCE :: remove missions: %s, save to: %s', deletedMissions, g_currentMission.missionInfo.missionsXMLLoad)
         g_missionManager:saveToXMLFile(g_currentMission.missionInfo.missionsXMLLoad)
     end
+
+    ContractBoost:forceGrassFieldsToHaveGrassMissions()
 end
