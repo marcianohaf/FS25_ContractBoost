@@ -59,10 +59,10 @@ _Enjoy!_
 
 ## CHANGELOG
 
-### Changelog 1.0.0.2
+### Changelog `1.0.0.2`
 - Added safety check for custom maps that don't contain every type of contract
 
-### Changelog 1.1.0.0 (still in development)
+### Changelog `1.1.0.0` _(still in development)_
 - User contributed translations: `fr`, `cz`, `it`, `pl`, `ru`
 - Allow collecting hay from tedding contracts
 - Allow collecting straw bales from baling contracts
@@ -80,7 +80,7 @@ _Enjoy!_
 - Added feature to "prefer" harvesting missions over baling missions as cereal-crop harvesting missions are less frequent due to the new straw baling missions.
 
 
-## Configuration Instructions (1.1.0.0)
+## Configuration Instructions (`1.1.0.0`)
 
 All settings are now configurable within the UI. Note: most setting changes _**will not**_ affect existing contracts, only new contracts.
 
@@ -133,7 +133,7 @@ This setting can _ONLY_ be changed by manually editing your **Contract Boost** s
 > (b) editing the settings file directly when you're outside of the game for any settings changes that are needed.
 
 
-## Detailed Configuration Instructions (pre 1.0.3.0)
+## Detailed Configuration Instructions (pre `1.0.3.0`)
 
 **Contract Boost** is entirely controlled by a named configuration file (`ContractBoost.xml`) that is copied into your `modSettings/` folder on first usage. The file is located in the same folder that your `savegame##` folder is located, roughly here:
 
