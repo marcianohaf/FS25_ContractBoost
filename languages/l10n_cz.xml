@@ -20,9 +20,22 @@
         <text name="cb_enableFieldworkToolFillItems_long" text="Přidá zdarma náplně (osivo, hnojivo) pro půjčené stroje. Pozn.: po splnění zakázky budou nepoužité náplně odstraněny." />
         <text name="cb_enableCollectingBalesFromMissions_short" text="Povolit sběr balíků" />
         <text name="cb_enableCollectingBalesFromMissions_long" text="Dovoluje sběr balíků v zakázkách na balíkování a ovíjení. Pozn.: pokud povoleno, žádný balík po ukončení zakázky nezmizí a zůstane ležet na místě." />
-	<text name="cb_preferStrawHarvestMissions_short" text="Upřednostnit sklízeň před balíkováním" />
+	<text name="cb_enableCustomGrassFieldsForMissions_short" text="Udržovat pole s trávou" />
+        <text name="cb_enableCustomGrassFieldsForMissions_long" text="Dovoluje udržovat louky na polích pro zakázky. S nastavením na VYPNUTO budou na polích s trávou povoleny zakázky na orbu nebo kultivaci a bude povolen růst plevele." />
+        <text name="cb_preferStrawHarvestMissions_short" text="Upřednostnit sklízeň před balíkováním" />
         <text name="cb_preferStrawHarvestMissions_long" text="Dává přednost zakázkám na sklizeň plodin před zakázkami na balíkování slámy na stejných polích. Toto nastavení funguje lépe pokud máte nastaven vyšší počet zakázek na sklizeň plodin než je nastaveno standartně." />
 
+	<text name="cb_enableHarvestContractNewCrops_short" text="Povolit sklizeň špenátu, hrachu a fazolí" />
+        <text name="cb_enableHarvestContractNewCrops_long" text="Povoluje generování zakázek na sklizeň těchto plodin: špenát, hrách a fazole. Toto nastavení ovlivňuje pouze zakázky na sklizeň plodin. Při nastavení VYPNUTO se nebudou generovat zakázky na sklizeň určených plodin." />
+        <text name="cb_enableHarvestContractPremiumCrops_short" text="Povolit sklizeň mrkve, pastináku a červené řepy" />
+        <text name="cb_enableHarvestContractPremiumCrops_long" text="Povoluje generování zakázek na sklizeň těchto plodin: mrkev, pastinák a červená řepa. Toto nastavení ovlivňuje pouze zakázky na sklizeň plodin. Při nastavení VYPNUTO se nebudou generovat zakázky na sklizeň určených plodin." />
+        <text name="cb_enableHarvestContractRootCrops_short" text="Povolit sklizeň brambor a cukrové řepy" />
+        <text name="cb_enableHarvestContractRootCrops_long" text="Povoluje generování zakázek na sklizeň těchto plodin: brambory a cukrová řepa. Toto nastavení ovlivňuje pouze zakázky na sklizeň plodin. Při nastavení VYPNUTO se nebudou generovat zakázky na sklizeň určených plodin." />
+        <text name="cb_enableHarvestContractSugarcane_short" text="Povolit sklizeň cukrové třtiny" />
+        <text name="cb_enableHarvestContractSugarcane_long" text="Povoluje generování zakázek na sklizeň těchto plodin: cukrová třtina. Toto nastavení ovlivňuje pouze zakázky na sklizeň plodin. Při nastavení VYPNUTO se nebudou generovat zakázky na sklizeň určených plodin." />
+        <text name="cb_enableHarvestContractCotton_short" text="Povolit sklizeň bavlny" />
+        <text name="cb_enableHarvestContractCotton_long" text="Povoluje generování zakázek na sklizeň těchto plodin: bavlna. Toto nastavení ovlivňuje pouze zakázky na sklizeň plodin. Při nastavení VYPNUTO se nebudou generovat zakázky na sklizeň určených plodin." />
+       
         <text name="cb_enableContractValueOverrides_short" text="Povolit přepsání zakázek" />
         <text name="cb_enableContractValueOverrides_long" text="Povoluje základní přepsání hodnot u zakázek. Při nastavení VYPNUTO budou zakázána následující čtyři nastavení." />
         <text name="cb_rewardFactor_short" text="Násobitel" />
