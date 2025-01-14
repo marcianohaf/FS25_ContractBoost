@@ -8,7 +8,7 @@
 ---@field loadComplete boolean @Have we loaded the configuration?
 ---@field loadDebug boolean @Is debugging turned on for this class
 ---@field defaultConfig table @default values for all settings
----@field loadedConfig table @loaded values for all settings
+---@field loadedConfig table|nil @loaded values for all settings
 ---@field modSettingsConfigFile string @depreciated user configuration filename previously located in modSettings 
 ---@field savegameConfigFile string @savegame configuration file
 ---@field xmlTag string @the root xml tag
@@ -93,7 +93,7 @@ function SettingsManager:restoreSettings()
     if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: read user configurations") end
 
     -- don't load it twice if the config is already loaded.
-    if self.loadComplete then
+    if self.loadComplete and self.loadedConfig then
         if self.loadDebug then Logging.info(MOD_NAME..":LOAD :: exit early!") end
         return self.loadedConfig
     end
@@ -111,12 +111,13 @@ function SettingsManager:restoreSettings()
     -- pull the settings from memory if needed
     local settings = g_currentMission.contractBoostSettings
     if settings == nil or savegameSettingsFile == nil then
-        Logging.warning(MOD_NAME .. ":LOAD Could not read ContractBoost settings from either g_currentMission or savegameSettingsFile")
-        return
-    end
+        Logging.warning(MOD_NAME .. ":LOAD :: Could not read ContractBoost settings from either g_currentMission or savegameSettingsFile")
+
+        self:useDefaultConfig(settings)
+        Logging.info(MOD_NAME..":LOAD :: DEFAULT configuration used")
 
     -- Default is to load from the savegameSettingsFile
-    if savegameSettingsFile and fileExists(savegameSettingsFile) then
+    elseif savegameSettingsFile and fileExists(savegameSettingsFile) then
         self:importConfig(savegameSettingsFile, settings)
         Logging.info(MOD_NAME..":LOAD :: SAVEGAME configuration from: %s", savegameSettingsFile)
 
@@ -127,11 +128,12 @@ function SettingsManager:restoreSettings()
 
     end
 
-    Logging.info(MOD_NAME..":LOAD :: debug mode: %s", settings.debugMode and "true" or "false")
-    Logging.info(MOD_NAME..':LOAD :: loaded configuration:')
+    Logging.info(MOD_NAME..":LOAD :: Debug mode: %s", settings.debugMode and "true" or "false")
+    Logging.info(MOD_NAME..':LOAD :: Loaded configuration:')
     SettingsManager.logBoostSettings(settings, 1)
 
     -- make sure we don't load it twice
+    self.loadedConfig = settings
     self.loadComplete = true
     --g_currentMission.contractBoostSettings = settings  -- is this needed?
     Logging.info(MOD_NAME..':LOAD complete.')
