@@ -13,9 +13,6 @@ function MissionFields.scanFieldsOnMissionStart()
 
     if ContractBoost.debug then Logging.info(MOD_NAME..':FIELDS :: scanFieldsOnMissionStart :%s', #g_fieldManager:getFields()) end
 
-    -- TEMP force setting for testing
-    -- g_currentMission.contractBoostSettings.enableCustomGrassFieldsForMissions = true
-
     if g_currentMission.contractBoostSettings.enableCustomGrassFieldsForMissions then 
         local grassFruitTypeIndex = g_fruitTypeManager:getFruitTypeIndexByName('GRASS')
         for idx, field in g_fieldManager:getFields() do
@@ -43,13 +40,6 @@ function MissionFields:setupSkipHarvestFruitTypes()
 
     -- start by resetting the object
     self.skipHarvestFruitTypes = {}
-
-    -- TEMP force setting for testing
-    -- g_currentMission.contractBoostSettings.enableHarvestContractNewCrops = true
-    -- g_currentMission.contractBoostSettings.enableHarvestContractPremiumCrops = false
-    -- g_currentMission.contractBoostSettings.enableHarvestContractRootCrops = false
-    -- g_currentMission.contractBoostSettings.enableHarvestContractSugarcane = false
-    -- g_currentMission.contractBoostSettings.enableHarvestContractCotton = true
 
     if not g_currentMission.contractBoostSettings.enableHarvestContractPremiumCrops then
         local premiumFruitTypes = g_fruitTypeManager:getFruitTypesByCategoryNames('TOPLIFTINGHARVESTER')

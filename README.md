@@ -132,6 +132,18 @@ This setting can _ONLY_ be changed by manually editing your **Contract Boost** s
 > (a) re-enabling the `enableInGameSettingsMenu` by following the steps above but setting the value to true, or 
 > (b) editing the settings file directly when you're outside of the game for any settings changes that are needed.
 
+### Detailed explanation: `enableCustomGrassFieldsForMissions`
+This boolean (`true|false`) setting will fix what I consider to be a major bug in the field system, that affects grass-based contracts pretty badly. If you play on a map (ie: Hutan Pantai) that has no grass fields specified in the map.i3d itself (relying on random generation), those grass fields will initially have contracts, but quickly will be destroyed by either cultivating or plowing contracts - and since NPC almost never re-plant grass on their own or via seeding contracts - this means you'll quickly lose all grass-based contracts. As a player, this pretty much sucks. This setting will check each time you load the game (and / or change your settings) to make sure two things - one, that every field that has grass in it is setup as `grassMissionOnly` (which prevents the cultivating or plowing steps), but also remove weeds on those same fields if they grow (which should never happen, shame on you Giants!)
+
+
+### Detailed explanation: `enableHarvestContract**`
+This set of boolean (`true|false`) settings stop new harvest contracts from being created for the suggested type of crops (existing contracts will not be affected). All of these settings are in the in-game settings menu as easy on|off toggles. The specified crops are somewhat self explanatory, but I'll call them out here just in case:
+    - `enableHarvestContractNewCrops` :: Peas, Green Beans &amp; Spinach
+    - `enableHarvestContractPremiumCrops` :: Carrots, Parsnips &amp; Red Beets
+    - `enableHarvestContractRootCrops` :: Potatoes &amp; Sugar Beets
+    - `enableHarvestContractSugarcane` :: Sugarcane
+    - `enableHarvestContractCotton` :: Cotton
+
 
 ## Detailed Configuration Instructions (pre `1.0.3.0`)
 
