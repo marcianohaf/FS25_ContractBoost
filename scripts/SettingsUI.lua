@@ -219,15 +219,17 @@ function SettingsUI:updateUiElements(skipAutoBindControls)
         self.herbicideMissionReward, self.fertilizeMissionReward, self.mowMissionReward, self.tedderMissionReward,
         self.stonePickMissionReward, self.deadwoodMissionReward, self.treeTransportMissionReward, self.destructibleRockMissionReward
     }
+
     for _, control in ipairs(contractValueOverrideRewards) do
-        if control ~= self.enableContractValueOverrides then
-            control:setDisabled(not self.loadedConfig.enableContractValueOverrides)
-        end
+        control:setDisabled(not self.loadedConfig.enableContractValueOverrides)
     end
 
     local isAdmin = g_currentMission:getIsServer() or g_currentMission.isMasterUser
 	for _, control in ipairs(self.controls) do
-		control:setDisabled(not control.isDisabled and not isAdmin)
+        DebugUtil.printTableRecursively(control, nil, nil, 1)
+        if not control.disabled then
+		    control:setDisabled(not isAdmin)
+        end
 	end
 
     -- Update the focus manager
