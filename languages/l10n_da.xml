@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+    <translationContributors>Michaelbjerg21978</translationContributors>
+    <texts>
+        <text name="contract_boosted" text="Kontrakt Boost" />
+
+        <text name="cb_enableStrawFromHarvestMissions_short" text="Tillad Halm Opsamling" />
+        <text name="cb_enableStrawFromHarvestMissions_long" text="Tillader halm samling ved høst kontrakter." />
+        <text name="cb_enableSwathingForHarvestMissions_short" text="Tillad Halm Ved Afgrøder" />
+        <text name="cb_enableSwathingForHarvestMissions_long" text="Tillader brug af rive for harvest kontrakter." />
+        <text name="cb_enableGrassFromMowingMissions_short" text="Tillad Samling Af Græs" />
+        <text name="cb_enableGrassFromMowingMissions_long" text="Tillader samling af græs fra slånings kontrakter." />
+        <text name="cb_enableHayFromTedderMissions_short" text="Tillad Samling Af Hø" />
+        <text name="cb_enableHayFromTedderMissions_long" text="Tillader samling af hø fra hø vendings kontrakter." />
+        <text name="cb_enableStonePickingFromMissions_short" text="Tillad Opsamling Af Sten" />
+        <text name="cb_enableStonePickingFromMissions_long" text="Tillader opsamling af sten fra harve og sånings kontrakter." />
+        <text name="cb_enableFieldworkToolFillItems_short" text="Tilføj Markarbejde Fyldte Emner" />
+        <text name="cb_enableFieldworkToolFillItems_long" text="Tilføjer gratis genstande til at fylde dine redskaber, når du låner udstyr til en kontrakt. Bemærk: ved færdig kontrakt vil gratis genstande blive fjernet, hvis de ikke bruges." />
+        <text name="cb_enableCollectingBalesFromMissions_short" text="Tillad Balle Samling" />
+        <text name="cb_enableCollectingBalesFromMissions_long" text="Tillader opsamling af baller fra ballepresning og balleindpaknings kontrakter. Bemærk: Når den er aktiveret, skal alle kontrakt baller indsamles og forblive, hvis de ikke afhentes." />
+		<text name="cb_preferStrawHarvestMissions_short" text="Foretræk Høst Kontrakter over Halm Presning" />
+        <text name="cb_preferStrawHarvestMissions_long" text="Tilføjer en præference for høstkontrakter frem for kontrakter om halmballepressning for de samme marker. Denne indstilling fungerer bedst med en MaxPerType for Harvest Missions højere end normalt." />
+
+        <text name="cb_enableContractValueOverrides_short" text="Aktiver Kontrakt Værdi Overskrivelse" />
+        <text name="cb_enableContractValueOverrides_long" text="Aktivere overskriv af standard kontrakt system værdier. Deaktivere de næste fire indstillinger hvis sat til false." />
+        <text name="cb_rewardFactor_short" text="Belønnings Factor" />
+        <text name="cb_rewardFactor_long" text="Ganger alle kontrakt belønninger med den givne factor." />
+        <text name="cb_maxContractsPerFarm_short" text="Maximum Kontrakter Per Gård" />
+        <text name="cb_maxContractsPerFarm_long" text="Bestemmer maximum antal af kontrakter hver gård kan have aktiv til enhver tid." />
+        <text name="cb_maxContractsOverall_short" text="Maximum Kontrakter Tilgængelig" />
+        <text name="cb_maxContractsOverall_long" text="Bestemmer maximum antal af kontrakter der kan tilbydes dig." />
+        <text name="cb_maxContractsPerType_short" text="Maximum Kontrakter Per Type" />
+        <text name="cb_maxContractsPerType_long" text="Bestemmer maximum antal af kontrakter af samme type der kan tilbydes dig." />
+        
+        <text name="cb_baleMissionReward_short" text="Balle Kontrakt Belønning" />
+        <text name="cb_baleMissionReward_long" text="Belønning per hektar for balle kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_baleWrapMissionReward_short" text="Balle Wrap Kontrakt Belønning" />
+        <text name="cb_baleWrapMissionReward_long" text="Belønning per balle for balle wrapping kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_plowMissionReward_short" text="Plovning Kontrakt Belønning" />
+        <text name="cb_plowMissionReward_long" text="Belønning per hektar for Plovnings kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_cultivateMissionReward_short" text="Harve Kontrakt Belønning" />
+        <text name="cb_cultivateMissionReward_long" text="Belønning per hektar for Harve kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_sowMissionReward_short" text="Såning Kontrakt Belønning" />
+        <text name="cb_sowMissionReward_long" text="Belønning per hektar for Sånings kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_harvestMissionReward_short" text="Høstning Kontrakt Belønning" />
+        <text name="cb_harvestMissionReward_long" text="Belønning per hektar for Høst kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_hoeMissionReward_short" text="Hakning Kontrakt Belønning" />
+        <text name="cb_hoeMissionReward_long" text="Belønning per hektar for Hakning kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_weedMissionReward_short" text="Ukrudtfjernelse Kontrakt Belønning" />
+        <text name="cb_weedMissionReward_long" text="Belønning per hektar for Ukrudtfjernelse kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_herbicideMissionReward_short" text="Sprøjte Kontrakt Belønning" />
+        <text name="cb_herbicideMissionReward_long" text="Belønning per hektar for Sprøjte kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_fertilizeMissionReward_short" text="Gødnings Kontrakt Belønning" />
+        <text name="cb_fertilizeMissionReward_long" text="Belønning per hektar for Gødnings kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_mowMissionReward_short" text="Slånings Kontrakt Belønning" />
+        <text name="cb_mowMissionReward_long" text="Belønning per hektar for Slånings kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_tedderMissionReward_short" text="Hø Vending Kontrakt Belønning" />
+        <text name="cb_tedderMissionReward_long" text="Belønning per hektar for Hø Vending kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_stonePickMissionReward_short" text="Sten Samling Kontrakt Belønning" />
+        <text name="cb_stonePickMissionReward_long" text="Belønning per hektar for sten samling kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_deadwoodMissionReward_short" text="Død Træ Kontrakt Belønning" />
+        <text name="cb_deadwoodMissionReward_long" text="Belønning per træ for død træ kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_treeTransportMissionReward_short" text="Træ Transport Kontrakt Belønning" />
+        <text name="cb_treeTransportMissionReward_long" text="Belønning per træ for træ transport. Hvis sat til '-', standard belønninger vil blive anvendt." />
+        <text name="cb_destructibleRockMissionReward_short" text="Sten Fjernelse Kontrakt Belønning" />
+        <text name="cb_destructibleRockMissionReward_long" text="Belønning per sten ved sten fjernelse kontrakter. Hvis sat til '-', standard belønninger vil blive anvendt." />
+
+        <text name="cb_baleMissionMaxPerType_short" text="Maximum Balle Kontrakter" />
+        <text name="cb_baleMissionMaxPerType_long" text="Maximum antal af genereret balle kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_baleWrapMissionMaxPerType_short" text="Maximum Balle Wrap Kontrakter" />
+        <text name="cb_baleWrapMissionMaxPerType_long" text="Maximum antal af genereret balle wrapping kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_plowMissionMaxPerType_short" text="Maximum Pløjnings Kontrakter" />
+        <text name="cb_plowMissionMaxPerType_long" text="Maximum antal af genereret Plove kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_cultivateMissionMaxPerType_short" text="Maximum Harve Kontrakter" />
+        <text name="cb_cultivateMissionMaxPerType_long" text="Maximum antal af genereret Harve kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_sowMissionMaxPerType_short" text="Maximum Sånings Kontrakter" />
+        <text name="cb_sowMissionMaxPerType_long" text="Maximum antal af genereret Sånings kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_harvestMissionMaxPerType_short" text="Maximum Høst Kontrakter" />
+        <text name="cb_harvestMissionMaxPerType_long" text="Maximum antal af genereret Høst kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_hoeMissionMaxPerType_short" text="Maximum Haknings Kontrakter" />
+        <text name="cb_hoeMissionMaxPerType_long" text="Maximum antal af genereret Haknings kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_weedMissionMaxPerType_short" text="Maximum Ukrudtfjernelse Kontrakter" />
+        <text name="cb_weedMissionMaxPerType_long" text="Maximum antal af genereret Ukrudtfjernelse kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_herbicideMissionMaxPerType_short" text="Maximum Sprøjte Kontrakter" />
+        <text name="cb_herbicideMissionMaxPerType_long" text="Maximum antal af genereret Sprøjte kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_fertilizeMissionMaxPerType_short" text="Maximum Gødnings Kontrakter" />
+        <text name="cb_fertilizeMissionMaxPerType_long" text="Maximum antal af genereret Gødnings kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_mowMissionMaxPerType_short" text="Maximum Slånings Kontrakter" />
+        <text name="cb_mowMissionMaxPerType_long" text="Maximum antal af genereret Slånings kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_tedderMissionMaxPerType_short" text="Maximum Hø Vending Kontrakter" />
+        <text name="cb_tedderMissionMaxPerType_long" text="Maximum antal af genereret Hø Vendings kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_stonePickMissionMaxPerType_short" text="Maximum Sten Samlings Kontrakter" />
+        <text name="cb_stonePickMissionMaxPerType_long" text="Maximum antal af genereret sten samlings kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_deadwoodMissionMaxPerType_short" text="Maximum Død træ Kontrakter" />
+        <text name="cb_deadwoodMissionMaxPerType_long" text="Maximum antal af genereret død Træ kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_treeTransportMissionMaxPerType_short" text="Maximum Træ Transport Kontrakter" />
+        <text name="cb_treeTransportMissionMaxPerType_long" text="Maximum antal af genereret træ transport. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+        <text name="cb_destructibleRockMissionMaxPerType_short" text="Maximum Sten Fjernelse Kontrakter" />
+        <text name="cb_destructibleRockMissionMaxPerType_long" text="Maximum antal af genereret sten fjernelse kontrakter. Hvis sat til '-', værdien 'Maximum Kontrakter Per Type' vil blive anvendt. For at deaktivere denne type kontrakt skal du indstille til 0." />
+    </texts>
+</l10n>
