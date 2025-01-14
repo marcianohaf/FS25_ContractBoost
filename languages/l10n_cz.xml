@@ -6,7 +6,7 @@
     <texts>
         <text name="contract_boosted" text="Navýšení smluv" />
 		
-	<text name="cb_enableStrawFromHarvestMissions_short" text="Povolit sběr slámy" />
+	    <text name="cb_enableStrawFromHarvestMissions_short" text="Povolit sběr slámy" />
         <text name="cb_enableStrawFromHarvestMissions_long" text="Dovoluje sběr slámy v zakázkách. Pozn.: sběr musíte uskutečnit než ukončíte zakázku." />
         <text name="cb_enableSwathingForHarvestMissions_short" text="Povolit řádkovač při sklizni" />
         <text name="cb_enableSwathingForHarvestMissions_long" text="Dovoluje použití řádkovače (MacDon) při zakázkách sklizně plodin." />
@@ -20,12 +20,12 @@
         <text name="cb_enableFieldworkToolFillItems_long" text="Přidá zdarma náplně (osivo, hnojivo) pro půjčené stroje. Pozn.: po splnění zakázky budou nepoužité náplně odstraněny." />
         <text name="cb_enableCollectingBalesFromMissions_short" text="Povolit sběr balíků" />
         <text name="cb_enableCollectingBalesFromMissions_long" text="Dovoluje sběr balíků v zakázkách na balíkování a ovíjení. Pozn.: pokud povoleno, žádný balík po ukončení zakázky nezmizí a zůstane ležet na místě." />
-	<text name="cb_enableCustomGrassFieldsForMissions_short" text="Udržovat pole s trávou" />
+	    <text name="cb_enableCustomGrassFieldsForMissions_short" text="Udržovat pole s trávou" />
         <text name="cb_enableCustomGrassFieldsForMissions_long" text="Dovoluje udržovat louky na polích pro zakázky. S nastavením na VYPNUTO budou na polích s trávou povoleny zakázky na orbu nebo kultivaci a bude povolen růst plevele." />
         <text name="cb_preferStrawHarvestMissions_short" text="Upřednostnit sklízeň před balíkováním" />
         <text name="cb_preferStrawHarvestMissions_long" text="Dává přednost zakázkám na sklizeň plodin před zakázkami na balíkování slámy na stejných polích. Toto nastavení funguje lépe pokud máte nastaven vyšší počet zakázek na sklizeň plodin než je nastaveno standartně." />
 
-	<text name="cb_enableHarvestContractNewCrops_short" text="Povolit sklizeň špenátu, hrachu a fazolí" />
+	    <text name="cb_enableHarvestContractNewCrops_short" text="Povolit sklizeň špenátu, hrachu a fazolí" />
         <text name="cb_enableHarvestContractNewCrops_long" text="Povoluje generování zakázek na sklizeň těchto plodin: špenát, hrách a fazole. Toto nastavení ovlivňuje pouze zakázky na sklizeň plodin. Při nastavení VYPNUTO se nebudou generovat zakázky na sklizeň určených plodin." />
         <text name="cb_enableHarvestContractPremiumCrops_short" text="Povolit sklizeň mrkve, pastináku a červené řepy" />
         <text name="cb_enableHarvestContractPremiumCrops_long" text="Povoluje generování zakázek na sklizeň těchto plodin: mrkev, pastinák a červená řepa. Toto nastavení ovlivňuje pouze zakázky na sklizeň plodin. Při nastavení VYPNUTO se nebudou generovat zakázky na sklizeň určených plodin." />
@@ -114,4 +114,3 @@
         <text name="cb_destructibleRockMissionMaxPerType_long" text="Nejvyšší počet zakázek na odstraňování velkých kamenů. Pokud necháte nastaveno '-', bude aplikován počet pro daný typ zakázky, nastavený výše. Pro vypnutí těchto zakázek nastavte na 0." />
     </texts>
 </l10n>
-

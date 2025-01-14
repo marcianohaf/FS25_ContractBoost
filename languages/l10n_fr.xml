@@ -20,21 +20,21 @@
         <text name="cb_enableFieldworkToolFillItems_long" text="Ajoute des consommables gratuits pour remplir vos outils lors de l'emprunt d'équipement pour un contrat. Remarque : à la fin du contrat, les objets gratuits seront retirés s'ils n'ont pas été utilisés." />
         <text name="cb_enableCollectingBalesFromMissions_short" text="Permettre la collecte de balles" />
         <text name="cb_enableCollectingBalesFromMissions_long" text="Permet de collecter des balles lors des contrats de mise en balles et d'enrubannage. Remarque : une fois activé, toutes les balles du contrat devront être collectées et celles non collectées resteront sur le terrain." />
-	<text name="cb_enableCustomGrassFieldsForMissions_short" text="Activer les contrats pour champs d'herbe personnalisés" />
-	<text name="cb_enableCustomGrassFieldsForMissions_long" text="Permet aux champs d'herbe personnalisés ou générés dynamiquement de fonctionner correctement pour tous les contrats liés à l'herbe. Si cette option est désactivée, ces champs seront soumis à des contrats de labourage ou de culture, et les mauvaises herbes y pousseront." />
-	<text name="cb_preferStrawHarvestMissions_short" text="Privilégier les contrats de récolte avec paille" />
-	<text name="cb_preferStrawHarvestMissions_long" text="Ajoute une préférence pour les contrats de récolte par rapport aux contrats de pressage de paille pour les mêmes champs. Cette option fonctionne mieux avec un maximum de contrats de récolte supérieur à la normale." />
+        <text name="cb_enableCustomGrassFieldsForMissions_short" text="Activer les contrats pour champs d'herbe personnalisés" />
+        <text name="cb_enableCustomGrassFieldsForMissions_long" text="Permet aux champs d'herbe personnalisés ou générés dynamiquement de fonctionner correctement pour tous les contrats liés à l'herbe. Si cette option est désactivée, ces champs seront soumis à des contrats de labourage ou de culture, et les mauvaises herbes y pousseront." />
+        <text name="cb_preferStrawHarvestMissions_short" text="Privilégier les contrats de récolte avec paille" />
+        <text name="cb_preferStrawHarvestMissions_long" text="Ajoute une préférence pour les contrats de récolte par rapport aux contrats de pressage de paille pour les mêmes champs. Cette option fonctionne mieux avec un maximum de contrats de récolte supérieur à la normale." />
 
-	<text name="cb_enableHarvestContractNewCrops_short" text="Activer les contrats de récolte pour épinards, pois et haricots verts" />
-	<text name="cb_enableHarvestContractNewCrops_long" text="Permet la génération de contrats de récolte pour les champs d'épinards, de pois et de haricots verts. Cette option concerne uniquement les contrats de récolte." />
-	<text name="cb_enableHarvestContractPremiumCrops_short" text="Activer les contrats pour carottes, panais et betteraves rouges" />
-	<text name="cb_enableHarvestContractPremiumCrops_long" text="Permet la génération de contrats de récolte pour les champs de carottes, panais et betteraves rouges. Cette option concerne uniquement les contrats de récolte." />
-	<text name="cb_enableHarvestContractRootCrops_short" text="Activer les contrats pour pommes de terre et betteraves sucrières" />
-	<text name="cb_enableHarvestContractRootCrops_long" text="Permet la génération de contrats de récolte pour les champs de pommes de terre et de betteraves sucrières. Cette option concerne uniquement les contrats de récolte." />
-	<text name="cb_enableHarvestContractSugarcane_short" text="Activer les contrats de récolte pour canne à sucre" />
-	<text name="cb_enableHarvestContractSugarcane_long" text="Permet la génération de contrats de récolte pour les champs de canne à sucre. Cette option concerne uniquement les contrats de récolte." />
-	<text name="cb_enableHarvestContractCotton_short" text="Activer les contrats de récolte pour coton" />
-	<text name="cb_enableHarvestContractCotton_long" text="Permet la génération de contrats de récolte pour les champs de coton. Cette option concerne uniquement les contrats de récolte." />
+        <text name="cb_enableHarvestContractNewCrops_short" text="Activer les contrats de récolte pour épinards, pois et haricots verts" />
+        <text name="cb_enableHarvestContractNewCrops_long" text="Permet la génération de contrats de récolte pour les champs d'épinards, de pois et de haricots verts. Cette option concerne uniquement les contrats de récolte." />
+        <text name="cb_enableHarvestContractPremiumCrops_short" text="Activer les contrats pour carottes, panais et betteraves rouges" />
+        <text name="cb_enableHarvestContractPremiumCrops_long" text="Permet la génération de contrats de récolte pour les champs de carottes, panais et betteraves rouges. Cette option concerne uniquement les contrats de récolte." />
+        <text name="cb_enableHarvestContractRootCrops_short" text="Activer les contrats pour pommes de terre et betteraves sucrières" />
+        <text name="cb_enableHarvestContractRootCrops_long" text="Permet la génération de contrats de récolte pour les champs de pommes de terre et de betteraves sucrières. Cette option concerne uniquement les contrats de récolte." />
+        <text name="cb_enableHarvestContractSugarcane_short" text="Activer les contrats de récolte pour canne à sucre" />
+        <text name="cb_enableHarvestContractSugarcane_long" text="Permet la génération de contrats de récolte pour les champs de canne à sucre. Cette option concerne uniquement les contrats de récolte." />
+        <text name="cb_enableHarvestContractCotton_short" text="Activer les contrats de récolte pour coton" />
+        <text name="cb_enableHarvestContractCotton_long" text="Permet la génération de contrats de récolte pour les champs de coton. Cette option concerne uniquement les contrats de récolte." />
         
         <text name="cb_enableContractValueOverrides_short" text="Activer les modifications de valeur des contrats" />
         <text name="cb_enableContractValueOverrides_long" text="Permet de modifier les valeurs par défaut du système de contrats. Désactive les quatre paramètres suivants si défini sur non." />

@@ -226,7 +226,6 @@ function SettingsUI:updateUiElements(skipAutoBindControls)
 
     local isAdmin = g_currentMission:getIsServer() or g_currentMission.isMasterUser
 	for _, control in ipairs(self.controls) do
-        DebugUtil.printTableRecursively(control, nil, nil, 1)
         if not control.disabled then
 		    control:setDisabled(not isAdmin)
         end
