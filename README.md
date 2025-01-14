@@ -29,7 +29,7 @@ This mod is intended to work alongside **BetterContracts** (once it's updated fo
 ## Installation Instructions
 1. Download this package from GitHub on the releases page, save the `FS25_ContractBoost.zip` into your mod folder.
 2. Launch the game, and activate the mod.
-3. If you wish to customize any of the settings, visit your savegame folder structure, and look for the settings file: `/FarmingSimulator2025/modSettings/ContractBoost.xml`, which is created once you load the mod into any save. Each item above has it's own setting, and the file explains the full settings and what appropriate values for each are.
+3. Once you are inside the game, customize any of the _Contract Boost_ settings as needed within the Settings > General Settings tab. When you save, a new configuration file is created in your `savegame##` folder, which will be edited and managed by the _Contract Boost_ mod. In very minor cases, direct editing of this file may be required (as detailed below).
 
 _Enjoy!_
 
@@ -63,21 +63,21 @@ _Enjoy!_
 - Added safety check for custom maps that don't contain every type of contract
 
 ### Changelog `1.1.0.0` _(still in development)_
-- User contributed translations: `fr`, `cz`, `it`, `pl`, `ru`
+- User contributed translations: `fr`, `cz`, `it`, `pl`, `ru`, `da`
 - Allow collecting hay from tedding contracts
 - Allow collecting straw bales from baling contracts
 - Allow collecting wrapped silage bales from bale-wrapping contracts
-- Support customizing of the number of contracts for each type of contract individually, with the ability to "disable" contract types you don't want to see.
-- All settings previously in the configuration file can be set in the General Settings panel in-game, and will be updated when saving your game.
-- Configuration file in modSettings folder has been depreciated
-- New configuration file in savegame folder should only be manually edited while game is not running.
-- Fixed baleMission setting to be perHa instead of perBale
 - Added cultivator to seeding missions, just in case you mess up
-- Fixed minor bug while debug mode is off.
-- **Rebuilt Settings to work with MP Syncronization** :: Dedicated Server is the source of truth for settings, clients recieve settings on connect, or when settings are changed.
-- Added feature to remove already added fill items when setting is switched off
-- Added feature to remove unwanted contracts (from the bottom, up) when you change the `customMaxPerType` setting. Example: There are `5` deadwood contracts in your list, but you're tired of seeing them... update the `maxPerType` setting for deadwood to `2` and when you save your game, _Contract Boost_ will automatically remove the extra three contracts. This setting is _checked_ and _cleaned_ both on game load and save.
+- Added support customizing of the number of contracts for each type of contract individually, with the ability to "disable" contract types you don't want to see.
+- Added feature to remove already added fill items when the `enableFieldworkToolFillItems` setting is switched off
+- Added feature to remove unwanted contracts when you change the `customMaxPerType` setting. Example: There are `5` deadwood contracts in your list, but you're tired of seeing them... update the `maxPerType` setting for deadwood to `2` and when you save your game, _Contract Boost_ will automatically remove three contract from the bottom of the list. This setting is _checked_ and _cleaned_ both on game load and save.
 - Added feature to "prefer" harvesting missions over baling missions as cereal-crop harvesting missions are less frequent due to the new straw baling missions.
+- Added feature to enable or disable certain types of harvesting contracts.
+- _Contract Boost_ settings are now managed in-game. 
+   - All settings previously in the configuration file can be set in the General Settings panel in-game, and will be updated when saving your game.
+   - The new `FS25_ContractBoost.xml` configuration file in savegame folder should only be manually edited while game is not running.
+   - The old `ContractBoost.xml` configuration file in modSettings folder has been depreciated
+   - Settings have been rebuilt to support MP syncronization :: The server is the source of truth for settings, clients recieve settings on connect or change.
 
 
 ## Configuration Instructions (`1.1.0.0`)

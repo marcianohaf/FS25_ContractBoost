@@ -40,20 +40,17 @@ Changelog 1.1.0.0 (in development)
 - Allow collecting hay from tedding contracts.
 - Allow collecting straw bales from baling contracts.
 - Allow collecting wrapped silage bales from bale-wrapping contracts.
-- Support customizing of the number of contracts for each type of contract individually, with the ability to "disable" contract types you don't want to see.
-- All settings previously in the configuration file can be set in the General Settings panel in-game.
-- Configuration file in modSettings folder has been depreciated.
-- New configuration file in savegame folder can only be manually edited while game is not running.
-- Fixed baleMission setting to be perHa instead of perBale.
-- Added cultivator to seeding missions, just in case you mess up.
-- Rebuilt Settings to work with MP Syncronization :: Dedicated Server is the source of truth for settings, clients recieve settings on connect.
-- Added feature to remove already added fill items when setting is switched off
-- Added balancing feature to remove unwanted contracts when a maxPerType or customMaxPerType setting is SAVED. (note: contracts are not removed until game is saved).
-- Added console command: cbDebugToggle to toggle debugMode.
-- Added override to settings file only: enableInGameSettingsMenu, default: true
-- Fixed collecting bales from baling & bale wrapping contracts in both SP & MP.
-- Added setting to support custom or dynamically generated grass fields properly with contracts, which should prevent grass fields from getting plowed or cultivated.
-- Added harvest settings (default: on) for the "new crops", "premium crops", "root crops", Sugarcane, and Cotton - to block those type of harvest contracts if you don't want them. 
+- Added cultivator to seeding missions, just in case you mess up
+- Added support customizing of the number of contracts for each type of contract individually, with the ability to "disable" contract types you don't want to see.
+- Added feature to remove already added fill items when the enableFieldworkToolFillItems setting is switched off
+- Added feature to remove unwanted contracts when you change the customMaxPerType setting. This setting is executed both on game load and save.
+- Added feature to "prefer" harvesting missions over baling missions as cereal-crop harvesting missions are less frequent due to the new straw baling missions.
+- Added feature to enable or disable certain types of harvesting contracts.
+- _Contract Boost_ settings are now managed in-game. 
+   - All settings previously in the configuration file can be set in the General Settings panel in-game, and will be updated when saving your game.
+   - The new FS25_ContractBoost.xml configuration file in savegame folder should only be manually edited while game is not running.
+   - The old ContractBoost.xml configuration file in modSettings folder has been depreciated
+   - Settings have been rebuilt to support MP syncronization :: The server is the source of truth for settings, clients recieve settings on connect or change.
 ]]></en>
         <de><![CDATA[
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
