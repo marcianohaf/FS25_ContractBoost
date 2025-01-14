@@ -55,7 +55,7 @@ Changelog 1.1.0.0 (in development)
 - Added setting to support custom or dynamically generated grass fields properly with contracts, which should prevent grass fields from getting plowed or cultivated.
 - Added harvest settings (default: on) for the "new crops", "premium crops", "root crops", Sugarcane, and Cotton - to block those type of harvest contracts if you don't want them. 
 ]]></en>
-        <de>
+        <de><![CDATA[
 Hole mehr aus deinen Aufträgen heraus indem du mehr Geld bekommst und die Beute einsammeln kannst!
 
 Features:
@@ -76,8 +76,8 @@ GitHub-Link: https://github.com/GMNGjoy/FS25_ContractBoost
 
 Changelog 1.0.0.2
 - Sicherheitsüberprüfung für Karten hinzugefügt, die nicht alle Vertragsarten unterstützen
-</de>
-        <fr>
+]]></de>
+        <fr><![CDATA[
 Augmentez vos revenus grâce à vos contrats et récupérez les ressources collectées !
 
 Fonctionnalités :
@@ -116,8 +116,8 @@ Changelog 1.1.0.0 :
 - Correction du paramètre des missions de balles pour qu'il soit défini par hectare au lieu de par balle.
 - Ajout d'un cultivateur aux missions d'ensemencement, au cas où vous feriez une erreur.
 - Correction d'un bug mineur lorsque le mode débogage est désactivé.
-</fr>
-        <it>
+]]></fr>
+        <it><![CDATA[
 Aumenta i tuoi contratti guadagnando più soldi e raccogliendo i bottini!
 
 Caratteristiche:
@@ -156,7 +156,7 @@ Changelog 1.1.0.0
 - Corretto il parametro della missione delle balle in modo che sia perHa anziché perBale
 - Aggiunto coltivatore alle missioni di semina, nel caso facessi un errore
 - Corretto un bug minore quando la modalità debug è disattivata.
-</it>
+]]></it>
     </description>
     <iconFilename>icon_contractBoost.png</iconFilename>
     <multiplayer supported="true"/>
