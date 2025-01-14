@@ -94,23 +94,38 @@ end
 function Settings:onReadStream(streamId, connection)
     if self.debugMode then Logging.info(MOD_NAME .. ":SETTINGS :: Receiving new settings", streamId) end
 
+    -- set via console command
     self.debugMode = streamReadBool(streamId)
+    
+    -- private, can only be set manually
+    self.enableInGameSettingsMenu = streamReadBool(streamId)
+
+    -- set via in-gmae menu
     self.enableContractValueOverrides = streamReadBool(streamId)
+    self.rewardFactor = streamReadFloat32(streamId)
+    self.maxContractsPerFarm = streamReadInt16(streamId)
+    self.maxContractsPerType = streamReadInt16(streamId)
+    self.maxContractsOverall = streamReadInt16(streamId)
+
+    -- boolean settings 
     self.enableStrawFromHarvestMissions = streamReadBool(streamId)
     self.enableSwathingForHarvestMissions = streamReadBool(streamId)
     self.enableGrassFromMowingMissions = streamReadBool(streamId)
     self.enableHayFromTedderMissions = streamReadBool(streamId)
     self.enableStonePickingFromMissions = streamReadBool(streamId)
     self.enableCollectingBalesFromMissions = streamReadBool(streamId)
-    self.preferStrawHarvestMissions = streamReadBool(streamId)
     self.enableFieldworkToolFillItems = streamReadBool(streamId)
-    self.enableInGameSettingsMenu = streamReadBool(streamId)
+    self.enableCustomGrassFieldsForMissions = streamReadBool(streamId)
+    self.preferStrawHarvestMissions = streamReadBool(streamId)
 
-    self.rewardFactor = streamReadFloat32(streamId)
-    self.maxContractsPerFarm = streamReadInt16(streamId)
-    self.maxContractsPerType = streamReadInt16(streamId)
-    self.maxContractsOverall = streamReadInt16(streamId)
+    -- harvest settings
+    self.enableHarvestContractNewCrops = streamReadBool(streamId)
+    self.enableHarvestContractPremiumCrops = streamReadBool(streamId)
+    self.enableHarvestContractRootCrops = streamReadBool(streamId)
+    self.enableHarvestContractSugarcane = streamReadBool(streamId)
+    self.enableHarvestContractCotton = streamReadBool(streamId)
 
+    -- custom settings
     self.customRewards = {}
     for _, missionType in SettingsManager.missionTypes do
         if streamReadBool(streamId) then
@@ -143,23 +158,38 @@ end
 function Settings:onWriteStream(streamId, connection)
     if self.debugMode then Logging.info(MOD_NAME .. ":SETTINGS :: Sending new settings", streamId) end
 
+    -- set via console command
     streamWriteBool(streamId, self.debugMode)
+    
+    -- private, can only be set manually
+    streamWriteBool(streamId, self.enableInGameSettingsMenu)
+
+    -- set via in-game menu
     streamWriteBool(streamId, self.enableContractValueOverrides)
+    streamWriteFloat32(streamId, self.rewardFactor)
+    streamWriteInt16(streamId, self.maxContractsPerFarm)
+    streamWriteInt16(streamId, self.maxContractsPerType)
+    streamWriteInt16(streamId, self.maxContractsOverall)
+
+    -- boolean settings
     streamWriteBool(streamId, self.enableStrawFromHarvestMissions)
     streamWriteBool(streamId, self.enableSwathingForHarvestMissions)
     streamWriteBool(streamId, self.enableGrassFromMowingMissions)
     streamWriteBool(streamId, self.enableHayFromTedderMissions)
     streamWriteBool(streamId, self.enableStonePickingFromMissions)
     streamWriteBool(streamId, self.enableCollectingBalesFromMissions)
-    streamWriteBool(streamId, self.preferStrawHarvestMissions)
     streamWriteBool(streamId, self.enableFieldworkToolFillItems)
-    streamWriteBool(streamId, self.enableInGameSettingsMenu)
+    streamWriteBool(streamId, self.enableCustomGrassFieldsForMissions)
+    streamWriteBool(streamId, self.preferStrawHarvestMissions)
+    
+    -- harvest settings
+    streamWriteBool(streamId, self.enableHarvestContractNewCrops)
+    streamWriteBool(streamId, self.enableHarvestContractPremiumCrops)
+    streamWriteBool(streamId, self.enableHarvestContractRootCrops)
+    streamWriteBool(streamId, self.enableHarvestContractSugarcane)
+    streamWriteBool(streamId, self.enableHarvestContractCotton)
 
-    streamWriteFloat32(streamId, self.rewardFactor)
-    streamWriteInt16(streamId, self.maxContractsPerFarm)
-    streamWriteInt16(streamId, self.maxContractsPerType)
-    streamWriteInt16(streamId, self.maxContractsOverall)
-
+    -- custom settings
     for _, missionType in SettingsManager.missionTypes do
         if streamWriteBool(streamId, self.customRewards[missionType] ~= nil) then
             streamWriteInt16(streamId, self.customRewards[missionType])

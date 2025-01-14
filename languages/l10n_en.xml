@@ -18,9 +18,22 @@
         <text name="cb_enableFieldworkToolFillItems_long" text="Adds free items to fill your tools when borrowing equipment for a contract. Note: on contract completion free items will be removed if not used." />
         <text name="cb_enableCollectingBalesFromMissions_short" text="Allow Collecting Bales" />
         <text name="cb_enableCollectingBalesFromMissions_long" text="Allows collecting bales from baling and bale wrapping contracts. Note: when enabled, all contract bales will need to be collected and will remain if not collected." />
+        <text name="cb_enableCustomGrassFieldsForMissions_short" text="Support Custom Grass Field Contracts" />
+        <text name="cb_enableCustomGrassFieldsForMissions_long" text="Enables custom or dynamically generated grass fields to work properly for all grass contracts. With this setting disabled, custom or generated grass fields will be subject to plowing or cultivating contracts, and will grow weeds." />
         <text name="cb_preferStrawHarvestMissions_short" text="Prefer Harvest Contracts over Straw Baling" />
         <text name="cb_preferStrawHarvestMissions_long" text="Adds a preference towards harvesting contracts over straw baling contracts for the same fields. This setting works best with a MaxPerType for Harvest Missions higher than normal." />
 
+        <text name="cb_enableHarvestContractNewCrops_short" text="Enable Spinach, Pea &amp; Green Bean Harvest Contracts" />
+        <text name="cb_enableHarvestContractNewCrops_long" text="Allows generation of harvest contracts for Spinach, Pea &amp; Green Bean fields. This setting only affects harvesting contracts." />
+        <text name="cb_enableHarvestContractPremiumCrops_short" text="Enable Carrot, Parsnip &amp; Red Beet Harvest Contracts" />
+        <text name="cb_enableHarvestContractPremiumCrops_long" text="Allows generation of harvest contracts for Carrot, Parsnip &amp; Red Beet fields. This setting only affects harvesting contracts." />
+        <text name="cb_enableHarvestContractRootCrops_short" text="Enable Potato &amp; Sugar Beet Harvest Contracts" />
+        <text name="cb_enableHarvestContractRootCrops_long" text="Allows generation of harvest contracts for Potato &amp; Sugar Beet fields. This setting only affects harvesting contracts." />
+        <text name="cb_enableHarvestContractSugarcane_short" text="Enable Sugarcane Harvest Contracts" />
+        <text name="cb_enableHarvestContractSugarcane_long" text="Allows generation of harvest contracts for Sugarcane fields. This setting only affects harvesting contracts." />
+        <text name="cb_enableHarvestContractCotton_short" text="Enable Cotton Harvest Contracts" />
+        <text name="cb_enableHarvestContractCotton_long" text="Allows generation of harvest contracts for Cotton fields. This setting only affects harvesting contracts." />
+       
         <text name="cb_enableContractValueOverrides_short" text="Enable Contract Value Overrides" />
         <text name="cb_enableContractValueOverrides_long" text="Enables overriding contract system default setting values. Disables the next four settings if set to false." />
         <text name="cb_rewardFactor_short" text="Reward Factor" />

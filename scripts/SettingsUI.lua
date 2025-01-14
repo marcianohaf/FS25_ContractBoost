@@ -8,6 +8,7 @@
 ---@field sectionTitle table @The UI control which displays the section title
 ---@field controls table @A list of UI controls
 ---@field loadedConfig table @A reference to the loaded configuration object
+---@field debugMode boolean @Determined if the component should emit data to the log
 ---@field enableContractValueOverrides boolean @A UI control
 ---@field rewardFactor number @A UI control
 ---@field maxContractsPerFarm number @A UI control
@@ -18,7 +19,13 @@
 ---@field enableGrassFromMowingMissions boolean @A UI control
 ---@field enableStonePickingFromMissions boolean @A UI control
 ---@field enableFieldworkToolFillItems boolean @A UI control
+---@field enableCustomGrassFieldsForMissions boolean @A UI control
 ---@field preferStrawHarvestMissions boolean @A UI control
+---@field enableHarvestContractNewCrops boolean @A UI control
+---@field enableHarvestContractPremiumCrops boolean @A UI control
+---@field enableHarvestContractRootCrops boolean @A UI control
+---@field enableHarvestContractSugarcane boolean @A UI control
+---@field enableHarvestContractCotton boolean @A UI control
 ---@field baleMissionReward number @A UI control
 ---@field baleWrapMissionReward number @A UI control
 ---@field plowMissionReward number @A UI control
@@ -35,6 +42,23 @@
 ---@field deadwoodMissionReward number @A UI control
 ---@field treeTransportMissionReward number @A UI control
 ---@field destructibleRockMissionReward number @A UI control
+---@field baleMissionMaxPerType number @A UI control
+---@field baleWrapMissionMaxPerType number @A UI control
+---@field plowMissionMaxPerType number @A UI control
+---@field cultivateMissionMaxPerType number @A UI control
+---@field sowMissionMaxPerType number @A UI control
+---@field harvestMissionMaxPerType number @A UI control
+---@field hoeMissionMaxPerType number @A UI control
+---@field weedMissionMaxPerType number @A UI control
+---@field herbicideMissionMaxPerType number @A UI control
+---@field fertilizeMissionMaxPerType number @A UI control
+---@field mowMissionMaxPerType number @A UI control
+---@field tedderMissionMaxPerType number @A UI control
+---@field stonePickMissionMaxPerType number @A UI control
+---@field deadwoodMissionMaxPerType number @A UI control
+---@field treeTransportMissionMaxPerType number @A UI control
+---@field destructibleRockMissionMaxPerType number @A UI control
+
 SettingsUI = {}
 
 -- Create a meta table to get basic Class-like behavior
@@ -87,7 +111,13 @@ function SettingsUI:injectUiSettings(loadedConfig)
         { name = "enableStonePickingFromMissions", autoBind = true },
         { name = "enableCollectingBalesFromMissions", autoBind = true },
         { name = "enableFieldworkToolFillItems", autoBind = true },
+        { name = "enableCustomGrassFieldsForMissions", autoBind = true },
         { name = "preferStrawHarvestMissions", autoBind = true },
+        { name = "enableHarvestContractNewCrops", autoBind = true },
+        { name = "enableHarvestContractPremiumCrops", autoBind = true },
+        { name = "enableHarvestContractRootCrops", autoBind = true },
+        { name = "enableHarvestContractSugarcane", autoBind = true },
+        { name = "enableHarvestContractCotton", autoBind = true },
     }
 
     -- Dynamically add the rest since they're all the same
@@ -197,7 +227,7 @@ function SettingsUI:updateUiElements(skipAutoBindControls)
 
     local isAdmin = g_currentMission:getIsServer() or g_currentMission.isMasterUser
 	for _, control in ipairs(self.controls) do
-		control:setDisabled(not isAdmin)
+		control:setDisabled(not control.isDisabled and not isAdmin)
 	end
 
     -- Update the focus manager

@@ -36,11 +36,12 @@ SettingsManager.missionTypes = {
 }
 SettingsManager.defaultConfig = {
     debugMode = true,
+    enableInGameSettingsMenu = true,
+    enableContractValueOverrides = true,
     rewardFactor = 1.5,
     maxContractsPerFarm = 10,
     maxContractsPerType = 5,
     maxContractsOverall = 50,
-    enableContractValueOverrides = true,
     enableStrawFromHarvestMissions = true,
     enableSwathingForHarvestMissions = true,
     enableGrassFromMowingMissions = true,
@@ -48,8 +49,13 @@ SettingsManager.defaultConfig = {
     enableStonePickingFromMissions = true,
     enableFieldworkToolFillItems = true,
     enableCollectingBalesFromMissions = false,
+    enableCustomGrassFieldsForMissions = true,
     preferStrawHarvestMissions = true,
-    enableInGameSettingsMenu = true,
+    enableHarvestContractNewCrops = true,
+    enableHarvestContractPremiumCrops = true,
+    enableHarvestContractRootCrops = true,
+    enableHarvestContractSugarcane = true,
+    enableHarvestContractCotton = true,
     customRewards = {},
     customMaxPerType = {},
 }
@@ -139,21 +145,31 @@ function SettingsManager:initXmlSchema()
     self.xmlSchema = XMLSchema.new(XMLTAG)
 
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.debugMode", "Turn debugMode on for additional log output", SettingsManager.defaultConfig.debugMode)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableInGameSettingsMenu", "enable or disable the in-game settings menu?", SettingsManager.defaultConfig.enableInGameSettingsMenu)
+
+    self.xmlSchema:register(XMLValueType.FLOAT, XMLTAG..".settings.rewardFactor", "applies a multiplier to the base game rewardPer value", SettingsManager.defaultConfig.rewardFactor)
+    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerFarm", "how many contracts can be active at once", SettingsManager.defaultConfig.maxContractsPerFarm)
+    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerType", "how many contracts per contract type can be available", SettingsManager.defaultConfig.maxContractsPerType)
+    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsOverall", "how many contracts overall can be available", SettingsManager.defaultConfig.maxContractsOverall)
+
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableContractValueOverrides", "enables overriding contract system default setting values", SettingsManager.defaultConfig.enableContractValueOverrides)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableStrawFromHarvestMissions", "should straw be collectible from during harvest missions?", SettingsManager.defaultConfig.enableStrawFromHarvestMissions)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableSwathingForHarvestMissions", "should you be able to use a Swather for harvest missions?", SettingsManager.defaultConfig.enableSwathingForHarvestMissions)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableGrassFromMowingMissions", "should grass be collectible from during mowing missions?", SettingsManager.defaultConfig.enableGrassFromMowingMissions)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableHayFromTedderMissions", "should hay be collectible from during tedder missions?", SettingsManager.defaultConfig.enableHayFromTedderMissions)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableStonePickingFromMissions", "should stones be collectible from during tilling & sowing missions?", SettingsManager.defaultConfig.enableStonePickingFromMissions)
-    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableFieldworkToolFillItems", "should borrowed equipment come with free fieldwork items to fill your tools", SettingsManager.defaultConfig.enableFieldworkToolFillItems)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableCollectingBalesFromMissions", "should you be able to collect bales from baling and baleWrapping contracts?", SettingsManager.defaultConfig.enableCollectingBalesFromMissions)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableFieldworkToolFillItems", "should borrowed equipment come with free fieldwork items to fill your tools", SettingsManager.defaultConfig.enableFieldworkToolFillItems)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableCustomGrassFieldsForMissions", "should custom or dynamic grass fields work for contracts?", SettingsManager.defaultConfig.enableCustomGrassFieldsForMissions)
     self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.preferStrawHarvestMissions", "do you want to enable staw baling contracts (which may lower the number of harvest contracts)?", SettingsManager.defaultConfig.preferStrawHarvestMissions)
-    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableInGameSettingsMenu", "enable or disable the in-game settings menu?", SettingsManager.defaultConfig.enableInGameSettingsMenu)
-    self.xmlSchema:register(XMLValueType.FLOAT, XMLTAG..".settings.rewardFactor", "applies a multiplier to the base game rewardPer value", SettingsManager.defaultConfig.rewardFactor)
-    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerFarm", "how many contracts can be active at once", SettingsManager.defaultConfig.maxContractsPerFarm)
-    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsPerType", "how many contracts per contract type can be available", SettingsManager.defaultConfig.maxContractsPerType)
-    self.xmlSchema:register(XMLValueType.INT, XMLTAG..".settings.maxContractsOverall", "how many contracts overall can be available", SettingsManager.defaultConfig.maxContractsOverall)
 
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableHarvestContractNewCrops", "do you want contracts to harvest the new crops from FS25?", SettingsManager.defaultConfig.enableHarvestContractNewCrops)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableHarvestContractPremiumCrops", "do you want contracts to harvest the premium dlc crops?", SettingsManager.defaultConfig.enableHarvestContractPremiumCrops)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableHarvestContractRootCrops", "do you want contracts to harvest root crops?", SettingsManager.defaultConfig.enableHarvestContractRootCrops)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableHarvestContractSugarcane", "do you want contracts to harvest sugarcane ?", SettingsManager.defaultConfig.enableHarvestContractSugarcane)
+    self.xmlSchema:register(XMLValueType.BOOL, XMLTAG..".settings.enableHarvestContractCotton", "do you want contracts to harvest cotton?", SettingsManager.defaultConfig.enableHarvestContractCotton)
+
+    
     -- loop through the mission types to setup the customRewards
     for _, missionType in SettingsManager.missionTypes do
         self.xmlSchema:register(XMLValueType.INT, XMLTAG..".customRewards."..missionType, "custom rewards for "..missionType, nil)
@@ -185,22 +201,29 @@ function SettingsManager:importConfig(xmlFilename, settingsObject)
 
     if xmlFile ~= 0 then
         settingsObject.debugMode = xmlFile:getValue(XMLTAG..".settings.debugMode", SettingsManager.defaultConfig.debugMode)
+        settingsObject.enableInGameSettingsMenu = xmlFile:getValue(XMLTAG..".settings.enableInGameSettingsMenu", SettingsManager.defaultConfig.enableInGameSettingsMenu)
 
         settingsObject.enableContractValueOverrides = xmlFile:getValue(XMLTAG..".settings.enableContractValueOverrides", SettingsManager.defaultConfig.enableContractValueOverrides)
+        settingsObject.rewardFactor = xmlFile:getValue(XMLTAG..".settings.rewardFactor", SettingsManager.defaultConfig.rewardFactor)
+        settingsObject.maxContractsPerFarm = xmlFile:getValue(XMLTAG..".settings.maxContractsPerFarm", SettingsManager.defaultConfig.maxContractsPerFarm)
+        settingsObject.maxContractsPerType = xmlFile:getValue(XMLTAG..".settings.maxContractsPerType", SettingsManager.defaultConfig.maxContractsPerType)
+        settingsObject.maxContractsOverall = xmlFile:getValue(XMLTAG..".settings.maxContractsOverall", SettingsManager.defaultConfig.maxContractsOverall)
+
         settingsObject.enableStrawFromHarvestMissions = xmlFile:getValue(XMLTAG..".settings.enableStrawFromHarvestMissions", SettingsManager.defaultConfig.enableStrawFromHarvestMissions)
         settingsObject.enableSwathingForHarvestMissions = xmlFile:getValue(XMLTAG..".settings.enableSwathingForHarvestMissions", SettingsManager.defaultConfig.enableSwathingForHarvestMissions)
         settingsObject.enableGrassFromMowingMissions = xmlFile:getValue(XMLTAG..".settings.enableGrassFromMowingMissions", SettingsManager.defaultConfig.enableGrassFromMowingMissions)
         settingsObject.enableHayFromTedderMissions = xmlFile:getValue(XMLTAG..".settings.enableHayFromTedderMissions", SettingsManager.defaultConfig.enableHayFromTedderMissions)
         settingsObject.enableStonePickingFromMissions = xmlFile:getValue(XMLTAG..".settings.enableStonePickingFromMissions", SettingsManager.defaultConfig.enableStonePickingFromMissions)
-        settingsObject.enableFieldworkToolFillItems = xmlFile:getValue(XMLTAG..".settings.enableFieldworkToolFillItems", SettingsManager.defaultConfig.enableFieldworkToolFillItems)
         settingsObject.enableCollectingBalesFromMissions = xmlFile:getValue(XMLTAG..".settings.enableCollectingBalesFromMissions", SettingsManager.defaultConfig.enableCollectingBalesFromMissions)
+        settingsObject.enableFieldworkToolFillItems = xmlFile:getValue(XMLTAG..".settings.enableFieldworkToolFillItems", SettingsManager.defaultConfig.enableFieldworkToolFillItems)
+        settingsObject.enableCustomGrassFieldsForMissions = xmlFile:getValue(XMLTAG..".settings.enableCustomGrassFieldsForMissions", SettingsManager.defaultConfig.enableCustomGrassFieldsForMissions)
         settingsObject.preferStrawHarvestMissions = xmlFile:getValue(XMLTAG..".settings.preferStrawHarvestMissions", SettingsManager.defaultConfig.preferStrawHarvestMissions)
-        settingsObject.enableInGameSettingsMenu = xmlFile:getValue(XMLTAG..".settings.enableInGameSettingsMenu", SettingsManager.defaultConfig.enableInGameSettingsMenu)
-
-        settingsObject.rewardFactor = xmlFile:getValue(XMLTAG..".settings.rewardFactor", SettingsManager.defaultConfig.rewardFactor)
-        settingsObject.maxContractsPerFarm = xmlFile:getValue(XMLTAG..".settings.maxContractsPerFarm", SettingsManager.defaultConfig.maxContractsPerFarm)
-        settingsObject.maxContractsPerType = xmlFile:getValue(XMLTAG..".settings.maxContractsPerType", SettingsManager.defaultConfig.maxContractsPerType)
-        settingsObject.maxContractsOverall = xmlFile:getValue(XMLTAG..".settings.maxContractsOverall", SettingsManager.defaultConfig.maxContractsOverall)
+        
+        settingsObject.enableHarvestContractNewCrops = xmlFile:getValue(XMLTAG..".settings.enableHarvestContractNewCrops", SettingsManager.defaultConfig.enableHarvestContractNewCrops)
+        settingsObject.enableHarvestContractPremiumCrops = xmlFile:getValue(XMLTAG..".settings.enableHarvestContractPremiumCrops", SettingsManager.defaultConfig.enableHarvestContractPremiumCrops)
+        settingsObject.enableHarvestContractRootCrops = xmlFile:getValue(XMLTAG..".settings.enableHarvestContractRootCrops", SettingsManager.defaultConfig.enableHarvestContractRootCrops)
+        settingsObject.enableHarvestContractSugarcane = xmlFile:getValue(XMLTAG..".settings.enableHarvestContractSugarcane", SettingsManager.defaultConfig.enableHarvestContractSugarcane)
+        settingsObject.enableHarvestContractCotton = xmlFile:getValue(XMLTAG..".settings.enableHarvestContractCotton", SettingsManager.defaultConfig.enableHarvestContractCotton)
 
         -- loop through the mission types to pull the customRewards
         settingsObject.customRewards = {}
@@ -266,22 +289,29 @@ end
 ---@param settingsObject table
 function SettingsManager:useDefaultConfig(settingsObject)
     settingsObject.debugMode = SettingsManager.defaultConfig.debugMode
+    settingsObject.enableInGameSettingsMenu = SettingsManager.defaultConfig.enableInGameSettingsMenu
 
     settingsObject.enableContractValueOverrides = SettingsManager.defaultConfig.enableContractValueOverrides
+    settingsObject.rewardFactor = SettingsManager.defaultConfig.rewardFactor
+    settingsObject.maxContractsPerFarm = SettingsManager.defaultConfig.maxContractsPerFarm
+    settingsObject.maxContractsPerType = SettingsManager.defaultConfig.maxContractsPerType
+    settingsObject.maxContractsOverall = SettingsManager.defaultConfig.maxContractsOverall
+
     settingsObject.enableStrawFromHarvestMissions = SettingsManager.defaultConfig.enableStrawFromHarvestMissions
     settingsObject.enableSwathingForHarvestMissions = SettingsManager.defaultConfig.enableSwathingForHarvestMissions
     settingsObject.enableGrassFromMowingMissions = SettingsManager.defaultConfig.enableGrassFromMowingMissions
     settingsObject.enableHayFromTedderMissions = SettingsManager.defaultConfig.enableHayFromTedderMissions
     settingsObject.enableStonePickingFromMissions = SettingsManager.defaultConfig.enableStonePickingFromMissions
-    settingsObject.enableFieldworkToolFillItems = SettingsManager.defaultConfig.enableFieldworkToolFillItems
     settingsObject.enableCollectingBalesFromMissions = SettingsManager.defaultConfig.enableCollectingBalesFromMissions
+    settingsObject.enableFieldworkToolFillItems = SettingsManager.defaultConfig.enableFieldworkToolFillItems
+    settingsObject.enableCustomGrassFieldsForMissions = SettingsManager.defaultConfig.enableCustomGrassFieldsForMissions
     settingsObject.preferStrawHarvestMissions = SettingsManager.defaultConfig.preferStrawHarvestMissions
-    settingsObject.enableInGameSettingsMenu = SettingsManager.defaultConfig.enableInGameSettingsMenu
 
-    settingsObject.rewardFactor = SettingsManager.defaultConfig.rewardFactor
-    settingsObject.maxContractsPerFarm = SettingsManager.defaultConfig.maxContractsPerFarm
-    settingsObject.maxContractsPerType = SettingsManager.defaultConfig.maxContractsPerType
-    settingsObject.maxContractsOverall = SettingsManager.defaultConfig.maxContractsOverall
+    settingsObject.enableHarvestContractNewCrops = SettingsManager.defaultConfig.enableHarvestContractNewCrops
+    settingsObject.enableHarvestContractPremiumCrops = SettingsManager.defaultConfig.enableHarvestContractPremiumCrops
+    settingsObject.enableHarvestContractRootCrops = SettingsManager.defaultConfig.enableHarvestContractRootCrops
+    settingsObject.enableHarvestContractSugarcane = SettingsManager.defaultConfig.enableHarvestContractSugarcane
+    settingsObject.enableHarvestContractCotton = SettingsManager.defaultConfig.enableHarvestContractCotton
 
     settingsObject.customRewards = {}
     settingsObject.customMaxPerType = {}
@@ -302,22 +332,29 @@ function SettingsManager:saveSettings()
     local xmlFileId = createXMLFile("ContractBoost", xmlPath, XMLTAG)
 
     setXMLBool(xmlFileId, XMLTAG..".settings.debugMode", boostSettings.debugMode)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableInGameSettingsMenu", boostSettings.enableInGameSettingsMenu)
     
     setXMLBool(xmlFileId, XMLTAG..".settings.enableContractValueOverrides", boostSettings.enableContractValueOverrides)
+    setXMLFloat(xmlFileId, XMLTAG..".settings.rewardFactor", boostSettings.rewardFactor)
+    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsPerFarm", boostSettings.maxContractsPerFarm)
+    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsPerType", boostSettings.maxContractsPerType)
+    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsOverall", boostSettings.maxContractsOverall)
+    
     setXMLBool(xmlFileId, XMLTAG..".settings.enableStrawFromHarvestMissions", boostSettings.enableStrawFromHarvestMissions)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableSwathingForHarvestMissions", boostSettings.enableSwathingForHarvestMissions)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableGrassFromMowingMissions", boostSettings.enableGrassFromMowingMissions)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableHayFromTedderMissions", boostSettings.enableHayFromTedderMissions)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableStonePickingFromMissions", boostSettings.enableStonePickingFromMissions)
-    setXMLBool(xmlFileId, XMLTAG..".settings.enableFieldworkToolFillItems", boostSettings.enableFieldworkToolFillItems)
     setXMLBool(xmlFileId, XMLTAG..".settings.enableCollectingBalesFromMissions", boostSettings.enableCollectingBalesFromMissions)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableFieldworkToolFillItems", boostSettings.enableFieldworkToolFillItems)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableCustomGrassFieldsForMissions", boostSettings.enableCustomGrassFieldsForMissions)
     setXMLBool(xmlFileId, XMLTAG..".settings.preferStrawHarvestMissions", boostSettings.preferStrawHarvestMissions)
-    setXMLBool(xmlFileId, XMLTAG..".settings.enableInGameSettingsMenu", boostSettings.enableInGameSettingsMenu)
 
-    setXMLFloat(xmlFileId, XMLTAG..".settings.rewardFactor", boostSettings.rewardFactor)
-    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsPerFarm", boostSettings.maxContractsPerFarm)
-    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsPerType", boostSettings.maxContractsPerType)
-    setXMLInt(xmlFileId, XMLTAG..".settings.maxContractsOverall", boostSettings.maxContractsOverall)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableHarvestContractNewCrops", boostSettings.enableHarvestContractNewCrops)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableHarvestContractPremiumCrops", boostSettings.enableHarvestContractPremiumCrops)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableHarvestContractRootCrops", boostSettings.enableHarvestContractRootCrops)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableHarvestContractSugarcane", boostSettings.enableHarvestContractSugarcane)
+    setXMLBool(xmlFileId, XMLTAG..".settings.enableHarvestContractCotton", boostSettings.enableHarvestContractCotton)
 
     -- loop through the mission types to pull the customRewards
     for _, missionType in SettingsManager.missionTypes do
