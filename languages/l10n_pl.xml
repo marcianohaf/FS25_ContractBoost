@@ -28,20 +28,20 @@
         <text name="cb_enableHarvestContractNewCrops_short" text="Włącz kontrakty na zbiór szpinaku, groszku i fasolki zielonej" />
         <text name="cb_enableHarvestContractNewCrops_long" text="Umożliwia generowanie kontraktów na zbiór plonów dla pól ze szpinakiem, groszkiem i fasolką zieloną. To ustawienie dotyczy wyłącznie kontraktów na zbiór plonów." />
         <text name="cb_enableHarvestContractPremiumCrops_short" text="Włącz kontrakty na zbiór marchwi, pasternaku i buraków czerwonych" />
-        <text name="cb_enableHarvestContractPremiumCrops_long" text="Umożliwia generowanie kontraktów na zbiór plonów dla pól z marchwią, pasternakiem i burakami czerwonymi. To ustawienie dotyczy wyłącznie kontraktów na zbiór plonów" />
+        <text name="cb_enableHarvestContractPremiumCrops_long" text="Umożliwia generowanie kontraktów na zbiór plonów dla pól z marchwią, pasternakiem i burakami czerwonymi. To ustawienie dotyczy wyłącznie kontraktów na zbiór plonów." />
         <text name="cb_enableHarvestContractRootCrops_short" text="Włącz kontrakty na zbiór ziemniaków i buraków cukrowych" />
         <text name="cb_enableHarvestContractRootCrops_long" text="Umożliwia generowanie kontraktów na zbiór plonów dla pól z ziemniakami i burakami cukrowymi. To ustawienie dotyczy wyłącznie kontraktów na zbiór plonów." />
         <text name="cb_enableHarvestContractSugarcane_short" text="Włącz kontrakty na zbiór trzciny cukrowej" />
-        <text name="cb_enableHarvestContractSugarcane_long" text="Umożliwia generowanie kontraktów na zbiór plonów dla pól z trzciną cukrową. To ustawienie dotyczy wyłącznie kontraktów na zbiór plonów" />
+        <text name="cb_enableHarvestContractSugarcane_long" text="Umożliwia generowanie kontraktów na zbiór plonów dla pól z trzciną cukrową. To ustawienie dotyczy wyłącznie kontraktów na zbiór plonów." />
         <text name="cb_enableHarvestContractCotton_short" text="Włącz kontrakty na zbiór bawełny" />
-        <text name="cb_enableHarvestContractCotton_long" text="Umożliwia generowanie kontraktów na zbiór plonów dla pól z bawełną. To ustawienie dotyczy wyłącznie kontraktów na zbiór plonów" />
+        <text name="cb_enableHarvestContractCotton_long" text="Umożliwia generowanie kontraktów na zbiór plonów dla pól z bawełną. To ustawienie dotyczy wyłącznie kontraktów na zbiór plonów." />
 
         <text name="cb_enableContractValueOverrides_short" text="Włącz nadpisywanie wartości kontraktu"/>
         <text name="cb_enableContractValueOverrides_long" text="Włącza nadpisywanie domyślnych ustawień systemu kontraktów. Wyłącza cztery kolejne ustawienia, jeśli jest wyłączone."/>
         <text name="cb_rewardFactor_short" text="Współczynnik nagrody"/>
         <text name="cb_rewardFactor_long" text="Pomnaża wszystkie nagrody z kontraktów przez podany współczynnik."/>
         <text name="cb_maxContractsPerFarm_short" text="Maksymalna liczba kontraktów na gospodarstwo"/>
-        <text name="cb_maxContractsPerFarm_long" text="Określa maksymalną liczbę kontraktów, które każde gospodarstwo może mieć aktywne w danym momencie"/>
+        <text name="cb_maxContractsPerFarm_long" text="Określa maksymalną liczbę kontraktów, które każde gospodarstwo może mieć aktywne w danym momencie."/>
         <text name="cb_maxContractsOverall_short" text="Maksymalna liczba dostępnych kontraktów"/>
         <text name="cb_maxContractsOverall_long" text="Określa maksymalną liczbę kontraktów, które mogą zostać ci zaproponowane."/>
         <text name="cb_maxContractsPerType_short" text="Maksymalna ilość kontraktów na typ"/>
