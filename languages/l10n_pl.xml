@@ -37,7 +37,7 @@
         <text name="cb_enableHarvestContractCotton_long" text="Umożliwia generowanie kontraktów na zbiór plonów dla pól z bawełną. To ustawienie dotyczy wyłącznie kontraktów na zbiór plonów" />
 
         <text name="cb_enableContractValueOverrides_short" text="Włącz nadpisywanie wartości kontraktu"/>
-        <text name="cb_enableContractValueOverrides_long" text="Włącza nadpisywanie domyślnych ustawień systemu kontraktów. Wyłącza cztery kolejne ustawienia, jeśli ustawione na nie."/>
+        <text name="cb_enableContractValueOverrides_long" text="Włącza nadpisywanie domyślnych ustawień systemu kontraktów. Wyłącza cztery kolejne ustawienia, jeśli jest wyłączone."/>
         <text name="cb_rewardFactor_short" text="Współczynnik nagrody"/>
         <text name="cb_rewardFactor_long" text="Pomnaża wszystkie nagrody z kontraktów przez podany współczynnik."/>
         <text name="cb_maxContractsPerFarm_short" text="Maksymalna liczba kontraktów na gospodarstwo"/>
